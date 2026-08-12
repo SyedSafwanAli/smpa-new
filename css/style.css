@@ -1,0 +1,2191 @@
+/* ==========================================================================
+   SMPA — Sindh Master Plan Authority
+   Custom stylesheet (Bootstrap 5 override layer)
+   --------------------------------------------------------------------------
+   00. Design tokens
+   01. Base & typography
+   02. Reusable components (buttons, cards, headings, carousels)
+   03. Top utility bar
+   04. Main header
+   05. Primary navigation + offcanvas drawer
+   06. Hero slider
+   06a. Vision and mission
+   06b. Chain of command / officers / downloads
+   07. Latest news feature
+   08. News tabs + card carousel
+   09. Master plans band
+   10. Land use plan maps
+   11. Land file process infographic
+   12. Departments grid
+   13. Explore City grid
+   14. Footer
+   15. Responsive refinements
+   16. Multilingual — language switch, Sindhi/Urdu modes, RTL mirroring
+   ========================================================================== */
+
+
+/* ==========================================================================
+   00. DESIGN TOKENS
+   ========================================================================== */
+:root {
+  /* --- Green surfaces (dark bands: nav, projects, footer) --------------- */
+  --green:           #004505;
+  --green-btn:       #024D00;
+  --green-copyright: #003804;
+
+  /* --- Accent -----------------------------------------------------------
+     The theme is all-green, so the accent has to work on two very different
+     grounds. One green cannot do both: anything readable on white disappears
+     on #004505, and anything that pops on #004505 is illegible on white.
+     Hence a light-ground accent and a dark-ground accent.
+       --accent        white text on it .... 5.46:1  (AA)
+       --accent-bright on #004505 .......... 5.54:1  (AA)
+                       ...but only 2.05:1 on white — never use it on light. */
+  --accent:              #0B7A33;
+  --accent-hover:        #096128;
+  --accent-bright:       #8CC63F;
+  --accent-bright-hover: #9BD44F;
+
+  /* --- Surfaces ---------------------------------------------------------- */
+  --bg-alt:     #F1F6F2;
+  --bg-topbar:  #F1F4F1;
+  --bg-address: #E8F3EA;
+  --white:      #FFFFFF;
+  --line:       #DEE7E0;
+
+  /* --- Text -------------------------------------------------------------- */
+  --ink:        #12301B;
+  --text:       #5F6660;
+  --text-muted: #667268;
+
+  /* --- Social (theme-green rather than each platform's brand colour) ----- */
+  --fb: var(--green);
+  --wa: var(--green);
+  --tw: var(--green);
+
+  /* Type. --font-latin never changes, so elements that must stay in Latin
+     (the "English" switch label) can opt out when the page flips to Sindhi. */
+  --font-latin:  'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body:   var(--font-latin);
+  /* Sindhi is conventionally set in Naskh (not Nastaliq) and Naskh carries the
+     Sindhi-specific letters ٻ ڄ ڏ ڳ ڻ ڪ ۽ ۾ that Nastaliq Urdu faces lack. */
+  --font-sindhi: 'Noto Naskh Arabic', 'MB Sindhi', 'Lateef', 'Segoe UI', serif;
+  /* Urdu is the opposite convention to Sindhi: Nastaliq, not Naskh.
+     Noto Nastaliq Urdu sets USE_TYPO_METRICS, so browsers take its typo
+     metrics: (1904 + 596) / 1000 upem = a 2.50em natural line box — far taller
+     than most faces. Every Urdu line-height below is >= 2.5, and the paddings
+     are derived from it; going lower makes the cascading baselines collide. */
+  --font-urdu:   'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', serif;
+
+  /* Metrics */
+  --radius-card: 12px;
+  --radius-pill: 9999px;
+  --transition:  0.3s ease;
+  --section-y:   100px;
+}
+
+
+/* ==========================================================================
+   01. BASE & TYPOGRAPHY
+   ========================================================================== */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.63;
+  color: var(--text);
+  background-color: var(--white);
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; height: auto; }
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+a:hover { color: var(--accent-hover); }
+
+p { color: var(--text-muted); }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-body);
+  color: var(--ink);
+  margin: 0;
+}
+
+/* Boxed container — 1320px with 15px gutters */
+.container {
+  max-width: 1320px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Section rhythm & alternating bands */
+.section {
+  position: relative;
+  padding-top: var(--section-y);
+  padding-bottom: var(--section-y);
+}
+.section--tight { padding-top: 60px; }
+
+.band-alt  { background-color: var(--bg-alt); }
+.band-dark { background-color: var(--green); }
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+
+/* ==========================================================================
+   02. REUSABLE COMPONENTS
+   ========================================================================== */
+
+/* --- Section heading (small accent icon above a centred uppercase title) -- */
+.sec-head {
+  text-align: center;
+  margin-bottom: 55px;
+}
+.sec-head__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+.sec-head__title {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: var(--ink);
+  position: relative;
+  padding-bottom: 18px;
+}
+.sec-head__title::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 64px;
+  height: 3px;
+  border-radius: var(--radius-pill);
+  background-color: var(--accent);
+}
+.sec-head--light .sec-head__title { color: var(--white); }
+/* On the dark green band the accent must switch to the bright green */
+.sec-head--light .sec-head__icon { color: var(--accent-bright); }
+.sec-head--light .sec-head__title::after { background-color: var(--accent-bright); }
+
+/* --- Pill buttons ------------------------------------------------------- */
+.btn-pill {
+  display: inline-block;
+  border: 2px solid transparent;
+  border-radius: var(--radius-pill);
+  padding: 19px 38px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition),
+              border-color var(--transition), transform var(--transition);
+}
+.btn-pill:hover,
+.btn-pill:focus-visible { transform: scale(1.03); }
+
+.btn-pill--primary {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: var(--white);
+}
+.btn-pill--primary:hover,
+.btn-pill--primary:focus-visible {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--white);
+}
+
+.btn-pill--dark {
+  background-color: var(--green-btn);
+  border-color: var(--green-btn);
+  color: var(--white);
+}
+.btn-pill--dark:hover,
+.btn-pill--dark:focus-visible {
+  background-color: var(--green);
+  border-color: var(--green);
+  color: var(--white);
+}
+
+.btn-pill--outline {
+  background-color: transparent;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.btn-pill--outline:hover,
+.btn-pill--outline:focus-visible {
+  background-color: var(--accent);
+  color: var(--white);
+}
+
+/* For dark grounds (hero photo, nav bar, footer) where --accent would vanish.
+   Carries dark-green text, since white on --accent-bright is only 2.05:1. */
+.btn-pill--bright {
+  background-color: var(--accent-bright);
+  border-color: var(--accent-bright);
+  color: var(--green);
+}
+.btn-pill--bright:hover,
+.btn-pill--bright:focus-visible {
+  background-color: var(--accent-bright-hover);
+  border-color: var(--accent-bright-hover);
+  color: var(--green);
+}
+
+.btn-pill--sm {
+  padding: 12px 26px;
+  font-size: 14px;
+}
+
+/* --- "Read more »" text link -------------------------------------------- */
+.link-more {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: capitalize;
+}
+.link-more:hover { color: var(--accent-hover); }
+
+/* --- Accent date badge --------------------------------------------------- */
+.date-pill {
+  display: inline-block;
+  background-color: var(--accent);
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+}
+
+/* --- Flat white card ----------------------------------------------------- */
+.card-flat {
+  background-color: var(--white);
+  border-radius: var(--radius-card);
+  box-shadow: none;
+  overflow: hidden;
+}
+
+/* --- Continuous card slider ----------------------------------------------
+   One card moves per click and the track loops, so a set that does not
+   divide evenly by the visible count never lands on a half-empty page —
+   which is what Bootstrap's slide-at-a-time carousel does. --gap must match
+   GAP in js/slider.js. */
+.slider { --slider-gap: 24px; }
+.slider__viewport { overflow: hidden; }
+.slider__track {
+  display: flex;
+  align-items: stretch;
+  gap: var(--slider-gap);
+  will-change: transform;
+}
+/* four across; the gaps are subtracted so the cards align to the grid */
+.slider__item { flex: 0 0 calc((100% - 3 * var(--slider-gap)) / 4); }
+
+/* --- Circular carousel arrows -------------------------------------------- */
+/* Centred call-to-action that closes a section. Owning the gap here keeps
+   it identical whether the CTA follows a card grid, a slider's arrows or a
+   process track — previously each section spaced it differently, and the
+   news one had no gap at all. */
+.section-cta {
+  text-align: center;
+  margin-top: 55px;
+}
+
+.carousel-nav {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 45px 0 0;
+}
+.round-arrow {
+  width: 52px;
+  height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--white);
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  font-size: 16px;
+  transition: background-color var(--transition), color var(--transition),
+              transform var(--transition);
+}
+.round-arrow:hover,
+.round-arrow:focus-visible {
+  background-color: var(--accent);
+  color: var(--white);
+  transform: scale(1.06);
+}
+.round-arrow--light {
+  background-color: transparent;
+  border-color: var(--white);
+  color: var(--white);
+}
+.round-arrow--light:hover,
+.round-arrow--light:focus-visible {
+  background-color: var(--white);
+  color: var(--green);
+}
+
+/* --- Social icon dots ---------------------------------------------------- */
+.social-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.social-row--center { justify-content: center; }
+
+.social-dot {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--white);
+  font-size: 15px;
+  transition: transform var(--transition), opacity var(--transition);
+}
+.social-dot:hover,
+.social-dot:focus-visible {
+  color: var(--white);
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+.social-dot--fb { background-color: var(--fb); }
+.social-dot--wa { background-color: var(--wa); }
+.social-dot--tw { background-color: var(--tw); }
+.social-dot--ig {
+  background: linear-gradient(135deg, var(--green) 0%, var(--accent) 100%);
+}
+
+/* ==========================================================================
+   03. TOP UTILITY BAR
+   ========================================================================== */
+.topbar {
+  background-color: var(--bg-topbar);
+}
+.topbar__inner {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.topbar__item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+}
+.topbar__item i { color: var(--accent); font-size: 13px; }
+
+
+/* ==========================================================================
+   04. MAIN HEADER
+   ========================================================================== */
+.site-header {
+  background-color: var(--white);
+  padding: 15px 0;
+}
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* Brand lockup */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: inherit;
+}
+/* The seal is a portrait crest with a ribbon (1247x1427, transparent), not a
+   circular badge — so it is sized by height and left uncropped. A circular
+   mask with object-fit:cover would cut the ribbon off. */
+.brand__seal {
+  width: auto;
+  height: 64px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.brand__text { display: flex; flex-direction: column; }
+.brand__name {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+.brand__full {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text);
+  text-transform: capitalize;
+}
+
+/* Contact + social cluster */
+.header-utils {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.info-card {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 16px;
+  border-radius: 5px;
+}
+.info-card--address { background-color: var(--bg-address); }
+
+.info-card__icon {
+  color: var(--accent);
+  font-size: 20px;
+  line-height: 1;
+}
+.info-card__body { display: flex; flex-direction: column; }
+.info-card__label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+  line-height: 1.4;
+}
+.info-card__value {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.4;
+}
+a.info-card__value:hover { color: var(--accent); }
+
+.header-utils__divider {
+  width: 1px;
+  height: 42px;
+  background-color: var(--line);
+}
+
+
+/* ==========================================================================
+   05. PRIMARY NAVIGATION
+   ========================================================================== */
+.mainnav {
+  position: relative;
+  z-index: 20;
+}
+/* Full-bleed dark green band behind the boxed nav row */
+.mainnav::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100%;
+  background-color: var(--green);
+  z-index: -1;
+}
+.mainnav__inner {
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Desktop menu */
+.mainnav__menu {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.mainnav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--white);
+  padding: 20px 0;
+  transition: color var(--transition);
+}
+.mainnav__link:hover,
+.mainnav__link:focus-visible,
+.mainnav__link.active,
+.mainnav__link.show { color: var(--accent-bright); }
+
+.mainnav__link.dropdown-toggle::after {
+  margin-left: 2px;
+  border-top-width: 5px;
+  border-right-width: 4px;
+  border-left-width: 4px;
+  vertical-align: 1px;
+}
+
+/* Dropdown panel */
+.navdrop {
+  border: none;
+  border-radius: 6px;
+  padding: 10px 0;
+  margin-top: 0;
+  min-width: 250px;
+  background-color: var(--white);
+  box-shadow: 0 12px 30px rgba(18, 48, 27, 0.16);
+}
+.navdrop .dropdown-item {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  padding: 9px 22px;
+  white-space: normal;
+  transition: background-color var(--transition), color var(--transition),
+              padding-left var(--transition);
+}
+.navdrop .dropdown-item:hover,
+.navdrop .dropdown-item:focus {
+  background-color: var(--bg-alt);
+  color: var(--accent);
+  padding-left: 28px;
+}
+
+/* Right-hand actions */
+.mainnav__actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.nav-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 9px 30px;
+  line-height: 1.15;
+}
+.nav-cta__top {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.nav-cta__sub {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: capitalize;
+  opacity: 0.92;
+}
+
+/* Hamburger toggle */
+.nav-burger {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--accent-bright);
+  color: var(--green);
+  font-size: 17px;
+  transition: background-color var(--transition), transform var(--transition);
+}
+.nav-burger:hover { background-color: var(--accent-bright-hover); transform: scale(1.05); }
+
+/* Offcanvas drawer */
+.navdrawer {
+  width: 320px;
+  max-width: 85vw;
+  background-color: var(--white);
+}
+.navdrawer .offcanvas-header {
+  border-bottom: 1px solid var(--line);
+  padding: 20px 24px;
+}
+.navdrawer .offcanvas-title { color: var(--ink); font-weight: 700; }
+.navdrawer .offcanvas-body { padding: 20px 24px 32px; }
+
+.navdrawer__list > li { border-bottom: 1px solid var(--line); }
+.navdrawer__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.navdrawer__link:hover { color: var(--accent); }
+.navdrawer__link[data-bs-toggle]::after {
+  content: "\f078";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 11px;
+  color: var(--accent);
+  transition: transform var(--transition);
+}
+.navdrawer__link[aria-expanded="true"]::after { transform: rotate(180deg); }
+
+.navdrawer__sub { padding: 0 0 12px 14px; }
+.navdrawer__sub a {
+  display: block;
+  padding: 7px 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+}
+.navdrawer__sub a:hover { color: var(--accent); }
+
+.offcanvas-backdrop.show { background-color: rgba(0, 0, 0, 0.6); opacity: 1; }
+
+
+/* ==========================================================================
+   06. HERO SLIDER
+   ========================================================================== */
+.hero { position: relative; }
+
+.hero .carousel-item { height: clamp(540px, 74vh, 760px); }
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  /* Directional scrim rather than a flat 50% black: heavy behind the left-hand
+     copy, clearing toward the right so the photograph is actually visible.
+     Tinted with the theme's near-black green instead of neutral black. */
+  background:
+    linear-gradient(90deg,
+      rgba(4, 26, 10, 0.95) 0%,
+      rgba(4, 26, 10, 0.82) 38%,
+      rgba(4, 26, 10, 0.42) 68%,
+      rgba(4, 26, 10, 0.18) 100%),
+    linear-gradient(180deg,
+      rgba(4, 26, 10, 0.35) 0%,
+      rgba(4, 26, 10, 0) 30%,
+      rgba(4, 26, 10, 0.45) 100%);
+}
+.hero__container {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  z-index: 2;
+  /* The copy column spans the full slide height, so at ~1320px viewports it
+     would sit over the arrows and swallow their clicks. Let events through
+     everywhere except the copy itself. */
+  pointer-events: none;
+}
+.hero__content > * { pointer-events: auto; }
+.hero__content { max-width: 700px; }
+
+/* --- Motion: slow push-in on the active photo, staggered rise on the copy.
+   Both are keyed off .active so they replay on every slide change. --------- */
+@keyframes heroZoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.09); }
+}
+@keyframes heroRise {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero .carousel-item.active .hero__bg {
+  animation: heroZoom 9s ease-out forwards;
+}
+.hero .carousel-item.active .hero__eyebrow { animation: heroRise 0.7s 0.10s both ease-out; }
+.hero .carousel-item.active .hero__title   { animation: heroRise 0.7s 0.22s both ease-out; }
+.hero .carousel-item.active .hero__text    { animation: heroRise 0.7s 0.34s both ease-out; }
+.hero .carousel-item.active .hero__cta     { animation: heroRise 0.7s 0.46s both ease-out; }
+
+.hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-bright);
+}
+.hero__rule {
+  display: inline-block;
+  width: 46px;
+  height: 3px;
+  border-radius: var(--radius-pill);
+  background-color: var(--accent-bright);
+}
+/* Fluid from the 42px baseline so it gains presence on wide screens and
+   degrades on small ones without a stack of breakpoint overrides. */
+.hero__title {
+  font-size: clamp(28px, 3.3vw, 58px);
+  font-weight: 700;
+  line-height: 1.16;
+  letter-spacing: -0.015em;
+  color: var(--white);
+  margin-bottom: 22px;
+  text-wrap: balance;
+}
+.hero__text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.86);
+  margin-bottom: 38px;
+  max-width: 540px;
+}
+
+/* Decorative dot grid on the right */
+.hero__dots {
+  position: absolute;
+  right: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 210px;
+  height: 210px;
+  z-index: 2;
+  opacity: 0.4;
+  pointer-events: none;
+  background-image: radial-gradient(var(--accent-bright) 2px, transparent 2px);
+  background-size: 22px 22px;
+}
+
+/* --- Controls ------------------------------------------------------------
+   Bootstrap ships these as 15%-wide invisible hit strips; reset to circles
+   inset from the edges so they read as buttons over the photograph. */
+.hero__ctrl {
+  z-index: 3;
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%);
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  opacity: 1;
+  color: var(--white);
+  font-size: 17px;
+  background-color: rgba(255, 255, 255, 0.13);
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background-color var(--transition), color var(--transition),
+              border-color var(--transition), transform var(--transition);
+}
+.carousel-control-prev.hero__ctrl { left: 34px; }
+.carousel-control-next.hero__ctrl { right: 34px; }
+.hero__ctrl:hover,
+.hero__ctrl:focus-visible {
+  background-color: var(--accent-bright);
+  border-color: var(--accent-bright);
+  color: var(--green);
+  transform: translateY(-50%) scale(1.08);
+}
+
+/* Indicators, left-aligned to the same 1320px column as the copy */
+.hero__indicators {
+  z-index: 3;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1320px;
+  justify-content: flex-start;
+  margin: 0 0 52px;
+  padding: 0 15px;
+}
+.hero__indicators [data-bs-target] {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.45);
+  opacity: 1;
+  transition: background-color var(--transition), width var(--transition);
+}
+.hero__indicators .active {
+  background-color: var(--accent-bright);
+  width: 34px;
+  border-radius: var(--radius-pill);
+}
+
+
+/* ==========================================================================
+   06a. VISION AND MISSION
+   ========================================================================== */
+.vm-quote {
+  position: relative;
+  max-width: 940px;
+  margin: 0 auto 30px;
+  padding: 0 46px;
+  text-align: center;
+}
+/* opening quote glyph — inset-inline so it flips for Sindhi/Urdu */
+.vm-quote::before {
+  content: "10d";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 26px;
+  color: var(--accent);
+  opacity: 0.4;
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+}
+.vm-quote__text {
+  font-size: clamp(19px, 1.5vw, 24px);
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--ink);
+  margin: 0;
+}
+
+.vm-intro {
+  max-width: 940px;
+  margin: 0 auto 55px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.9;
+  color: var(--text-muted);
+}
+
+.vm-card {
+  height: 100%;
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: 40px 36px;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.vm-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 14px 30px rgba(18, 48, 27, 0.08);
+}
+.vm-card__icon {
+  width: 54px;
+  height: 54px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--bg-address);
+  color: var(--accent);
+  font-size: 21px;
+  margin-bottom: 20px;
+}
+.vm-card__title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+.vm-card__text {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.9;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+
+/* ==========================================================================
+   06b. CHAIN OF COMMAND / OFFICERS / DOWNLOADS
+   ========================================================================== */
+.leader-card {
+  height: 100%;
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: 34px 22px 28px;
+  text-align: center;
+  transition: transform var(--transition), border-color var(--transition),
+              box-shadow var(--transition);
+}
+.leader-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: 0 14px 30px rgba(18, 48, 27, 0.10);
+}
+/* Ring sits outside the portrait so it never crops the face */
+.leader-card__photo {
+  display: block;
+  width: 132px;
+  height: 132px;
+  margin: 0 auto 22px;
+  border-radius: 50%;
+  padding: 4px;
+  border: 2px solid var(--line);
+  transition: border-color var(--transition);
+}
+.leader-card:hover .leader-card__photo { border-color: var(--accent); }
+.leader-card__photo img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;   /* portraits crop from the chin, not the head */
+}
+.leader-card__name {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.45;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.leader-card__role {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* --- Officers + Downloads: one card, two halves ------------------------- */
+/* --- Officers + Downloads: one card, two halves ------------------------- */
+.split-card {
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(18, 48, 27, 0.07);
+}
+
+.officer-list { padding: 26px 24px; }
+.officer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 18px;
+  border-radius: 12px;
+  transition: background-color var(--transition);
+}
+/* separator inset from the row padding, so it reads as a list rather than a
+   stack of boxed rows — and it clears the way for the hover tint */
+.officer::after {
+  content: "";
+  position: absolute;
+  inset-inline: 18px;
+  bottom: 0;
+  border-bottom: 1px solid var(--line);
+  transition: opacity var(--transition);
+}
+.officer:last-child::after { display: none; }
+.officer::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 50%;
+  width: 3px;
+  height: 0;
+  border-radius: var(--radius-pill);
+  background-color: var(--accent);
+  transform: translateY(-50%);
+  transition: height var(--transition);
+}
+.officer:hover { background-color: var(--bg-alt); }
+.officer:hover::after { opacity: 0; }
+.officer:hover::before { height: 48px; }
+
+.officer__photo {
+  flex-shrink: 0;
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  padding: 3px;
+  border: 2px solid var(--line);
+  transition: border-color var(--transition);
+}
+.officer:hover .officer__photo { border-color: var(--accent); }
+.officer__photo img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+}
+.officer__body { display: flex; flex-direction: column; }
+.officer__name {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.officer__role {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.downloads {
+  position: relative;
+  height: 100%;
+  padding: 40px 34px;
+  overflow: hidden;
+  background-image: linear-gradient(160deg, #005207 0%, var(--green) 55%, var(--green-copyright) 100%);
+}
+/* Six links are shorter than five officers, which left the panel bottom
+   empty. The seal fills it as a watermark instead of dead space. */
+.downloads::after {
+  content: "";
+  position: absolute;
+  inset-inline-end: -46px;
+  bottom: -46px;
+  width: 240px;
+  height: 240px;
+  background: url("../logo.webp") center / contain no-repeat;
+  opacity: 0.07;
+  pointer-events: none;
+}
+.downloads > * { position: relative; z-index: 1; }
+
+.downloads__title {
+  position: relative;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--white);
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+}
+.downloads__title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  inset-inline-start: 0;
+  width: 58px;
+  height: 3px;
+  border-radius: var(--radius-pill);
+  background-color: var(--accent-bright);
+}
+
+.downloads__list li + li { border-top: 1px solid rgba(255, 255, 255, 0.13); }
+.downloads__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 17px 0;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.92);
+  transition: color var(--transition), padding-inline-start var(--transition);
+}
+.downloads__link i {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.32);
+  color: var(--accent-bright);
+  font-size: 13px;
+  transition: background-color var(--transition), border-color var(--transition),
+              color var(--transition), transform var(--transition);
+}
+.downloads__link:hover,
+.downloads__link:focus-visible {
+  color: var(--accent-bright);
+  padding-inline-start: 8px;
+}
+.downloads__link:hover i,
+.downloads__link:focus-visible i {
+  background-color: var(--accent-bright);
+  border-color: var(--accent-bright);
+  color: var(--green);
+  transform: translateY(3px);
+}
+
+
+/* ==========================================================================
+   07. LATEST NEWS FEATURE (Urdu)
+   ========================================================================== */
+.feature {
+  background-color: #FAFCFA;
+  background-image: radial-gradient(rgba(18, 48, 27, 0.10) 1.5px, transparent 1.5px);
+  background-size: 26px 26px;
+}
+
+/* Photo with offset accent bars */
+.framed-photo {
+  position: relative;
+  display: inline-block;
+  padding: 0;
+}
+.framed-photo img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  border-radius: 6px;
+  object-fit: cover;
+}
+.framed-photo::before,
+.framed-photo::after {
+  content: "";
+  position: absolute;
+  background-color: var(--accent);
+  z-index: 1;
+  border-radius: 3px;
+}
+.framed-photo::before {
+  top: -18px;
+  left: -18px;
+  width: 150px;
+  height: 78px;
+}
+.framed-photo::after {
+  bottom: -18px;
+  right: -18px;
+  width: 150px;
+  height: 78px;
+}
+
+.feature__body {
+  display: flex;
+  flex-direction: column;
+  /* content column sits beside the photo — pad on the side facing it */
+  padding-inline-end: 10px;
+}
+.feature__body .date-pill {
+  align-self: flex-start;
+  margin-bottom: 24px;
+}
+/* Flex column defaults to align-items:stretch — without this the pill spans
+   the whole column instead of hugging its label. flex-start follows the
+   writing direction, so it sits left in English and right in Sindhi. */
+.feature__body .btn-pill { align-self: flex-start; }
+
+.feature__title {
+  font-size: clamp(26px, 2.2vw, 38px);
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+.feature__text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--text-muted);
+  margin-bottom: 30px;
+}
+/* Sindhi sets looser and reads larger at the same nominal size */
+html[lang="sd"] .feature__title { line-height: 1.75; }
+html[lang="sd"] .feature__text  { font-size: 17px; line-height: 2.05; }
+
+/* ==========================================================================
+   08. NEWS TABS + CARD CAROUSEL
+   ========================================================================== */
+/* News card */
+.news-card {
+  background-color: var(--white);
+  border-radius: var(--radius-card);
+  box-shadow: none;
+  height: 100%;
+}
+.news-card__media {
+  position: relative;
+  margin-bottom: 32px;
+}
+.news-card__media img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--radius-card);
+}
+.news-card__date {
+  position: absolute;
+  left: 18px;
+  bottom: -16px;
+  z-index: 2;
+}
+.news-card__title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+.news-card:hover .news-card__title { color: var(--accent); }
+.news-card__title { transition: color var(--transition); }
+
+
+/* ==========================================================================
+   09. MASTER PLANS BAND
+   ========================================================================== */
+.projects { padding-bottom: 150px; }
+
+/* Master plan covers are portrait (400x600 book scans) — cropping them to a
+   landscape tile sliced the covers to a sliver, so the tile follows the
+   artwork's own 2:3 ratio instead. */
+.plan-card { text-align: center; }
+.plan-card__media {
+  display: block;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.06);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.plan-card__media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+.plan-card:hover .plan-card__media {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.28);
+}
+.plan-card__title {
+  margin-top: 18px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.55;
+  color: var(--white);
+}
+
+/* Scalloped divider into the following white section */
+.wave-divider {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  line-height: 0;
+  pointer-events: none;
+}
+.wave-divider svg {
+  display: block;
+  width: 100%;
+  height: 90px;
+}
+
+
+/* ==========================================================================
+   10. LAND USE PLAN MAPS
+   ========================================================================== */
+.map-card { text-align: center; }
+
+/* Framed like a mounted print: the sheet is inset inside the mount, so the
+   card reads as an artefact rather than a bare thumbnail. */
+.map-card__media {
+  position: relative;
+  display: block;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background-color: var(--white);
+  transition: transform var(--transition), border-color var(--transition),
+              box-shadow var(--transition);
+}
+/* The zoom has to be clipped by the sheet, not by the mount — with
+   overflow on the padded parent the scaled image spilled over the white
+   border and the frame disappeared on hover. */
+.map-card__frame {
+  position: relative;
+  display: block;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.map-card__frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+.map-card:hover .map-card__media {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: 0 16px 34px rgba(18, 48, 27, 0.13);
+}
+.map-card:hover .map-card__frame img { transform: scale(1.06); }
+
+/* The maps span five decades, so the year is the fastest way to tell them
+   apart — the titles all start with "Karachi". */
+.map-card__year {
+  position: absolute;
+  top: 20px;
+  inset-inline-start: 20px;
+  z-index: 3;
+  background-color: var(--accent);
+  color: var(--white);
+  font-family: var(--font-latin);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  padding: 7px 13px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 2px 8px rgba(18, 48, 27, 0.3);
+}
+
+/* A light scrim plus a single button — a heavy flat tint washed the map out
+   and made it unreadable at exactly the moment the user wants to read it. */
+.map-card__zoom {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(18, 48, 27, 0.34);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.map-card__zoom i {
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--white);
+  color: var(--accent);
+  font-size: 17px;
+  transform: scale(0.85);
+  transition: transform var(--transition);
+}
+.map-card__media:hover .map-card__zoom,
+.map-card__media:focus-visible .map-card__zoom { opacity: 1; }
+.map-card__media:hover .map-card__zoom i { transform: scale(1); }
+
+.map-card__title {
+  margin-top: 18px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+/* The department's usage restriction, reproduced from the live site. Set as a
+   callout and left-aligned — centred justification is hard to read at this
+   length. */
+.plans-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  max-width: 1010px;
+  margin: 55px auto 0;
+  padding: 24px 28px;
+  background-color: var(--bg-address);
+  border-inline-start: 4px solid var(--accent);
+  border-radius: 10px;
+  text-align: start;
+}
+.plans-note__icon {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: var(--accent);
+  font-size: 18px;
+}
+.plans-note__text {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.95;
+  color: var(--text-muted);
+}
+.plans-note__text strong { color: var(--ink); }
+
+/* ==========================================================================
+   11. LAND FILE PROCESS INFOGRAPHIC
+   ========================================================================== */
+.process { background-color: var(--bg-alt); }
+
+.process__track {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 38px 10px;
+}
+/* dashed rail, pinned to the vertical centre of the discs */
+.process__track::before {
+  content: "";
+  position: absolute;
+  top: 59px;          /* = disc radius */
+  left: 8%;
+  right: 8%;
+  border-top: 2px dashed #BCCCC1;
+  z-index: 0;
+}
+
+.process__step {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 140px;
+  max-width: 158px;
+  text-align: center;
+}
+
+/* Clean discs. The previous asymmetric border-radius read as a deformed
+   circle rather than a deliberate shape, and rotating it on hover only made
+   the wobble more obvious. */
+.blob {
+  position: relative;
+  width: 118px;
+  height: 118px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--white);
+  font-size: 34px;
+  box-shadow: 0 6px 16px rgba(18, 48, 27, 0.14);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.process__step:hover .blob {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 32px rgba(18, 48, 27, 0.22);
+}
+
+/* Step number as a legible badge. It used to be white-on-white at 75%
+   opacity, sitting half over the disc edge — effectively invisible. */
+.blob__num {
+  position: absolute;
+  top: -2px;
+  inset-inline-end: -2px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--white);
+  color: var(--ink);
+  font-family: var(--font-latin);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: 0 2px 6px rgba(18, 48, 27, 0.18);
+}
+
+.process__label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+/* Hue sweep across the green family, light to deep teal-green.
+   Every shade clears 4.5:1 against the white icon and numeral. */
+.blob--1 { background-color: #3C7A1E; }
+.blob--2 { background-color: #2E7A26; }
+.blob--3 { background-color: #20792D; }
+.blob--4 { background-color: #137934; }
+.blob--5 { background-color: var(--accent); }
+.blob--6 { background-color: #087A48; }
+.blob--7 { background-color: #077557; }
+.blob--8 { background-color: #0A6F66; }
+
+
+/* ==========================================================================
+   12. DEPARTMENTS GRID
+   ========================================================================== */
+.dept-card {
+  height: 100%;
+  background-color: var(--white);
+  border-radius: var(--radius-card);
+  box-shadow: none;
+  padding: 57px 34px 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform var(--transition);
+}
+.dept-card:hover { transform: translateY(-6px); }
+
+/* Circular photo inside an accent diamond ring */
+.ring-frame {
+  position: relative;
+  width: 112px;
+  height: 112px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+.ring-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--accent);
+  border-radius: 22px;
+  transform: rotate(45deg);
+  transition: transform var(--transition);
+}
+.dept-card:hover .ring-frame::before { transform: rotate(90deg); }
+.ring-frame img {
+  position: relative;
+  z-index: 1;
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.dept-card__title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.dept-card__desc {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.63;
+  color: var(--text-muted);
+  margin-bottom: 26px;
+  flex-grow: 1;
+}
+
+
+/* ==========================================================================
+   13. EXPLORE CITY GRID
+   ========================================================================== */
+/* Bordered card with the photo inset rather than bleeding to the edge */
+.other-card {
+  height: 100%;
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: none;
+  padding: 14px 14px 24px;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition), border-color var(--transition),
+              box-shadow var(--transition);
+}
+.other-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: 0 14px 30px rgba(18, 48, 27, 0.10);
+}
+
+.other-card__img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.other-card__body {
+  padding: 22px 6px 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+}
+.other-card__title {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink);
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+
+/* ==========================================================================
+   14. FOOTER
+   ========================================================================== */
+.site-footer {
+  position: relative;
+  background-color: var(--green);
+  color: var(--white);
+}
+.site-footer__main {
+  position: relative;
+  padding: 90px 0 70px;
+}
+/* Faint building silhouette texture over the green */
+.site-footer__main::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 300' preserveAspectRatio='xMidYMax slice'%3E%3Cg fill='%23ffffff'%3E%3Cpath d='M0 300V210h60v-30h50v120zM130 300V150h40v-40h60v40h40v150zM290 300V190h90v110zM400 300V120h30V80h40v40h30v180zM520 300V170h70v-50h60v50h70v130zM740 300V200h50v-60h45v60h50v100zM905 300V160h40v-45h55v45h40v140zM1055 300V210h55v-45h45v135z'/%3E%3Cg opacity='.85'%3E%3Crect x='20' y='225' width='12' height='16'/%3E%3Crect x='150' y='170' width='12' height='16'/%3E%3Crect x='330' y='210' width='12' height='16'/%3E%3Crect x='435' y='140' width='12' height='16'/%3E%3Crect x='560' y='195' width='12' height='16'/%3E%3Crect x='775' y='225' width='12' height='16'/%3E%3Crect x='950' y='185' width='12' height='16'/%3E%3Crect x='1075' y='235' width='12' height='16'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  opacity: 0.07;
+  pointer-events: none;
+}
+.site-footer__main > .container { position: relative; z-index: 1; }
+
+.footer__heading {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 28px;
+}
+.footer__blurb {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.78);
+  margin-bottom: 22px;
+}
+
+/* Contact rows */
+.footer-contact li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.88);
+}
+.footer-contact li:last-child { margin-bottom: 0; }
+.footer-contact a { color: rgba(255, 255, 255, 0.88); }
+.footer-contact a:hover { color: var(--accent-bright); }
+
+.footer-contact__icon {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--accent-bright);
+  color: var(--green);
+  font-size: 14px;
+}
+
+/* Useful links */
+.footer-links li { margin-bottom: 14px; }
+.footer-links li:last-child { margin-bottom: 0; }
+.footer-links a {
+  position: relative;
+  display: inline-block;
+  padding-left: 20px;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.88);
+  transition: color var(--transition), padding-left var(--transition);
+}
+.footer-links a::before {
+  content: "\f054";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 10px;
+  color: var(--accent-bright);
+  position: absolute;
+  left: 0;
+  top: 2px;
+}
+.footer-links a:hover { color: var(--accent-bright); padding-left: 26px; }
+
+/* Newsletter form */
+.footer-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+.footer-form__input {
+  width: 100%;
+  max-width: 340px;
+  border: none;
+  border-radius: 8px;
+  background-color: #EDF3EE;
+  padding: 15px 20px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--ink);
+  transition: box-shadow var(--transition);
+}
+.footer-form__input::placeholder { color: #8A9A8F; }
+.footer-form__input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(140, 198, 63, 0.55);
+}
+
+/* Copyright strip */
+.site-footer__bottom {
+  background-color: var(--green-copyright);
+  padding: 26px 0 30px;
+  text-align: center;
+}
+.site-footer__bottom p {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.82);
+}
+.site-footer__bottom a { color: rgba(255, 255, 255, 0.82); }
+.site-footer__bottom a:hover { color: var(--accent-bright); }
+
+/* The green social dots would disappear on the green strip — go bright there */
+.site-footer__bottom .social-dot {
+  background: var(--accent-bright);
+  color: var(--green);
+}
+.site-footer__bottom span { color: rgba(255, 255, 255, 0.4); margin: 0 4px; }
+
+
+/* ==========================================================================
+   15. RESPONSIVE REFINEMENTS
+   ========================================================================== */
+
+/* xl and below */
+@media (max-width: 1199.98px) {
+  .sec-head__title { font-size: 40px; }
+  .mainnav__menu { gap: 20px; }
+  .mainnav__link { font-size: 13px; }
+  .blob { width: 104px; height: 104px; font-size: 30px; }
+  .process__track::before { top: 52px; }   /* follow the smaller disc */
+}
+
+/* lg and below — nav collapses to the drawer */
+@media (max-width: 991.98px) {
+  :root { --section-y: 80px; }
+
+  .officer-list { padding: 24px 26px; }
+  .downloads { padding: 32px 26px; }
+
+  .slider__item { flex-basis: calc((100% - var(--slider-gap)) / 2); }
+
+  .mainnav__inner { justify-content: space-between; }
+  .hero .carousel-item { height: 520px; }
+  .hero__text { font-size: 15px; }
+  .carousel-control-prev.hero__ctrl { left: 18px; }
+  .carousel-control-next.hero__ctrl { right: 18px; }
+
+  .feature__body { padding-inline-end: 0; margin-top: 46px; }
+  .framed-photo::before,
+  .framed-photo::after { width: 110px; height: 60px; }
+
+  .projects { padding-bottom: 120px; }
+  .wave-divider svg { height: 60px; }
+}
+
+/* md and below */
+@media (max-width: 767.98px) {
+  .slider__item { flex-basis: 100%; }
+
+  .leader-card__photo { width: 112px; height: 112px; }
+  .officer { gap: 14px; }
+  .officer__photo { width: 62px; height: 62px; }
+  .downloads__title { font-size: 24px; }
+
+  .sec-head__title { font-size: 30px; }
+  .sec-head { margin-bottom: 40px; }
+
+  .site-header__inner { justify-content: space-between; }
+  .brand__seal { width: auto; height: 50px; }
+  .brand__name { font-size: 24px; }
+  .brand__full { font-size: 11px; }
+  .header-utils { gap: 12px; }
+  .info-card { padding: 8px 12px; }
+
+  .hero .carousel-item { height: 460px; }
+  .hero__text { font-size: 14px; margin-bottom: 26px; }
+  .hero__ctrl { display: none; }   /* swipe handles this on touch */
+  .hero__indicators { margin-bottom: 32px; }
+
+  .btn-pill { padding: 15px 28px; font-size: 14px; }
+  html[lang="sd"] .btn-pill { padding-top: 12px; padding-bottom: 12px; }
+  html[lang="ur"] .btn-pill { padding-top: 4px; padding-bottom: 4px; }
+  .nav-cta { padding: 8px 22px; }
+
+
+  .news-card__title,
+  .dept-card__title,
+  .other-card__title { font-size: 20px; }
+
+  /* Nav bar is tight on phones once the language switch joins the CTA */
+  .langswitch__btn { padding-left: 11px; padding-right: 11px; }
+  .nav-cta { padding: 8px 16px; }
+  .nav-cta__top { font-size: 12px; }
+
+  /* Infographic wraps into a grid, connector removed */
+  .process__track { gap: 30px 10px; }
+  .process__track::before { display: none; }
+  .process__step { flex: 1 1 45%; max-width: none; }
+
+  .dept-card { padding: 40px 22px 32px; }
+  .carousel-nav { margin: 32px 0 0; }
+
+  .site-footer__main { padding: 60px 0 50px; }
+  .footer__heading { font-size: 20px; margin-bottom: 20px; }
+  .footer-form__input { max-width: 100%; }
+}
+
+/* sm and below */
+@media (max-width: 575.98px) {
+  :root { --section-y: 60px; }
+
+  .sec-head__title { font-size: 26px; }
+  .hero .carousel-item { height: 420px; }
+  .hero__eyebrow { font-size: 13px; letter-spacing: 0.1em; }
+
+  .blob { width: 96px; height: 96px; font-size: 28px; }
+  .process__label { font-size: 13px; }
+
+  .round-arrow { width: 46px; height: 46px; }
+  .btn-pill { padding: 14px 24px; }
+  html[lang="sd"] .btn-pill { padding-top: 11px; padding-bottom: 11px; }
+  html[lang="ur"] .btn-pill { padding-top: 3px; padding-bottom: 3px; }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+
+/* ==========================================================================
+   16. MULTILINGUAL — LANGUAGE SWITCH, SINDHI/URDU MODES, RTL MIRRORING
+   ========================================================================== */
+
+/* --- The switch (lives in the dark green nav bar) ------------------------ */
+.langswitch {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+}
+.langswitch__btn {
+  border: none;
+  background-color: transparent;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 0 15px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color var(--transition), color var(--transition);
+}
+/* Stays Latin even when the rest of the page switches to Naskh */
+.langswitch__btn[data-lang="en"] { font-family: var(--font-latin); }
+.langswitch__btn.sindhi,
+.langswitch__btn.urdu {
+  font-size: 13px;
+  padding: 0 13px;
+  text-transform: none;
+}
+.langswitch__btn.sindhi { font-family: var(--font-sindhi); }
+.langswitch__btn.urdu   { font-family: var(--font-urdu); font-size: 12px; line-height: 24px; padding-bottom: 6px; }
+.langswitch__btn:hover { color: var(--white); }
+.langswitch__btn.is-on,
+.langswitch__btn.is-on:hover {
+  background-color: var(--accent-bright);
+  color: var(--green);
+}
+
+/* --- Sindhi mode: one token swap repoints every element at Naskh ---------- */
+html[lang="sd"] { --font-body: var(--font-sindhi); }
+html[lang="sd"] body { line-height: 1.9; }
+/* Naskh needs no tracking, and has no uppercase for text-transform to act on */
+html[lang="sd"] .btn-pill,
+html[lang="sd"] .mainnav__link,
+html[lang="sd"] .navdrawer__link,
+html[lang="sd"] .sec-head__title,
+html[lang="sd"] .info-card__label,
+html[lang="sd"] .date-pill,
+html[lang="sd"] .hero__eyebrow { letter-spacing: normal; }
+html[lang="sd"] .btn-pill {
+  line-height: 1.5;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+html[lang="sd"] .btn-pill--sm { padding-top: 9px; padding-bottom: 9px; }
+html[lang="sd"] .sec-head__title { line-height: 1.55; }
+html[lang="sd"] .hero__title { line-height: 1.5; }
+html[lang="sd"] .nav-cta {
+  line-height: 1.35;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+html[lang="sd"] .brand__name { font-family: var(--font-latin); }
+/* 14px x 1.9 + 40px padding = 66.6px inside a 64px bar — pin the leading */
+html[lang="sd"] .mainnav__link { line-height: 1.6; padding-top: 17px; padding-bottom: 17px; }
+html[lang="sd"] .leader-card__name,
+html[lang="sd"] .officer__name,
+html[lang="sd"] .downloads__link { line-height: 1.8; }
+html[lang="sd"] .vm-quote__text,
+html[lang="sd"] .plan-card__title,
+html[lang="sd"] .map-card__title { line-height: 1.9; }
+html[lang="sd"] .vm-intro,
+html[lang="sd"] .vm-card__text { line-height: 2.1; }
+html[lang="sd"] .date-pill { line-height: 1.5; padding-top: 7px; padding-bottom: 7px; }
+
+/* --- Urdu mode (Nastaliq) ------------------------------------------------ */
+html[lang="ur"] { --font-body: var(--font-urdu); }
+html[lang="ur"] body { line-height: 2.55; }
+html[lang="ur"] .btn-pill,
+html[lang="ur"] .mainnav__link,
+html[lang="ur"] .navdrawer__link,
+html[lang="ur"] .sec-head__title,
+html[lang="ur"] .info-card__label,
+html[lang="ur"] .date-pill,
+html[lang="ur"] .hero__eyebrow { letter-spacing: normal; }
+/* Nastaliq baseline correction.
+   Noto Nastaliq Urdu has a 1.90em ascent against a 0.60em descent, so CSS
+   half-leading centres the *metrics* box while the visible ink hangs ~5px
+   low — the text read bottom-heavy in every pill. To lift it by S without
+   changing the button height: keep padding-top, cut the line box by 2S, give
+   that 2S to padding-bottom. Values measured with Canvas TextMetrics
+   (actualBoundingBoxAscent/Descent), not guessed. */
+html[lang="ur"] .btn-pill {
+  line-height: 30px;        /* was 40px — lifts text 5px */
+  padding-top: 7px;
+  padding-bottom: 17px;
+}
+html[lang="ur"] .btn-pill--sm {
+  line-height: 26px;
+  padding-top: 4px;
+  padding-bottom: 10px;
+}
+/* Two lines at 2.5em = 62.5px of text alone, which will not fit the 64px bar.
+   Nastaliq genuinely needs the room, so the bar grows in Urdu rather than the
+   glyphs being squeezed. */
+html[lang="ur"] .mainnav__inner { min-height: 76px; }
+/* Tightened from 67px to ~51px: the leading carried more air than Nastaliq
+   needs at these two sizes, so the cut comes out of the line boxes and the
+   padding rather than the glyphs (ink still sits inside the pill). */
+html[lang="ur"] .nav-cta {
+  line-height: 1.55;
+  gap: 1px;
+  padding-top: 2px;
+  padding-bottom: 8px;    /* extra below offsets Nastaliq's low-sitting ink */
+}
+html[lang="ur"] .mainnav__link { line-height: 2.5; padding-top: 13px; padding-bottom: 13px; }
+html[lang="ur"] .vm-quote__text { line-height: 2.5; }
+html[lang="ur"] .leader-card__name,
+html[lang="ur"] .leader-card__role,
+html[lang="ur"] .officer__name,
+html[lang="ur"] .officer__role,
+html[lang="ur"] .downloads__link { line-height: 2.3; }
+html[lang="ur"] .vm-card__title,
+html[lang="ur"] .plan-card__title,
+html[lang="ur"] .map-card__title { line-height: 2.2; }
+html[lang="ur"] .vm-intro,
+html[lang="ur"] .vm-card__text { line-height: 2.6; }
+html[lang="ur"] .date-pill {
+  line-height: 26.5px;      /* lifts 3px */
+  padding-top: 1px;
+  padding-bottom: 7px;
+}
+html[lang="ur"] .sec-head__title { font-size: 38px; line-height: 2.5; }
+html[lang="ur"] .hero__title { font-size: clamp(22px, 2.4vw, 40px); line-height: 2.5; }
+html[lang="ur"] .link-more { line-height: 28px; padding-bottom: 13px; }
+html[lang="ur"] .downloads__link { line-height: 26px; padding-bottom: 20px; }
+html[lang="ur"] .feature__title { font-size: clamp(22px, 1.9vw, 32px); line-height: 2.5; }
+html[lang="ur"] .feature__text { font-size: 16px; line-height: 2.6; }
+html[lang="ur"] .news-card__title,
+html[lang="ur"] .dept-card__title,
+html[lang="ur"] .other-card__title { font-size: 20px; line-height: 2.5; }
+html[lang="ur"] .brand__name { font-family: var(--font-latin); }
+
+/* --- RTL mirroring -------------------------------------------------------
+   Bootstrap's RTL sheet handles its own utilities; these are the custom
+   rules that pin something to a physical left or right edge. */
+[dir="rtl"] .hero__overlay {
+  background:
+    linear-gradient(270deg,
+      rgba(4, 26, 10, 0.95) 0%,
+      rgba(4, 26, 10, 0.82) 38%,
+      rgba(4, 26, 10, 0.42) 68%,
+      rgba(4, 26, 10, 0.18) 100%),
+    linear-gradient(180deg,
+      rgba(4, 26, 10, 0.35) 0%,
+      rgba(4, 26, 10, 0) 30%,
+      rgba(4, 26, 10, 0.45) 100%);
+}
+[dir="rtl"] .hero__dots { right: auto; left: 8%; }
+[dir="rtl"] .carousel-control-prev.hero__ctrl { left: auto; right: 34px; }
+[dir="rtl"] .carousel-control-next.hero__ctrl { right: auto; left: 34px; }
+
+[dir="rtl"] .news-card__date { left: auto; right: 18px; }
+[dir="rtl"] .framed-photo::before { left: auto; right: -18px; }
+[dir="rtl"] .framed-photo::after  { right: auto; left: -18px; }
+
+
+[dir="rtl"] .navdrop .dropdown-item { padding-left: 22px; padding-right: 22px; }
+[dir="rtl"] .navdrop .dropdown-item:hover { padding-left: 22px; padding-right: 28px; }
+[dir="rtl"] .navdrawer__sub { padding-left: 0; padding-right: 14px; }
+
+[dir="rtl"] .footer-links a { padding-left: 0; padding-right: 20px; }
+[dir="rtl"] .footer-links a::before { content: "\f053"; left: auto; right: 0; }
+[dir="rtl"] .footer-links a:hover { padding-left: 0; padding-right: 26px; }
+
+@media (max-width: 991.98px) {
+  [dir="rtl"] .carousel-control-prev.hero__ctrl { right: 18px; }
+  [dir="rtl"] .carousel-control-next.hero__ctrl { left: 18px; }
+}
+
+
+/* ==========================================================================
+   17. MOBILE HARDENING
+   --------------------------------------------------------------------------
+   Phone corrections that have to outrank the language and RTL blocks above,
+   so they sit at the end of the sheet rather than in section 15.
+   ========================================================================== */
+
+/* --- Nothing may scroll sideways ----------------------------------------
+   Bootstrap's g-5 puts -24px side margins on the row against the container's
+   15px padding, so every page carrying one was 9px wider than the viewport
+   and the whole site scrolled horizontally on a phone. Match the gutter to
+   the padding; wide screens keep the roomier original. */
+@media (max-width: 1399.98px) {
+  .row.g-5 { --bs-gutter-x: 30px; }
+}
+@media (max-width: 991.98px) {
+  html, body { overflow-x: hidden; }
+  .container { padding-left: 16px; padding-right: 16px; }
+}
+
+/* --- Hero on a phone ----------------------------------------------------- */
+@media (max-width: 767.98px) {
+  /* The desktop scrim clears toward the right so the photograph reads. At
+     phone width the copy spans the whole frame and the banner artwork carries
+     its own lettering, so the two collided — headline over baked-in title.
+     A flat vertical scrim puts the photo firmly behind the text instead. */
+  .hero__overlay,
+  [dir="rtl"] .hero__overlay {
+    background: linear-gradient(180deg,
+      rgba(4, 26, 10, 0.66) 0%,
+      rgba(4, 26, 10, 0.82) 45%,
+      rgba(4, 26, 10, 0.94) 100%);
+  }
+  /* Fixed slide heights clipped the copy once it wrapped to four lines (and
+     Nastaliq wraps sooner). Let the slide take its content's height. */
+  .hero .carousel-item { height: auto; min-height: 430px; }
+  .hero__container { padding-top: 44px; padding-bottom: 82px; }
+  .hero__content { max-width: none; }
+  .hero__eyebrow { font-size: 13px; margin-bottom: 12px; }
+  .hero__rule { width: 30px; }
+  .hero__title { margin-bottom: 16px; }
+  .hero__text { margin-bottom: 26px; max-width: none; }
+  .hero__indicators { margin-bottom: 24px; }
+  /* 11px dots are below any sane touch target. A transparent border grows the
+     hit area to 34px without changing the painted dot. */
+  .hero__indicators [data-bs-target] {
+    box-sizing: content-box;
+    border: 11px solid transparent;
+    background-clip: padding-box;
+  }
+}
+
+/* --- Touch targets and form zoom ---------------------------------------- */
+@media (max-width: 767.98px) {
+  .langswitch__btn { min-height: 36px; }
+  /* iOS zooms the page on focus for anything under 16px */
+  .footer-form__input { font-size: 16px; }
+  .footer-form .btn-pill { width: 100%; text-align: center; }
+  .link-more { padding-top: 6px; padding-bottom: 6px; }
+  .footer-links a { padding-top: 4px; padding-bottom: 4px; }
+  .site-footer__bottom p a { display: inline-block; padding: 6px 2px; }
+  .footer-contact a { display: inline-block; padding: 3px 0; }
+}
+
+/* --- Naskh / Nastaliq at phone sizes -------------------------------------
+   The language blocks set desktop type sizes with enough specificity to beat
+   section 15's breakpoints, which left Urdu headings at 38px on a 360px
+   screen. Bring the two scripts back down to the phone scale. */
+@media (max-width: 767.98px) {
+  html[lang="ur"] .sec-head__title { font-size: 24px; line-height: 2.1; }
+  html[lang="ur"] .hero__title { font-size: 21px; line-height: 2.05; }
+  html[lang="ur"] .hero__text { font-size: 14px; line-height: 2.2; }
+  html[lang="ur"] .feature__text { font-size: 15px; line-height: 2.3; }
+  html[lang="ur"] .vm-intro,
+  html[lang="ur"] .vm-card__text { line-height: 2.3; }
+  html[lang="ur"] .news-card__title,
+  html[lang="ur"] .dept-card__title,
+  html[lang="ur"] .other-card__title { font-size: 18px; line-height: 2.2; }
+  html[lang="ur"] body { line-height: 2.25; }
+
+  html[lang="sd"] .hero__text { font-size: 14px; }
+  html[lang="sd"] body { line-height: 1.8; }
+}
+@media (max-width: 575.98px) {
+  html[lang="ur"] .sec-head__title { font-size: 21px; line-height: 2; }
+}
+
+/* --- Drawer contact block (the header's own is hidden below sm) ---------- */
+.drawer-contact {
+  margin-top: 26px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+.drawer-contact li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text);
+}
+.drawer-contact li:last-child { margin-bottom: 0; }
+.drawer-contact i { color: var(--accent); width: 15px; padding-top: 3px; flex-shrink: 0; }
+.drawer-contact a { color: var(--text); }
+.drawer-contact a:hover { color: var(--accent); }
+.drawer-contact .social-row { margin-top: 16px; }

@@ -1,0 +1,262 @@
+{
+  "_source": "https://smpa.gos.pk/ — extracted 2026-08-08",
+  "_note": "Verbatim from the live site. [sic] marks typos left as-published.",
+  "identity": {
+    "name": "Sindh Master Plan Authority",
+    "acronym": "SMPA",
+    "also_known_as": "( Master Plan Department / Master Plan Group of Offices / Master Plan & Environmental Control Department )",
+    "site_title": "SMPA"
+  },
+  "contact": {
+    "address": "9th Floor, Civic Center, Block. 14, Gulshan-e-Iqbal, Karachi.",
+    "phone_display": "021-99231159",
+    "phone_intl": "+92-21-99231159",
+    "phone_href": "tel:+922199231159",
+    "email": "contact@smpa.gos.pk",
+    "timing": "9:00am-5:00pm",
+    "copyright": "Copyright © 2026 SMPA by The Tech IO. All Rights Reserved."
+  },
+  "nav": [
+    {
+      "label": "Home",
+      "href": "https://smpa.gos.pk/"
+    },
+    {
+      "label": "Land Use Plans Map",
+      "href": "https://smpa.gos.pk/land-use-plans-map/"
+    },
+    {
+      "label": "Who We Are",
+      "href": "https://smpa.gos.pk/who-we-are/"
+    }
+  ],
+  "ticker": [
+    "Consequent Cabinet's decision, Master Plan Department was separated from SBCA and established as separate Sindh Master Plan Authority vide Letter",
+    "Merger of Town Planning Department Hyderabad into SMPA, Department of Town Planning, Government of Sindh, having mandate of master planning of the overall districts of the Sindh (except Karachi division), merged into Sindh Master Plan Authority vide LG&HTP Department's Notification SO(G)/HTP/SBCA/7-63/2018 Dated 14-09-2020"
+  ],
+  "vision_mission": {
+    "tagline": "Empowering Sindh's Urban Landscape for Sustainable Development and Dynamic Economic Growth",
+    "intro": "At SMPA, we aim to provide long and short-term plans, strategies and framework to transform the cities of Sindh into self-sufficient, sustainable and resilient cities, holding viable and improving economy, providing aesthetic recreational and public spaces, promoting diversity and ecological balance, preserving culture and environment.",
+    "vision": "Empowering Sustainable Progress: Transforming Sindh into a model of inclusive, resilient, and harmoniously developed communities through comprehensive planning and strategic implementation.",
+    "mission": "At Sindh Master Plan Authority, our mission is to lead the way in fostering holistic and equitable development across Sindh, driven by innovative urban planning, robust infrastructure, and environmental stewardship. We strive to collaborate with diverse stakeholders, leverage cutting-edge technologies, and prioritize the needs of our communities to create a vibrant, progressive, and sustainable province for generations to come."
+  },
+  "chain_of_command": [
+    {
+      "name": "Syed Murad Ali Shah",
+      "title": "Chief Minister, Sindh",
+      "img": "https://smpa.gos.pk/wp-content/uploads/2026/04/Murad-Ali-Shah.webp"
+    },
+    {
+      "name": "Nasir Hussain Shah",
+      "title": "Minister, Local Government, Sindh",
+      "img": "https://smpa.gos.pk/wp-content/uploads/2026/04/nasir-hussain-shah.webp"
+    },
+    {
+      "name": "Dr. Waseem Shamshad Ali",
+      "title": "Additional Cheif Secretary, LG&HTP, GoS [sic]",
+      "img": "https://smpa.gos.pk/wp-content/uploads/2026/04/Dr.webp"
+    },
+    {
+      "name": "Shakeel Siddiqui",
+      "title": "Senior Director, Sindh Master Plan Authority",
+      "img": "https://smpa.gos.pk/wp-content/uploads/2026/07/Shakeel-Siddiqui.png"
+    }
+  ],
+  "officers": [
+    {
+      "name": "Aijaz Ali Shaikh",
+      "title": "Director (Admin & Finance)",
+      "img": "https://smpa.gos.pk/wp-content/uploads/2026/04/Aijaz-Ali-Shaikh.webp"
+    },
+    {
+      "name": "M. Orangzeb Kaim Khani",
+      "title": "Director (Coord. & Legal)",
+      "img": "https://smpa.gos.pk/wp-content/uploads/2026/04/M.-Orangzeb-Kaim-Khani.webp"
+    },
+    {
+      "name": "Ahmed Ali Solangi",
+      "title": "Director (Town Planning, Hyderabad).",
+      "img": "https://smpa.gos.pk/wp-content/uploads/2026/04/unknown.webp"
+    },
+    {
+      "name": "Akhtar Ali",
+      "title": "Deputy Director (Planning)",
+      "img": "https://smpa.gos.pk/wp-content/uploads/2026/04/unknown.webp"
+    },
+    {
+      "name": "Asif Ahmed",
+      "title": "Deputy Director (Admin & Finance)",
+      "img": "https://smpa.gos.pk/wp-content/uploads/2026/05/Asif-Ahmed.webp"
+    }
+  ],
+  "master_plans": [
+    {
+      "title": "Greater Karachi Plan – 1952",
+      "img": "https://smpa.gos.pk/wp-content/uploads/2026/04/Greater-Karachi-Plan-–-1952.webp"
+    },
+    {
+      "title": "Karachi Development Plan (1974-85)",
+      "img": "https://smpa.gos.pk/wp-content/uploads/2026/04/Karachi-Development-Plan-1974-85.webp"
+    },
+    {
+      "title": "Karachi Development Plan – 2000",
+      "img": "https://smpa.gos.pk/wp-content/uploads/2026/04/Karachi-Development-Plan-–-2000.webp"
+    },
+    {
+      "title": "Karachi Strategic Development Plan – 2020",
+      "img": "https://smpa.gos.pk/wp-content/uploads/2026/04/Karachi-Strategic-Development-Plan-–-2020.webp"
+    }
+  ],
+  "land_use_maps": [
+    {
+      "title": "Proposed Land Use Plan 2020",
+      "img": "https://smpa.gos.pk/wp-content/uploads/2026/04/karachi-map-2020.webp"
+    },
+    {
+      "title": "Karachi Development Plan 2000",
+      "img": "https://smpa.gos.pk/wp-content/uploads/2026/04/karachi-development-plan.webp"
+    },
+    {
+      "title": "Karachi Land Use 1987",
+      "img": "https://smpa.gos.pk/wp-content/uploads/2026/04/karachi-land-use.webp"
+    },
+    {
+      "title": "Karachi Metropolitan Area Land Use 1974",
+      "img": "https://smpa.gos.pk/wp-content/uploads/2026/04/Karachi-Metropolitan-are-land.webp"
+    },
+    {
+      "title": "Karachi Metropolitan Area Land Use 1980 – 1985",
+      "img": "https://smpa.gos.pk/wp-content/uploads/2026/04/map.webp"
+    }
+  ],
+  "legal_note": "These Master Plans and Land-use Plans, presented here, are sole property of Master Plan Department and may be used only for research and study purpose. Further printing, publishing, distribution and other usage (including litigations) shall not be allowed, except with the prior permission of the Department. Editing, tempering, forgery and fabrication shall be liable for legal action.",
+  "resources_services": {
+    "_note": "Pairing resolved by reading each icon's own Divi module. The captions read oddly against their labels (e.g. Fee Structure / 'Preparation of policies and strategies') but that is how the live site publishes them.",
+    "items": [
+      {
+        "title": "Fee Structure",
+        "desc": "Preparation of policies and strategies",
+        "icon": "images/fee-structure.webp"
+      },
+      {
+        "title": "By Laws",
+        "desc": "Development Plans, Zonal Plans, Structure Plans",
+        "icon": "images/by-laws.webp"
+      },
+      {
+        "title": "Notification",
+        "desc": "Designing and redesigning urban environment issue Special Development Permits",
+        "icon": "images/notification.webp"
+      },
+      {
+        "title": "Deployment Permits",
+        "desc": "Regulate planning and development issues General Development Permits",
+        "icon": "images/deployment-permits.webp"
+      },
+      {
+        "title": "Master Planning",
+        "desc": "Architectural designing, designing public projects, public spaces, and recreational spaces.",
+        "icon": "images/Master-Planing.webp"
+      },
+      {
+        "title": "Departments",
+        "desc": "Performing analysis, conducting research, publish reports on all aspects / factors / components of sustainable and livable urban areas",
+        "icon": "images/Department.webp"
+      }
+    ]
+  },
+  "events": [
+    {
+      "title": "Sindh Minister Nasir Hussain Shah Inaugurates Advanced GIS Technology at Sindh Master Plan Authority",
+      "href": "https://smpa.gos.pk/sindh-minister-nasir-hussain-shah-inaugurates-advanced-gis-technology-at-sindh-master-plan-authority/",
+      "img": "https://smpa.gos.pk/wp-content/uploads/2026/07/Press-Release-15.webp"
+    },
+    {
+      "title": "MEETING ON DRAFT ACT OF SINDH MASTER PLAN AUTHORITY (SMPA)",
+      "href": "https://smpa.gos.pk/meeting-on-draft-act-of-sindh-master-plan-authority-smpa/",
+      "img": "https://smpa.gos.pk/wp-content/uploads/2026/04/meeting-2.webp"
+    },
+    {
+      "title": "Introductory meeting chaired by Care Taker Minister LG&HTP.",
+      "href": "https://smpa.gos.pk/introductory-meeting-chaired-by-care-taker-minister-lghtp/",
+      "img": "https://smpa.gos.pk/wp-content/uploads/2026/04/introductory-meeting-chaired-by-care-taker-minister-lghtp-1.webp"
+    },
+    {
+      "title": "Meeting chaired by Minister LG&HTP to address issues of ABAD",
+      "href": "https://smpa.gos.pk/meeting-chaired-by-minister-lghtp-to-address-issues-of-abad/",
+      "img": "https://smpa.gos.pk/wp-content/uploads/2026/04/meeting-chaired-by-minister-lghtp-to-address-issues-of-abad-1.webp"
+    }
+  ],
+  "downloads": [
+    "Procedure for Layout Plan",
+    "Procedure for Sub-division,",
+    "Procedure for Amalgamation,",
+    "Procedure for PP&CNG",
+    "Procedure for Portal verifications",
+    "Other Town Planning NOCs"
+  ],
+  "explore_city": {
+    "tabs": [
+      "All",
+      "Sukkur",
+      "Mirpurkhas",
+      "Larkana",
+      "Hyderabad",
+      "Karachi"
+    ],
+    "images": {
+      "Karachi": "https://smpa.gos.pk/wp-content/uploads/2026/04/karachi.webp",
+      "Hyderabad": "https://smpa.gos.pk/wp-content/uploads/2026/04/hyderabad.webp",
+      "Larkana": "https://smpa.gos.pk/wp-content/uploads/2026/04/larkana.webp",
+      "Mirpurkhas": "https://smpa.gos.pk/wp-content/uploads/2026/04/mirpur.webp",
+      "Sukkur": "https://smpa.gos.pk/wp-content/uploads/2026/04/Sukkur.webp"
+    }
+  },
+  "footer": {
+    "Explore": [
+      "Research & Publications",
+      "Tenders",
+      "Master Plan Documents",
+      "Development Permits",
+      "Approved Schemes",
+      "Career"
+    ],
+    "Quick links": [
+      "Who We Are",
+      "Planing [sic]",
+      "Services & Resources",
+      "Career",
+      "Contact"
+    ],
+    "Contact Us": [
+      "Address",
+      "Phone:",
+      "Email:",
+      "Timing:"
+    ]
+  },
+  "assets": {
+    "logo": "https://smpa.gos.pk/wp-content/uploads/2026/04/Final-logo-1.webp",
+    "logo_alt": "https://smpa.gos.pk/wp-content/uploads/2026/04/SMPA-LOGO-1.webp",
+    "favicons": [
+      "https://smpa.gos.pk/wp-content/uploads/2026/04/cropped-Final-logo-1-32x32.webp",
+      "https://smpa.gos.pk/wp-content/uploads/2026/04/cropped-Final-logo-1-180x180.webp",
+      "https://smpa.gos.pk/wp-content/uploads/2026/04/cropped-Final-logo-1-192x192.webp"
+    ],
+    "hero_banners": [
+      "https://smpa.gos.pk/wp-content/uploads/2026/05/smpa-1-scaled.webp",
+      "https://smpa.gos.pk/wp-content/uploads/2026/05/smpa-2-scaled.webp"
+    ],
+    "hero_banner": "images/SMPA-BANNER-3.webp  (1200x450)",
+    "textures": [
+      "images/bg-1.webp (649x571)",
+      "images/bg.webp (572x436)"
+    ],
+    "_note": "smpa-1/smpa-2 are 2479x3508 (A4 portrait) — documents, not banners. The only wide hero asset on the site is SMPA-BANNER-3.webp at 1200x450, found only in Divi's cached CSS, not in the page markup."
+  },
+  "not_found_on_page": {
+    "social_links": "The header shows X and Facebook icons but neither carries an href in the markup — no social URLs could be extracted.",
+    "whatsapp": "No WhatsApp number appears anywhere on the site."
+  },
+  "_images_downloaded": "43 files in images/, all verified as valid webp/png"
+}

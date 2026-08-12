@@ -1,0 +1,8 @@
+# Local render captures used while checking layout, not site content
+screenshots/
+
+# OS / editor noise
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
