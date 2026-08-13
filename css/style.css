@@ -2189,30 +2189,6 @@ html[lang="ur"] .brand__name { font-family: var(--font-latin); }
   border-radius: var(--radius-card);
   display: block;
 }
-/* Some source images are small — 300px video stills the Authority published
-   with a headline. Show them at their own size rather than upscaling into a
-   soft full-width banner. */
-.post__figure--small img {
-  max-width: 420px;
-  margin: 0 auto;
-  border-radius: 10px;
-}
-.post__figure--small .post__caption { max-width: 560px; margin-inline: auto; }
-
-/* Where a source post published no account of the event, the page says so. */
-.post__note {
-  display: flex;
-  gap: 12px;
-  margin: 0 0 26px;
-  padding: 18px 22px;
-  border-radius: var(--radius-card);
-  background-color: #FBF7E9;
-  border-inline-start: 4px solid #C9A227;
-  font-size: 14px;
-  line-height: 1.8;
-}
-.post__note i { color: #A8851C; padding-top: 4px; }
-
 /* Portrait document scans (gazette pages) would run 1100px tall at full
    column width — frame them narrower and centred, on a paper-like ground. */
 .post__figure--doc img {
@@ -2324,32 +2300,6 @@ html[lang="ur"] .brand__name { font-family: var(--font-latin); }
 }
 [dir="rtl"] .post__points > li { padding: 0 46px 18px 0; }
 .post__points b { display: block; color: var(--ink); font-size: 16px; }
-
-/* Gazette / notification record */
-.post__record {
-  margin: 0 0 30px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-card);
-  overflow: hidden;
-}
-.post__record dt {
-  padding: 12px 20px 2px;
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--accent);
-}
-.post__record dd {
-  margin: 0;
-  padding: 0 20px 12px;
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 1.7;
-  color: var(--ink);
-}
-.post__record dd + dt { border-top: 1px solid var(--line); margin-top: 2px; }
-.post__record div:nth-child(odd) { background-color: var(--bg-alt); }
 
 /* Photo gallery — 3-up, each frame links to the full-size file */
 .post__gallery {
@@ -2678,7 +2628,6 @@ html[lang="ur"] .post__standfirst { font-size: 17px; line-height: 2.4; }
 html[lang="ur"] .post__lead::first-letter { float: none; margin: 0; font-size: inherit; color: inherit; }
 html[lang="ur"] .post__h2 { font-size: 21px; line-height: 2.2; }
 html[lang="ur"] .post__quote p { font-size: 16px; line-height: 2.4; font-style: normal; }
-html[lang="ur"] .post__record dd,
 html[lang="ur"] .minilist__title,
 html[lang="ur"] .quicklinks a,
 html[lang="ur"] .post-nav__title { line-height: 2.2; }
