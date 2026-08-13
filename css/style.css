@@ -21,6 +21,8 @@
    14. Footer
    15. Responsive refinements
    16. Multilingual — language switch, Sindhi/Urdu modes, RTL mirroring
+   16b. Article / news detail page
+   17. Mobile hardening
    ========================================================================== */
 
 
@@ -2080,6 +2082,450 @@ html[lang="ur"] .brand__name { font-family: var(--font-latin); }
   [dir="rtl"] .carousel-control-prev.hero__ctrl { right: 18px; }
   [dir="rtl"] .carousel-control-next.hero__ctrl { left: 18px; }
 }
+
+
+/* ==========================================================================
+   16b. ARTICLE / NEWS DETAIL PAGE
+   --------------------------------------------------------------------------
+   One layout serves press releases, meeting reports and gazette notifications:
+   a green page head carrying the breadcrumb and title, an 8/4 split of copy
+   against a sidebar, and a small set of body primitives (lead, pull quote,
+   key points, figure, gallery, record table) the four pages compose from.
+   ========================================================================== */
+
+/* --- Page head ----------------------------------------------------------- */
+.pagehead {
+  position: relative;
+  padding: 46px 0 44px;
+  background-color: var(--green);
+  background-image: linear-gradient(160deg, #005207 0%, var(--green) 58%, var(--green-copyright) 100%);
+  overflow: hidden;
+}
+/* Same seal watermark the downloads panel uses, so the two read as one system */
+.pagehead::after {
+  content: "";
+  position: absolute;
+  inset-inline-end: -46px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 230px;
+  height: 230px;
+  background: url("../logo.webp") center / contain no-repeat;
+  opacity: 0.07;
+  pointer-events: none;
+}
+.pagehead > .container { position: relative; z-index: 1; }
+
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.crumbs a { color: rgba(255, 255, 255, 0.82); }
+.crumbs a:hover { color: var(--accent-bright); }
+.crumbs__sep { color: rgba(255, 255, 255, 0.4); }
+.crumbs [aria-current="page"] { color: var(--accent-bright); }
+
+.pagehead__tag {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 5px 16px;
+  border-radius: var(--radius-pill);
+  background-color: var(--accent-bright);
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.pagehead__title {
+  max-width: 900px;
+  margin-bottom: 18px;
+  font-size: clamp(26px, 2.6vw, 40px);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--white);
+}
+.pagehead__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 22px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.82);
+}
+.pagehead__meta li { display: flex; align-items: center; gap: 8px; }
+.pagehead__meta i { color: var(--accent-bright); }
+
+/* --- Article body -------------------------------------------------------- */
+.post { max-width: 780px; }
+.post__figure { margin: 0 0 30px; }
+.post__figure img {
+  width: 100%;
+  border-radius: var(--radius-card);
+  display: block;
+}
+/* Portrait document scans (gazette pages) would run 1100px tall at full
+   column width — frame them narrower and centred, on a paper-like ground. */
+.post__figure--doc img {
+  max-width: 520px;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  background-color: var(--white);
+}
+.post__caption {
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-muted);
+  border-inline-start: 3px solid var(--accent-bright);
+  padding-inline-start: 12px;
+}
+.post__standfirst {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.65;
+  color: var(--ink);
+  margin-bottom: 24px;
+}
+.post p { font-size: 15px; line-height: 1.85; margin-bottom: 20px; }
+.post__lead::first-letter {
+  float: inline-start;
+  margin-inline-end: 10px;
+  padding-top: 4px;
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 0.86;
+  color: var(--accent);
+}
+.post__h2 {
+  margin: 40px 0 18px;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.post__h2::after {
+  content: "";
+  display: block;
+  width: 52px;
+  height: 3px;
+  margin-top: 12px;
+  border-radius: var(--radius-pill);
+  background-color: var(--accent-bright);
+}
+.post strong { color: var(--ink); font-weight: 700; }
+
+.post__quote {
+  position: relative;
+  margin: 32px 0;
+  padding: 26px 30px 26px 62px;
+  border-radius: var(--radius-card);
+  background-color: var(--bg-alt);
+  border-inline-start: 4px solid var(--accent);
+}
+.post__quote::before {
+  content: "\201C";
+  position: absolute;
+  inset-inline-start: 22px;
+  top: 14px;
+  font-family: var(--font-latin);
+  font-size: 54px;
+  line-height: 1;
+  color: var(--accent-bright);
+}
+.post__quote p {
+  margin-bottom: 10px;
+  font-size: 17px;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--ink);
+}
+.post__quote footer {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+}
+[dir="rtl"] .post__quote { padding: 26px 62px 26px 30px; }
+
+/* Numbered key points — the counter is the accent disc */
+.post__points { counter-reset: point; padding: 0; margin: 0 0 26px; list-style: none; }
+.post__points > li {
+  position: relative;
+  counter-increment: point;
+  padding: 0 0 18px 46px;
+  font-size: 15px;
+  line-height: 1.8;
+}
+.post__points > li::before {
+  content: counter(point);
+  position: absolute;
+  inset-inline-start: 0;
+  top: 1px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--accent);
+  color: var(--white);
+  font-family: var(--font-latin);
+  font-size: 13px;
+  font-weight: 700;
+}
+[dir="rtl"] .post__points > li { padding: 0 46px 18px 0; }
+.post__points b { display: block; color: var(--ink); font-size: 16px; }
+
+/* Gazette / notification record */
+.post__record {
+  margin: 0 0 30px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+.post__record dt {
+  padding: 12px 20px 2px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+.post__record dd {
+  margin: 0;
+  padding: 0 20px 12px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.7;
+  color: var(--ink);
+}
+.post__record dd + dt { border-top: 1px solid var(--line); margin-top: 2px; }
+.post__record div:nth-child(odd) { background-color: var(--bg-alt); }
+
+/* Photo gallery — 3-up, each frame links to the full-size file */
+.post__gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 30px;
+}
+.post__gallery a {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 10px;
+  aspect-ratio: 4 / 3;
+}
+.post__gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition);
+}
+.post__gallery a::after {
+  content: "\f00e";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: var(--white);
+  background-color: rgba(4, 26, 10, 0.5);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.post__gallery a:hover img { transform: scale(1.06); }
+.post__gallery a:hover::after,
+.post__gallery a:focus-visible::after { opacity: 1; }
+
+/* Issuing office / source note */
+.post__source {
+  margin: 34px 0 0;
+  padding: 20px 24px;
+  border-radius: var(--radius-card);
+  background-color: var(--bg-alt);
+  font-size: 13px;
+  line-height: 1.8;
+}
+.post__source strong { display: block; margin-bottom: 4px; }
+
+.post__share {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 30px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.post__share span {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
+/* Previous / next */
+.post-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 40px;
+}
+.post-nav a {
+  flex: 1 1 260px;
+  padding: 18px 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  transition: border-color var(--transition), background-color var(--transition);
+}
+.post-nav a:hover { border-color: var(--accent); background-color: var(--bg-alt); }
+.post-nav__label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+.post-nav__title {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--ink);
+}
+.post-nav a:last-child { text-align: end; }
+
+/* --- Sidebar ------------------------------------------------------------- */
+.widget + .widget { margin-top: 26px; }
+.widget {
+  padding: 26px 24px;
+  border-radius: var(--radius-card);
+  background-color: var(--bg-alt);
+}
+.widget__title {
+  position: relative;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.widget__title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  inset-inline-start: 0;
+  width: 46px;
+  height: 3px;
+  border-radius: var(--radius-pill);
+  background-color: var(--accent-bright);
+}
+
+.minilist { margin: 0; padding: 0; list-style: none; }
+.minilist li + li { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+.minilist a { display: flex; align-items: flex-start; gap: 12px; }
+.minilist img {
+  flex-shrink: 0;
+  width: 68px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.minilist__title {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.55;
+  color: var(--ink);
+  transition: color var(--transition);
+}
+.minilist a:hover .minilist__title { color: var(--accent); }
+.minilist__date { display: block; margin-top: 5px; font-size: 12px; color: var(--text-muted); }
+
+.widget--dark {
+  background-image: linear-gradient(160deg, #005207 0%, var(--green) 55%, var(--green-copyright) 100%);
+}
+.widget--dark .widget__title { color: var(--white); }
+.widget--dark p { font-size: 14px; line-height: 1.8; color: rgba(255, 255, 255, 0.86); }
+.widget--dark .quicklinks a { color: rgba(255, 255, 255, 0.9); }
+.widget--dark .quicklinks a:hover { color: var(--accent-bright); }
+
+.quicklinks { margin: 0; padding: 0; list-style: none; }
+.quicklinks li + li { margin-top: 2px; }
+.quicklinks a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+}
+.quicklinks a i { color: var(--accent-bright); font-size: 12px; }
+.quicklinks li:last-child a { border-bottom: none; }
+
+@media (max-width: 991.98px) {
+  .post { max-width: none; }
+  .article-aside { margin-top: 46px; }
+}
+@media (max-width: 767.98px) {
+  .pagehead { padding: 32px 0 30px; }
+  /* At phone width the seal sits under the title rather than beside it */
+  .pagehead::after { display: none; }
+  .pagehead__title { font-size: 23px; }
+  .post__standfirst { font-size: 16px; }
+  .post__lead::first-letter { font-size: 42px; }
+  .post__h2 { font-size: 20px; margin-top: 32px; }
+  .post__quote { margin: 26px 0; padding: 22px 22px 22px 48px; }
+  .post__quote::before { inset-inline-start: 16px; font-size: 42px; }
+  [dir="rtl"] .post__quote { padding: 22px 48px 22px 22px; }
+  .post__quote p { font-size: 15px; }
+  .post__gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .post__points > li { padding-left: 40px; }
+  [dir="rtl"] .post__points > li { padding-left: 0; padding-right: 40px; }
+  .post-nav a:last-child { text-align: start; }
+}
+
+/* Nastaliq and Naskh need their own leading in the article primitives */
+html[lang="ur"] .pagehead__title { font-size: clamp(22px, 2.2vw, 32px); line-height: 2.2; }
+html[lang="ur"] .post p,
+html[lang="ur"] .post__points > li { line-height: 2.5; }
+html[lang="ur"] .post__standfirst { font-size: 17px; line-height: 2.4; }
+html[lang="ur"] .post__lead::first-letter { float: none; margin: 0; font-size: inherit; color: inherit; }
+html[lang="ur"] .post__h2 { font-size: 21px; line-height: 2.2; }
+html[lang="ur"] .post__quote p { font-size: 16px; line-height: 2.4; font-style: normal; }
+html[lang="ur"] .post__record dd,
+html[lang="ur"] .minilist__title,
+html[lang="ur"] .quicklinks a,
+html[lang="ur"] .post-nav__title { line-height: 2.2; }
+html[lang="ur"] .crumbs,
+html[lang="ur"] .pagehead__tag { letter-spacing: normal; }
+
+html[lang="sd"] .pagehead__title { line-height: 1.5; }
+html[lang="sd"] .post p,
+html[lang="sd"] .post__points > li { line-height: 1.95; }
+html[lang="sd"] .post__lead::first-letter { float: none; margin: 0; font-size: inherit; color: inherit; }
+html[lang="sd"] .post__quote p { font-style: normal; line-height: 1.9; }
+html[lang="sd"] .crumbs,
+html[lang="sd"] .pagehead__tag { letter-spacing: normal; }
+html[lang="sd"] .post__h2,
+html[lang="sd"] .widget__title { line-height: 1.6; }
 
 
 /* ==========================================================================
