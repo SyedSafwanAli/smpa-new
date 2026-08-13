@@ -2102,6 +2102,116 @@ html[lang="ur"] .brand__name { font-family: var(--font-latin); }
 
 
 /* ==========================================================================
+   06c. LATEST UPDATES TICKER
+   --------------------------------------------------------------------------
+   A dark band under the hero carrying the Authority's standing notices. The
+   loop is two identical tracks translated by exactly half the rail, so the
+   seam never shows; the second track is aria-hidden and untabbable, so the
+   duplication is purely visual.
+   ========================================================================== */
+.ticker {
+  position: relative;
+  background-image: linear-gradient(90deg, var(--green-copyright) 0%, var(--green) 45%, #005207 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.ticker__inner {
+  display: flex;
+  align-items: stretch;
+  gap: 22px;
+  min-height: 56px;
+}
+
+.ticker__label {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding-inline-end: 22px;
+  border-inline-end: 1px solid rgba(255, 255, 255, 0.18);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-bright);
+  white-space: nowrap;
+}
+.ticker__label i { font-size: 15px; }
+
+/* The window the rail runs behind */
+.ticker__viewport {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  /* fade the copy out at the edges instead of cutting it dead */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
+}
+.ticker__rail {
+  display: flex;
+  animation: tickerRun 48s linear infinite;
+}
+[dir="rtl"] .ticker__rail { animation-name: tickerRunRtl; }
+.ticker:hover .ticker__rail,
+.ticker:focus-within .ticker__rail { animation-play-state: paused; }
+
+@keyframes tickerRun    { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes tickerRunRtl { from { transform: translateX(0); } to { transform: translateX(50%); } }
+
+.ticker__track {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+.ticker__track li {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  padding-inline-end: 26px;
+  white-space: nowrap;
+}
+/* the bullet between items */
+.ticker__track li::after {
+  content: "";
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--accent-bright);
+}
+.ticker__track a {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.92);
+}
+.ticker__track a:hover,
+.ticker__track a:focus-visible { color: var(--accent-bright); }
+
+@media (max-width: 767.98px) {
+  .ticker__inner { gap: 14px; min-height: 48px; }
+  .ticker__label { padding-inline-end: 14px; font-size: 11px; letter-spacing: 0.06em; }
+  .ticker__label span { display: none; }   /* the megaphone carries it on a phone */
+  .ticker__label i { font-size: 16px; }
+  .ticker__track a { font-size: 13px; }
+  .ticker__track li { gap: 18px; padding-inline-end: 18px; }
+}
+
+/* Section 15's blanket rule would run this infinite loop at 0.01ms — stop it
+   outright and let the strip be scrolled by hand instead. */
+@media (prefers-reduced-motion: reduce) {
+  .ticker__rail { animation: none !important; }
+  .ticker__viewport { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+  .ticker__track[aria-hidden="true"] { display: none; }
+}
+
+/* Nastaliq and Naskh sit differently in a 56px band */
+html[lang="ur"] .ticker__track a { font-size: 13px; line-height: 2.4; }
+html[lang="ur"] .ticker__label,
+html[lang="sd"] .ticker__label { letter-spacing: normal; }
+html[lang="sd"] .ticker__track a { line-height: 1.9; }
+
+
+/* ==========================================================================
    16b. ARTICLE / NEWS DETAIL PAGE
    --------------------------------------------------------------------------
    One layout serves press releases, meeting reports and gazette notifications:
