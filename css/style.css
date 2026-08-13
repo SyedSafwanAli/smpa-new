@@ -2125,7 +2125,6 @@ html[lang="ur"] .brand__name { font-family: var(--font-latin); }
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
   padding-inline-end: 22px;
   border-inline-end: 1px solid rgba(255, 255, 255, 0.18);
   font-size: 13px;
@@ -2135,7 +2134,6 @@ html[lang="ur"] .brand__name { font-family: var(--font-latin); }
   color: var(--accent-bright);
   white-space: nowrap;
 }
-.ticker__label i { font-size: 15px; }
 
 /* The window the rail runs behind */
 .ticker__viewport {
@@ -2189,9 +2187,7 @@ html[lang="ur"] .brand__name { font-family: var(--font-latin); }
 
 @media (max-width: 767.98px) {
   .ticker__inner { gap: 14px; min-height: 48px; }
-  .ticker__label { padding-inline-end: 14px; font-size: 11px; letter-spacing: 0.06em; }
-  .ticker__label span { display: none; }   /* the megaphone carries it on a phone */
-  .ticker__label i { font-size: 16px; }
+  .ticker__label { padding-inline-end: 14px; font-size: 11px; letter-spacing: 0.05em; }
   .ticker__track a { font-size: 13px; }
   .ticker__track li { gap: 18px; padding-inline-end: 18px; }
 }
