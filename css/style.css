@@ -3556,3 +3556,111 @@ a[href^="tel:"] {
 }
 .news-card--listed .news-card__title { margin-bottom: 18px; }
 .news-card--listed .link-more { margin-top: auto; }
+
+
+/* ==========================================================================
+   22. READING MEASURE, URDU LINE SPACING, TOUCH TARGETS
+   --------------------------------------------------------------------------
+   Corrections found in a render pass over every page at 1440/1024/390 in all
+   three languages. They sit at the end of the sheet so they outrank both the
+   component blocks and the language blocks above.
+   ========================================================================== */
+
+/* --- Reading measure -----------------------------------------------------
+   The article column was tuned to ~58 characters a line and reads well. The
+   content pages were not: their copy blocks inherited the full container and
+   ran to 112-126 characters, far past the point where the eye can find the
+   next line. Capping in ch keeps the cap correct as the font size changes. */
+.lede,
+.prose-p,
+.vm-intro,
+.timeline__text,
+.check-list li,
+.doc-row__title { max-width: 62ch; }
+/* The framed blocks narrow as a whole, box and all — capping only the text
+   inside would leave the frame running on past it. */
+.callout { max-width: 66ch; }
+.vm-intro { margin-inline: auto; }
+.post__standfirst { max-width: 66ch; }
+/* Centred copy keeps its centre when it narrows. */
+.empty-state__text { max-width: 58ch; margin-inline: auto; }
+
+/* --- Urdu line spacing ----------------------------------------------------
+   Nastaliq sets USE_TYPO_METRICS and needs a line box of about 2.5em; the
+   Urdu block sets that on body, but any component declaring its own
+   line-height overrides it and the cascading baselines then collide. These
+   are the components that were doing so — the footer blurb was overlapping
+   on all 21 pages. */
+html[lang="ur"] .lede,
+html[lang="ur"] .prose-p,
+html[lang="ur"] .callout__text,
+html[lang="ur"] .callout__title,
+html[lang="ur"] .timeline__text,
+html[lang="ur"] .timeline__ref,
+html[lang="ur"] .timeline__ref span,
+html[lang="ur"] .check-list li,
+html[lang="ur"] .doc-row__title,
+html[lang="ur"] .doc-row__meta,
+html[lang="ur"] .doc-row__meta span,
+html[lang="ur"] .law-table th,
+html[lang="ur"] .law-table td,
+html[lang="ur"] .law-table li,
+html[lang="ur"] .law-table__aside,
+html[lang="ur"] .pillar__title,
+html[lang="ur"] .pillar__text,
+html[lang="ur"] .org-node__label,
+html[lang="ur"] .org-node__holder,
+html[lang="ur"] .org-node__list li,
+html[lang="ur"] .dir-card__name,
+html[lang="ur"] .dir-card__role,
+html[lang="ur"] .dir-card__contact li,
+html[lang="ur"] .dir-card__contact span,
+html[lang="ur"] .office-card__name,
+html[lang="ur"] .office-card__tag,
+html[lang="ur"] .office-card__list li,
+html[lang="ur"] .office-card__list span,
+html[lang="ur"] .empty-state__title,
+html[lang="ur"] .empty-state__text,
+html[lang="ur"] .is-pending,
+html[lang="ur"] .news-card__tag,
+html[lang="ur"] .footer__blurb,
+html[lang="ur"] .dept-card__desc,
+html[lang="ur"] .process__label,
+html[lang="ur"] .post__caption,
+html[lang="ur"] .plans-note__text,
+html[lang="ur"] .plans-note__text strong,
+html[lang="ur"] .plans-note__text span,
+html[lang="ur"] .post p,
+html[lang="ur"] .post li { line-height: 2.5; }
+
+/* A button or link that wraps to two lines needs the same room. The Read More
+   link sets 28px on the anchor, which the span inside inherits as 1.75em. */
+html[lang="ur"] .btn-pill { line-height: 2.2; }
+html[lang="ur"] .link-more,
+html[lang="ur"] .link-more span { line-height: 2.4; }
+html[lang="ur"] .widget p { line-height: 2.5; }
+
+/* --- Touch targets --------------------------------------------------------
+   Text links stacked in the footer, the breadcrumb and the article sidebar
+   came to 21px tall on a phone — under the 24px minimum, and awkward to hit
+   with a thumb. The burger was 27px across. */
+@media (max-width: 991.98px) {
+  .footer-links a,
+  .footer-contact a,
+  .quicklinks a,
+  .site-footer__bottom a,
+  .minilist__title,
+  .topbar__links a {
+    display: inline-block;
+    padding-block: 5px;
+  }
+  .crumbs a { display: inline-block; padding-block: 4px; }
+  .nav-burger { min-width: 44px; }
+}
+
+/* --- Undersized photographs ----------------------------------------------
+   Two meeting photographs exist only at 300px. Letting the article column
+   blow them up to 780px magnifies the compression rather than showing more,
+   so they run at their own size, centred. */
+.post__figure--small { text-align: center; }
+.post__figure--small img { max-width: 300px; }
