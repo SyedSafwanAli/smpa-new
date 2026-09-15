@@ -590,10 +590,8 @@ a.info-card__value:hover { color: var(--accent); }
   padding: 20px 0;
   transition: color var(--transition);
 }
-/* Below the xxl container the row is tight; buy width back from the type. */
-@media (max-width: 1399.98px) {
-  .mainnav__link { font-size: 13px; letter-spacing: 0.01em; }
-}
+/* The narrower breakpoints are handled in section 20, at the end of the sheet,
+   where they can outrank .nav-cta and .langswitch. */
 .mainnav__link:hover,
 .mainnav__link:focus-visible,
 .mainnav__link.active,
@@ -634,10 +632,14 @@ a.info-card__value:hover { color: var(--accent); }
 }
 
 /* Right-hand actions */
+/* The menu gives way before the actions do: flex was shrinking the button
+   until its label wrapped, so the bar stood 69px tall at some widths and 53px
+   at others. */
 .mainnav__actions {
   display: flex;
   align-items: center;
   gap: 14px;
+  flex-shrink: 0;
 }
 .nav-cta {
   display: flex;
@@ -651,7 +653,9 @@ a.info-card__value:hover { color: var(--accent); }
   font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
+  white-space: nowrap;
 }
+.nav-cta__sub { white-space: nowrap; }
 .nav-cta__sub {
   font-size: 11px;
   font-weight: 500;
@@ -3464,4 +3468,46 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
 a[href^="tel:"] {
   direction: ltr;
   unicode-bidi: isolate;
+}
+
+
+/* ==========================================================================
+   20. NAVIGATION FIT
+   --------------------------------------------------------------------------
+   Seven top-level sections share the bar with the language switch and the
+   complaint button. These rules have to sit at the end of the sheet: .nav-cta,
+   .langswitch and section 15's own .mainnav__link sizes are all declared after
+   section 04, and would otherwise win on source order.
+   ========================================================================== */
+
+/* Below the xxl container the row tightens; buy width back from the type. */
+@media (max-width: 1399.98px) {
+  .mainnav__link { font-size: 13px; letter-spacing: 0.01em; }
+}
+
+/* Between lg and xl the container is only 960-1140px wide, and the menu, the
+   language switch and the button will not all fit. Rather than drop the whole
+   menu into the burger and leave a near-empty green bar across a tablet, the
+   row goes compact and the button gives way — the utility bar above still
+   carries Online Complaint as its first quick link, so the action stays one
+   click away. The burger takes over below lg. */
+/* The button stands down across the whole tight range. At 1200-1279 the xl
+   container is 1140px — wider than the lg one, but the menu grows back to 13px
+   there, so the button still does not fit. */
+@media (min-width: 992px) and (max-width: 1279.98px) {
+  .nav-cta { display: none; }
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .mainnav__menu { gap: clamp(8px, 1vw, 14px); }
+  .mainnav__link { font-size: 12px; letter-spacing: 0; gap: 4px; }
+  .mainnav__inner { gap: 12px; }
+  .mainnav__actions { gap: 10px; }
+  .langswitch { padding: 2px; }
+  .langswitch__btn { padding: 0 9px; min-height: 28px; }
+  .langswitch__btn.sindhi,
+  .langswitch__btn.urdu { padding: 0 8px; }
+  /* The welcome line is the one piece of the utility bar that can go, and it
+     has to for the quick links to keep their place. */
+  .topbar__item:first-child { display: none; }
+  .topbar__links { gap: 14px; }
 }
