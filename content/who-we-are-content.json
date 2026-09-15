@@ -1,0 +1,211 @@
+{
+  "_source": "https://smpa.gos.pk/who-we-are/ and /land-use-plans-map/ — extracted 2026-09-15",
+  "_note": "Verbatim from the live site. The live pages run in Divi, which emits each block as one unbroken paragraph; the history and permits sections below are split into entries at their own sentence boundaries, wording untouched. [sic] marks typos left as-published.",
+
+  "about_smpa": {
+    "heading": "About SMPA",
+    "_note": "One paragraph on the live page, split here into the dated steps it narrates.",
+    "history": [
+      {
+        "year": "1968",
+        "text": "Master Plan Department was established in 1968 under Karachi Development Authority (KDA) with the technical assistance of United Nations, during the preparation of Karachi Development Plan (1974-85)."
+      },
+      {
+        "year": "late 1970s",
+        "text": "It was renamed as Master Plan & Environmental Control Department in late 1970s."
+      },
+      {
+        "year": "2000",
+        "text": "Later on, analyzing the needs of the metropolitan city of Karachi and to enhance the capacity of Master Plan Department, the Governing Body of Karachi Development Authority (KDA) in its 2nd meeting of 2000 held on 18-04-2000 at 2:30 P.M in the conference room of Civic Centre, KDA, under the Chairmanship of Chief Secretary Sindh, resolved that A Consultant (Urban Planner) would be appointed for the capacity building of Master Plan Department, and a board for control of Master Plan Department would be established with representation of all the development agencies of Karachi for which a summary will be moved by Housing and Town Planning Department."
+      },
+      {
+        "year": "2001",
+        "text": "Meanwhile, Sindh Local Government Ordinance-2001 was promulgated, and a devolution plan was introduced, as a result KDA was dissolved. Subsequently, three departments of KDA – i.e. Master Plan & Environment Control (MP&EC), Design Bureau (DB) and Planning & Urban Design (P&UD) – were merged into one department, and renamed as Master Plan Group of Offices (MPGO). Consequently, the MPGO was placed under the umbrella of City District Government Karachi (CDGK)."
+      },
+      {
+        "year": "2011",
+        "text": "In the year 2011, the MPGO was placed under the control of Karachi Metropolitan Corporation (KMC) and renamed as Master Plan Department (MPD)."
+      },
+      {
+        "year": "2013",
+        "text": "Afterwards, the Master Plan Department (MPD) was placed under the Administrative, Financial and Technical control of Director General, Sindh Building Control Authority (SBCA) vide Notification No.SO(L&C)HTP/SBCA/12-14/2013 dated 06-11-2013.",
+        "ref": "SO(L&C)HTP/SBCA/12-14/2013",
+        "date": "06-11-2013"
+      },
+      {
+        "year": "2020",
+        "text": "In 2020, pursuing the orders of the Honorable Supreme Court of Pakistan dated 22-01-2019 in C.P 815-K/2016 and decision of Sindh Cabinet in its meeting held on 22nd January 2020, a separate “Sindh Master Plan Authority” under Local Government and Housing & Town Planning Department, Government of Sindh has been established vide notification No. SO(G)/HTP/SBCA/7-63/2018 dated 18-02-2020.",
+        "ref": "SO(G)/HTP/SBCA/7-63/2018",
+        "date": "18-02-2020"
+      },
+      {
+        "year": "2020",
+        "text": "Subsequent, the Department of Town Planning, Government of Sindh, having mandate of master planning of the overall districts of the Sindh (except Karachi division), was merged into Sindh Master Plan Authority vide LG&HTP Department’s Notification SO(G)/HTP/SBCA/7-63/2018 Dated 14-09-2020.",
+        "ref": "SO(G)/HTP/SBCA/7-63/2018",
+        "date": "14-09-2020"
+      },
+      {
+        "year": "2022",
+        "text": "Lastly, the Local Government & Housing Town Planning Department, GoS, has issued another Notification vide No. SO(G)/HTP/KDA/8-23/2022 Dated 18-10-2022, whereby the Department of Planning and Urban Design (DPUD) has been transferred from Sindh Master Plan Authority and placed under the Administrative control of Karachi Development Authority.",
+        "ref": "SO(G)/HTP/KDA/8-23/2022",
+        "date": "18-10-2022"
+      }
+    ]
+  },
+
+  "urban_planning": {
+    "heading": "URBAN PLANNING & MASTER PLANS",
+    "definition_urban_planning": "Urban Planning (town planning, city & regional planning), refers to design and regulate the uses of land/space that can impact the physical development, social behavior, cultural norms, economic growth, environment and various other aspects of urban environment.",
+    "definition_master_plan": "“Master Plan” means the traditional method for presenting a set of zones, land-uses, allocations and control measures in the form of a map or layout plan or in graphical form and is supported by written statement or report of goals, objectives, existing conditions, surveys, analyses, strategies, financial implications, recommendations, framework, and policies for planning and development for an area. It includes a Master Plan, Development plan, Strategic Plan, Zonal Plan, Structure Plan, Land-Use Plan, an outline development plan, a spatial plan, peri-urban structure plan, neighborhood development plan a metropolitan plan, road network plan, contingency plans, or any other similar plan of any area, city, district, division and/or region.",
+    "foundation_intro": "In ideal scenarios, except the case of emergency, urban land is never used, allotted, auctioned, and leased without designating a suitable land-use after carrying out studies, surveys and/or other logical exercise. The Master Plans or other similar plans, prepared to guide development of an area, provide foundation with respect to many aspects, including (but not limited to):",
+    "foundation_points": [
+      "Better administration, decision making and good governance.",
+      "Sustainable, integrated and synchronized development and redevelopment",
+      "Development control, density control, building control, preservation of environment.",
+      "Preparation & amendment of regulations.",
+      "Preparation & amendments of town planning, architectural, construction, services & utility standards."
+    ]
+  },
+
+  "bylaws": {
+    "heading": "BYLAWS",
+    "image": "https://smpa.gos.pk/wp-content/uploads/2026/04/By-Law.webp",
+    "items": [
+      { "title": "Sindh Building Control Ordinance, 1979", "scope": "" },
+      { "title": "Sindh Building Control (Amendment) Act, 2014", "scope": "" },
+      { "title": "Karachi Building and Town Planning Regulations 1979, Part-II", "scope": "" },
+      { "title": "Karachi Building and Town Planning Regulations, 2002", "scope": "For all Karachi division" },
+      { "title": "Regional Interim Building & Town Planning Regulations, 2018", "scope": "Applicable to all districts of Sindh Province except Karachi." },
+      { "title": "Cantonment Board Clifton,[Karachi] Building Bye-laws, 2007", "scope": "" }
+    ]
+  },
+
+  "legislation_history": {
+    "heading": "A history of legislation for urban/town planning functions in karachi",
+    "_note": "Published as a two-column table on the live page.",
+    "columns": ["Main Laws", "Parallel Laws"],
+    "rows": [
+      {
+        "main": ["Bombay/Sindh Town Planning Act, 1915"],
+        "parallel": ["The Cantonment Act, 1924", "Cantonment Board Clifton,[Karachi] Building Bye-laws, 2007"]
+      },
+      {
+        "main": ["Karachi Improvement Trust Act, 1950"],
+        "parallel": ["Malir Development Authority Act, 1993"]
+      },
+      {
+        "main": ["Sindh Building Control Ordinance, 1979"],
+        "parallel": ["The Sindh People’s Local Government Ordinance, 1972"]
+      },
+      {
+        "main": ["Karachi Building and Town Planning Regulations, 1979", "SBC Amendment Act, 2014", "Not adapted by concerned Authorities (e.g. DPUD)."],
+        "parallel": ["The Sindh Local Government Ordinance, 1979", "The Sindh Local Government Ordinance, 2001"]
+      },
+      {
+        "main": ["Karachi Building and Town Planning Regulations, 2002"],
+        "parallel": ["The Sindh Local Government Act, 2013"]
+      }
+    ]
+  },
+
+  "permits": {
+    "heading": "DEVELOPMENT PERMITS AND TOWN PLANNING NOCS",
+    "intro": "SBCO-1979, KB&TPR-1979, KB&TPR-2002 and RIB&TPR-2018, generally divides town planning functions in Sindh into 2 main categories:",
+    "categories": [
+      {
+        "title": "Master Planning Work",
+        "desc": "Preparation of Master Plan, Development Plan, Strategic Plan, Structural Plan etc., including contingency plan/s for the purpose of providing a foundation for the administration, development control and preparation / amendment of regulations."
+      },
+      {
+        "title": "Land Development Work",
+        "desc": "through General Development Permits, Special Development Permits & Town Planning NOCs;"
+      }
+    ],
+    "instruments": [
+      {
+        "title": "Schemes",
+        "desc": "including site development scheme, housing scheme, development scheme, dividing a land into suitable plots, housing/industrial/commercial/public purpose scheme, assigning land-use for urban areas etc."
+      },
+      {
+        "title": "Special Development Permits",
+        "desc": "includes major sub-division, approval of any new planning/Layout Plan, Change of land-use etc."
+      },
+      {
+        "title": "General Development Permits",
+        "desc": "minor sub-division and amalgamations etc"
+      },
+      {
+        "title": "Town Planning NOCs",
+        "desc": "Petrol Pumps, CNG, LNG, Marriage halls, Super Stores, Farm Houses etc…"
+      }
+    ],
+    "jurisdiction": "The work regarding Macro Planning / Master Planning, issuance of special development permits, change of land-use and other similar work are sole purview of MP&EC/MPGO/MPD (now SMPA). In other districts of Sindh the Master Planning tasks pertain to Directorate of Town Planning (now merged in SMPA). The concerned Authorities (notified by Government) may issue General Development Permits and draw schemes in their jurisdictions but only in accordance with the Master Plan of the City. The Concerned Authority shall simultaneously endorse a copy of each General Development Permit granted by it to MP&ECD (now SMPA)."
+  },
+
+  "vision": {
+    "heading": "Vision of Sindh Master Plan Authority (SMPA)",
+    "tagline": "Fostering Sustainable Urban Excellence for Prosperity and Well-being”",
+    "intro": "The Sindh Master Plan Authority (SMPA) envisions a future where the cities and urban areas within the province of Sindh are exemplars of sustainable urban excellence, contributing significantly to economic growth, social well-being, and environmental stewardship. Our vision integrates economic prosperity as a pivotal element in the urban development equation.",
+    "pillars": [
+      { "title": "Inclusive and Prosperous Economy", "text": "SMPA aspires to create cities that serve as economic engines, providing a conducive environment for businesses to flourish. Our vision includes vibrant urban economies that generate jobs, attract investments, and stimulate entrepreneurship, thereby improving the livelihoods of all residents." },
+      { "title": "Inclusive and Equitable Communities", "text": "We envision cities where economic opportunities are accessible to all, regardless of socio-economic background. Inclusivity and social equity are integral to our vision, ensuring that the benefits of urban development are widely shared." },
+      { "title": "Sustainability and Environmental Stewardship", "text": "SMPA is dedicated to building cities that prioritize sustainability, balancing economic growth with environmental conservation. Our vision includes eco-friendly infrastructure, green spaces, and resource-efficient practices that promote a healthy environment for current and future generations." },
+      { "title": "Technological Advancement", "text": "We embrace technological innovation to enhance economic productivity and urban living. Our vision includes smart cities that leverage technology to improve infrastructure, transportation, communication, and governance, fostering economic competitiveness." },
+      { "title": "Collaborative Partnerships", "text": "SMPA envisions strong partnerships with communities, government agencies, private-sector stakeholders, and civil society organizations. Collaborative efforts drive economic development and ensure that urban planning aligns with the diverse needs of stakeholders." },
+      { "title": "Resilience and Adaptability", "text": "Our vision includes cities that are resilient to economic shocks, natural disasters, and global challenges. SMPA aims to create urban environments that can adapt and thrive in a dynamic and ever-changing economic landscape." },
+      { "title": "Cultural Preservation and Celebration", "text": "We value and celebrate the cultural diversity of Sindh. Our vision integrates cultural elements into urban planning, enhancing the uniqueness of our cities and contributing to cultural tourism and creative industries that boost the economy." },
+      { "title": "Transparency and Accountability", "text": "SMPA is committed to transparent governance, ensuring that our economic decisions and actions are open to scrutiny and input from the public. Transparency and accountability are foundational principles for building trust and effective economic development." },
+      { "title": "Quality of Life", "text": "Above all, our vision focuses on improving the overall quality of life for residents. We aim to create cities where people live, work, and prosper in environments that promote well-being, happiness, and economic prosperity." }
+    ],
+    "closing": "SMPA’s vision is a dynamic and forward-looking guide that drives our commitment to sustainable urban development and economic growth. We are dedicated to realizing this vision in partnership with all stakeholders, as we work together to transform Sindh’s cities into vibrant centers of economic excellence and well-being for generations to come."
+  },
+
+  "statement": {
+    "heading": "Statement on Behalf of Sindh Master Plan Authority (SMPA)",
+    "tagline": "Shaping Sustainable Urban Futures",
+    "intro": [
+      "As the Sindh Master Plan Authority (SMPA), our mission is to shape the future of urban development in the province of Sindh. We are committed to creating sustainable, inclusive, and vibrant cities that enhance the quality of life for all residents.",
+      "At SMPA, we recognize that urban planning is not merely about physical infrastructure; it’s about fostering communities, preserving culture, and safeguarding the environment. Our approach is rooted in the following principles:"
+    ],
+    "principles": [
+      { "title": "Inclusivity", "text": "We are dedicated to ensuring that our urban planning efforts benefit all residents, regardless of their background, socioeconomic status, or location within the province. Inclusivity is at the heart of every plan and policy we formulate." },
+      { "title": "Sustainability", "text": "We understand the critical importance of sustainable development. Our plans prioritize efficient land use, green spaces, and eco-friendly infrastructure to reduce our ecological footprint and protect our natural resources for generations to come." },
+      { "title": "Viable Economy", "text": "The Sindh Master Plan Authority (SMPA) envisions cities and urban areas within the province of Sindh as dynamic hubs of economic activity, innovation, and prosperity. Our vision is to drive a resilient and constantly improving urban economy that positions Sindh as a leader in economic development." },
+      { "title": "Innovation", "text": "In a rapidly evolving world, embracing technological advancements and innovative solutions is imperative. SMPA continually explores cutting-edge technologies and urban planning methodologies to enhance the efficiency and effectiveness of our initiatives." },
+      { "title": "Collaboration", "text": "SMPA believes in the power of collaboration. We actively engage with communities, government agencies, private-sector partners, and civil society organizations to foster a collective effort towards building better cities." },
+      { "title": "Resilience", "text": "As we confront the challenges posed by climate change and urbanization, we prioritize building resilient cities that can withstand shocks and adapt to changing circumstances while safeguarding the well-being of our citizens." },
+      { "title": "Transparency", "text": "We are committed to transparency in our decision-making processes, ensuring that the public is well-informed about our plans, projects, and policies. We encourage feedback and participation from all stakeholders." },
+      { "title": "Cultural Preservation", "text": "Sindh has a rich cultural heritage, and we are dedicated to preserving and celebrating its diversity. Our plans respect and integrate cultural elements that define our cities and communities." }
+    ],
+    "closing": [
+      "SMPA’s work is driven by a vision of cities that are not just spaces for habitation but vibrant hubs of opportunity, creativity, and sustainability. Our commitment is unwavering, and we look forward to partnering with all stakeholders to achieve this vision.",
+      "Together, we can build a future where the cities of Sindh are shining examples of urban planning excellence, offering the best possible quality of life for all their residents."
+    ]
+  },
+
+  "land_use_plans_map": {
+    "_source": "https://smpa.gos.pk/land-use-plans-map/",
+    "_note": "The page carries the five map titles as headings plus two generic captions; no per-map description is published.",
+    "captions": [
+      "Zoning Regulations: The plan should define different zones for residential, commercial, industrial, and recreational purposes.",
+      "Infrastructure Development: Information on planned roads, utilities, public facilities, and other infrastructure projects should be outlined."
+    ],
+    "maps": [
+      { "title": "Proposed Land Use Plan 2020", "img": "https://smpa.gos.pk/wp-content/uploads/2026/04/Proposed-Land-Use-Plan-2020.webp", "size": "906x625" },
+      { "title": "Karachi Development Plan 2000", "img": "https://smpa.gos.pk/wp-content/uploads/2026/04/Karachi-Development-Plan-2000.webp", "size": "552x386" },
+      { "title": "Karachi Land Use 1987", "img": "https://smpa.gos.pk/wp-content/uploads/2026/04/Karachi-Land-Use-1987.webp", "size": "" },
+      { "title": "Karachi Metropolitan Area Land Use 1974", "img": "https://smpa.gos.pk/wp-content/uploads/2026/04/Karachi-Metropolitan-are-land-2.webp", "size": "466x278" },
+      { "title": "Karachi Metropolitan Area Land Use 1980 – 1985", "img": "https://smpa.gos.pk/wp-content/uploads/2026/04/Karachi-Metropolitan-Area-Land-Use-1980-%E2%80%93-1985.webp", "size": "" }
+    ]
+  },
+
+  "still_missing": {
+    "_note": "Checked against the full live sitemap (8 URLs). These do not exist anywhere on smpa.gos.pk and cannot be scraped.",
+    "organogram": "No organisational chart is published. Officer titles imply the directorates: Admin & Finance, Coordination & Legal, Town Planning (Hyderabad), Planning.",
+    "officer_contacts": "Officers are published with name, designation and photo only — no phone, email or room number.",
+    "offices": "Only the Civic Center head office address appears. No regional office addresses.",
+    "fees": "No fee schedule or amounts are published anywhere on the site.",
+    "projects_studies": "No project or study listing exists on the site.",
+    "documents": "No PDF, DOC or XLS link appears on any page — the laws and notifications are named in text only, with no downloadable file."
+  }
+}
