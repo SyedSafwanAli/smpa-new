@@ -3474,40 +3474,51 @@ a[href^="tel:"] {
 /* ==========================================================================
    20. NAVIGATION FIT
    --------------------------------------------------------------------------
-   Seven top-level sections share the bar with the language switch and the
-   complaint button. These rules have to sit at the end of the sheet: .nav-cta,
-   .langswitch and section 15's own .mainnav__link sizes are all declared after
-   section 04, and would otherwise win on source order.
+   These rules sit at the end of the sheet on purpose: .nav-cta, .langswitch
+   and section 15's own .mainnav__link sizes are all declared after section 04
+   and would otherwise win on source order.
    ========================================================================== */
+
+/* --- The light language switch (utility bar) -----------------------------
+   The green-bar switch is white-on-translucent and disappears on the light
+   utility bar, so the desktop copy takes its own palette. */
+.langswitch--light {
+  background-color: var(--white);
+  border-color: var(--line);
+}
+.langswitch--light .langswitch__btn {
+  min-height: 26px;
+  padding: 0 12px;
+  color: var(--text);
+}
+.langswitch--light .langswitch__btn:hover { color: var(--accent); }
+.langswitch--light .langswitch__btn.is-on,
+.langswitch--light .langswitch__btn.is-on:hover {
+  background-color: var(--accent);
+  color: var(--white);
+}
+
+/* --- Room in the green bar ------------------------------------------------
+   With the language switch moved up to the utility bar, the nav row carries
+   only the sections and the complaint button, so the sections can breathe. */
+.mainnav__menu { gap: clamp(16px, 2.1vw, 38px); }
 
 /* Below the xxl container the row tightens; buy width back from the type. */
 @media (max-width: 1399.98px) {
   .mainnav__link { font-size: 13px; letter-spacing: 0.01em; }
 }
 
-/* Between lg and xl the container is only 960-1140px wide, and the menu, the
-   language switch and the button will not all fit. Rather than drop the whole
-   menu into the burger and leave a near-empty green bar across a tablet, the
-   row goes compact and the button gives way — the utility bar above still
-   carries Online Complaint as its first quick link, so the action stays one
-   click away. The burger takes over below lg. */
-/* The button stands down across the whole tight range. At 1200-1279 the xl
-   container is 1140px — wider than the lg one, but the menu grows back to 13px
-   there, so the button still does not fit. */
-@media (min-width: 992px) and (max-width: 1279.98px) {
-  .nav-cta { display: none; }
-}
+/* Between lg and xl the container is only 960-1140px wide. The row goes
+   compact rather than dropping the whole menu into the burger and leaving a
+   near-empty green bar across a tablet. The burger takes over below lg. */
 @media (min-width: 992px) and (max-width: 1199.98px) {
-  .mainnav__menu { gap: clamp(8px, 1vw, 14px); }
+  .mainnav__menu { gap: clamp(10px, 1.3vw, 20px); }
   .mainnav__link { font-size: 12px; letter-spacing: 0; gap: 4px; }
-  .mainnav__inner { gap: 12px; }
-  .mainnav__actions { gap: 10px; }
-  .langswitch { padding: 2px; }
-  .langswitch__btn { padding: 0 9px; min-height: 28px; }
-  .langswitch__btn.sindhi,
-  .langswitch__btn.urdu { padding: 0 8px; }
+  .mainnav__inner { gap: 14px; }
+  .nav-cta { padding: 9px 20px; }
+  .nav-cta__sub { display: none; }
   /* The welcome line is the one piece of the utility bar that can go, and it
-     has to for the quick links to keep their place. */
+     has to for the quick links and the switch to keep their place. */
   .topbar__item:first-child { display: none; }
   .topbar__links { gap: 14px; }
 }

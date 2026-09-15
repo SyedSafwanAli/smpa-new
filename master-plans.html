@@ -56,6 +56,14 @@
         <li><a href="#" data-sd="ٽينڊر" data-ur="ٹینڈر">Tenders</a></li>
         <li><a href="#" data-sd="روزگار" data-ur="روزگار">Careers</a></li>
       </ul>
+
+      <!-- The language switch is a utility, and the nav row below has no room
+           to spare. Below lg the copy in the nav bar takes over. -->
+      <div class="langswitch langswitch--light d-none d-lg-inline-flex" role="group" aria-label="Site language" data-sd-aria-label="سائيٽ جي ٻولي" data-ur-aria-label="سائٹ کی زبان">
+        <button class="langswitch__btn is-on" type="button" data-lang="en" aria-label="English" data-sd-aria-label="انگريزي" data-ur-aria-label="انگریزی" aria-pressed="true">ENG</button>
+        <button class="langswitch__btn sindhi" type="button" data-lang="sd" aria-label="Sindhi" data-sd-aria-label="سنڌي" data-ur-aria-label="سندھی" aria-pressed="false" lang="sd" dir="rtl">سنڌي</button>
+        <button class="langswitch__btn urdu" type="button" data-lang="ur" aria-label="Urdu" data-sd-aria-label="اردو" data-ur-aria-label="اردو" aria-pressed="false" lang="ur" dir="rtl">اردو</button>
+      </div>
     </div>
   </div>
 </div>
@@ -162,7 +170,7 @@
 
       <!-- Right actions -->
       <div class="mainnav__actions">
-        <div class="langswitch" role="group" aria-label="Site language" data-sd-aria-label="سائيٽ جي ٻولي" data-ur-aria-label="سائٹ کی زبان">
+        <div class="langswitch d-lg-none" role="group" aria-label="Site language" data-sd-aria-label="سائيٽ جي ٻولي" data-ur-aria-label="سائٹ کی زبان">
           <button class="langswitch__btn is-on" type="button" data-lang="en" aria-label="English" data-sd-aria-label="انگريزي" data-ur-aria-label="انگریزی" aria-pressed="true">ENG</button>
           <button class="langswitch__btn sindhi" type="button" data-lang="sd" aria-label="Sindhi" data-sd-aria-label="سنڌي" data-ur-aria-label="سندھی" aria-pressed="false" lang="sd" dir="rtl">سنڌي</button>
           <button class="langswitch__btn urdu" type="button" data-lang="ur" aria-label="Urdu" data-sd-aria-label="اردو" data-ur-aria-label="اردو" aria-pressed="false" lang="ur" dir="rtl">اردو</button>
