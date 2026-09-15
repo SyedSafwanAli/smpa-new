@@ -3768,3 +3768,23 @@ html[lang="ur"] .brand__full { font-size: 26px; }
 @media (max-width: 1399.98px) {
   .topbar__item:first-child { display: none; }
 }
+
+/* --- One centred reading column -------------------------------------------
+   Capping each block's width on its own left the copy hugging the left of a
+   wide column under a centred heading, with frames and paragraphs ending at
+   different right edges. The column itself is now the measure: centred, and
+   every block inside it runs its full width so all edges line up. Body copy
+   steps up to 16px so the longer line still reads comfortably. */
+.section .row.justify-content-center > .col-lg-10 { max-width: 700px; }
+.section .row.justify-content-center > .col-lg-10 .lede,
+.section .row.justify-content-center > .col-lg-10 .prose-p,
+.section .row.justify-content-center > .col-lg-10 .callout,
+.section .row.justify-content-center > .col-lg-10 .timeline__text,
+.section .row.justify-content-center > .col-lg-10 .check-list li,
+.section .row.justify-content-center > .col-lg-10 .doc-row__title,
+.section .row.justify-content-center > .col-lg-10 .plans-note { max-width: none; }
+.section .row.justify-content-center > .col-lg-10 .plans-note { margin-inline: 0; }
+.prose-p,
+.callout__text,
+.check-list li,
+.timeline__text { font-size: 16px; }
