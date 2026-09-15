@@ -3522,3 +3522,37 @@ a[href^="tel:"] {
   .topbar__item:first-child { display: none; }
   .topbar__links { gap: 14px; }
 }
+
+
+/* ==========================================================================
+   21. NEWS LISTING
+   ========================================================================== */
+
+/* Each article already declares its own kind in its page head — News, Press
+   Release or Notification — so the listing carries the same chip rather than
+   inventing a taxonomy. */
+.news-card__tag {
+  position: absolute;
+  top: 14px;
+  inset-inline-end: 14px;
+  z-index: 2;
+  padding: 6px 13px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(0, 69, 5, 0.88);
+  color: var(--accent-bright);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+/* In a grid the cards share a row, so they share a height and the Read More
+   links line up along the bottom. */
+.news-card--listed {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.news-card--listed .news-card__title { margin-bottom: 18px; }
+.news-card--listed .link-more { margin-top: auto; }
