@@ -86,21 +86,20 @@
       <!-- Contact + social -->
       <div class="header-utils d-none d-sm-flex">
 
-        <div class="info-card info-card--address">
-          <span class="info-card__icon" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span>
-          <span class="info-card__body">
-            <span class="info-card__label" data-sd="پتو" data-ur="پتہ">Address</span>
-            <span class="info-card__value" data-sd="9هين ماڙ، سِوِڪ سينٽر، بلاڪ 14، گلشنِ اقبال، ڪراچي" data-ur="نویں منزل، سِوک سینٹر، بلاک 14، گلشنِ اقبال، کراچی">9th Floor, Civic Center, Block 14, Gulshan-e-Iqbal, Karachi</span>
-          </span>
-        </div>
-
-        <div class="info-card">
-          <span class="info-card__icon" aria-hidden="true"><i class="fa-solid fa-envelope"></i></span>
-          <span class="info-card__body">
-            <span class="info-card__label" data-sd="اسان کي اي ميل ڪريو" data-ur="ہمیں ای میل کریں">Send Us Mail</span>
-            <a class="info-card__value" href="mailto:contact@smpa.gos.pk">contact@smpa.gos.pk</a>
-          </span>
-        </div>
+        <!-- Address and email stacked as two short lines: side by side as
+             cards they were wider than the room left beside the name. -->
+        <ul class="header-contact list-unstyled mb-0">
+          <li>
+            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+            <span class="visually-hidden" data-sd="پتو" data-ur="پتہ">Address</span>
+            <span data-sd="9هين ماڙ، سِوِڪ سينٽر، بلاڪ 14، گلشنِ اقبال، ڪراچي" data-ur="نویں منزل، سِوک سینٹر، بلاک 14، گلشنِ اقبال، کراچی">9th Floor, Civic Center, Block 14, Gulshan-e-Iqbal, Karachi</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            <span class="visually-hidden" data-sd="اي ميل" data-ur="ای میل">Email</span>
+            <a href="mailto:contact@smpa.gos.pk">contact@smpa.gos.pk</a>
+          </li>
+        </ul>
 
         <span class="header-utils__divider" aria-hidden="true"></span>
 

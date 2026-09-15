@@ -3691,20 +3691,46 @@ html[lang="ur"] .brand__full { line-height: 2.2; font-size: clamp(19px, 1.6vw, 2
 /* The contact cluster beside the name gives way in stages as the row narrows,
    rather than letting its cards wrap into tall ragged blocks. The address and
    email both live in the footer, the drawer and the Offices page, so nothing
-   is lost when they step out of the header. The address never shares the row:
-   beside a name this size it left no clear space even on a wide screen.
-     >= 1200   name · email · social
+   is lost when they step out of the header.
+     >= 1200   name · address over email · social
      768-1199  name · social
      < 768     name alone                                                     */
-.header-utils { gap: 14px; }
-.info-card { padding: 9px 14px; }
-.info-card__value { white-space: nowrap; }
-
-.header-utils .info-card--address { display: none; }
+.header-utils { gap: 22px; }
 .site-header__inner { gap: 48px; }
 .brand { flex-shrink: 0; }
+
+/* Address over email, two quiet lines with their icons — no card fill, so
+   the name stays the one strong element in the row. */
+.header-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.header-contact li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  line-height: 1.4;
+  color: var(--text);
+  white-space: nowrap;
+}
+.header-contact i {
+  width: 16px;
+  text-align: center;
+  color: var(--accent);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.header-contact a { color: var(--text); }
+.header-contact a:hover,
+.header-contact a:focus-visible { color: var(--accent); }
+html[lang="ur"] .header-contact { gap: 0; }
+html[lang="ur"] .header-contact li { line-height: 2.2; font-size: 13px; }
+html[lang="sd"] .header-contact li { line-height: 1.8; }
+
 @media (max-width: 1199.98px) {
-  .header-utils .info-card,
+  .header-contact,
   .header-utils__divider { display: none; }
 }
 @media (max-width: 767.98px) {
@@ -3732,4 +3758,13 @@ html[lang="ur"] .brand__full { font-size: 26px; }
    of the bar here. */
 @media (max-width: 575.98px) {
   .mainnav .nav-cta { display: none; }
+}
+
+/* The utility bar gained the language switch and started wrapping its items
+   onto two lines ("9:00am - / 5:00pm") below 1400. Its items never wrap, and
+   the welcome line — the one piece that can go — steps out below xxl too. */
+.topbar__item,
+.topbar__links a { white-space: nowrap; }
+@media (max-width: 1399.98px) {
+  .topbar__item:first-child { display: none; }
 }
