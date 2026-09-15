@@ -3664,3 +3664,72 @@ html[lang="ur"] .widget p { line-height: 2.5; }
    so they run at their own size, centred. */
 .post__figure--small { text-align: center; }
 .post__figure--small img { max-width: 300px; }
+
+
+/* ==========================================================================
+   23. BRAND LOCKUP
+   --------------------------------------------------------------------------
+   The seal and the authority's full name, set large in the heading face. It
+   replaces the SMPA acronym over a small caption. At the end of the sheet so
+   it outranks section 15's phone sizes for the old lockup.
+   ========================================================================== */
+.brand { gap: 16px; }
+.brand__seal { height: 72px; }
+.brand__full {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 1.75vw, 28px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+  text-transform: none;
+  color: var(--green);
+  white-space: nowrap;
+}
+html[lang="sd"] .brand__full { line-height: 1.7; }
+html[lang="ur"] .brand__full { line-height: 2.2; font-size: clamp(19px, 1.6vw, 26px); }
+
+/* The contact cluster beside the name gives way in stages as the row narrows,
+   rather than letting its cards wrap into tall ragged blocks. The address and
+   email both live in the footer, the drawer and the Offices page, so nothing
+   is lost when they step out of the header. The address never shares the row:
+   beside a name this size it left no clear space even on a wide screen.
+     >= 1200   name · email · social
+     768-1199  name · social
+     < 768     name alone                                                     */
+.header-utils { gap: 14px; }
+.info-card { padding: 9px 14px; }
+.info-card__value { white-space: nowrap; }
+
+.header-utils .info-card--address { display: none; }
+.site-header__inner { gap: 48px; }
+.brand { flex-shrink: 0; }
+@media (max-width: 1199.98px) {
+  .header-utils .info-card,
+  .header-utils__divider { display: none; }
+}
+@media (max-width: 767.98px) {
+  .header-utils { display: none !important; }
+  .brand__seal { height: 58px; }
+}
+/* On a phone the name may take two lines rather than run off the edge. */
+@media (max-width: 575.98px) {
+  .brand { gap: 12px; }
+  .brand__seal { height: 54px; }
+  .brand__full { white-space: normal; font-size: 20px; line-height: 1.25; }
+  html[lang="ur"] .brand__full { font-size: 19px; line-height: 2; }
+}
+
+/* Where the contact cluster has stepped aside, the name takes the room. */
+.brand__full { font-size: 30px; }
+html[lang="ur"] .brand__full { font-size: 26px; }
+@media (max-width: 1399.98px) { .brand__full { font-size: 28px; } html[lang="ur"] .brand__full { font-size: 25px; } }
+@media (max-width: 767.98px)  { .brand__full { font-size: 25px; } html[lang="ur"] .brand__full { font-size: 22px; } }
+@media (max-width: 575.98px)  { .brand__full { font-size: 20px; } html[lang="ur"] .brand__full { font-size: 19px; } }
+
+/* A phone's nav bar cannot hold the burger, the language switch and the
+   complaint button: the button was running off the right edge. The drawer
+   already carries Online Complain as a full-width button, so it steps out
+   of the bar here. */
+@media (max-width: 575.98px) {
+  .mainnav .nav-cta { display: none; }
+}
