@@ -1,0 +1,8 @@
+# Source and tooling, not site content: the build partials, the build script,
+# the scraped content extracts and the rebuild plan should not be public URLs.
+partials/
+tools/
+content/
+docs/
+screenshots/
+source-media/
