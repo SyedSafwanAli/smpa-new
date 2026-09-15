@@ -3194,3 +3194,274 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   .doc-row { flex-wrap: wrap; padding: 16px; gap: 12px; }
   .doc-row__year { align-self: flex-start; }
 }
+
+
+/* ==========================================================================
+   19. ORGANOGRAM, DIRECTORY, OFFICES, EMPTY STATES
+   ========================================================================== */
+
+/* --- Organogram -----------------------------------------------------------
+   Connectors are drawn per branch rather than as one bar across the row: each
+   branch carries its own stem up and a rung across to the next sibling, so the
+   lines stay exact whatever the gap, and they mirror for Sindhi and Urdu
+   because they are placed with inset-inline-start. */
+.orgchart { --org-gap: 24px; }
+.orgchart__top {
+  max-width: 340px;
+  margin: 0 auto;
+  position: relative;
+}
+.orgchart__top::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  inset-inline-start: calc(50% - 1px);
+  width: 2px;
+  height: 28px;
+  background-color: var(--line);
+}
+.orgchart__branches {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--org-gap);
+  padding-top: 56px;
+}
+.orgchart__branch { position: relative; }
+.orgchart__branch::before {
+  content: "";
+  position: absolute;
+  top: -28px;
+  inset-inline-start: calc(50% - 1px);
+  width: 2px;
+  height: 28px;
+  background-color: var(--line);
+}
+.orgchart__branch::after {
+  content: "";
+  position: absolute;
+  top: -28px;
+  inset-inline-start: 50%;
+  width: calc(100% + var(--org-gap));
+  height: 2px;
+  background-color: var(--line);
+}
+.orgchart__branch:last-child::after { display: none; }
+
+.org-node {
+  height: 100%;
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: 22px 20px;
+  text-align: center;
+}
+.org-node--lead {
+  background-color: var(--green);
+  border-color: var(--green);
+}
+.org-node__label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.org-node--lead .org-node__label { color: var(--white); font-size: 17px; }
+.org-node__holder {
+  display: block;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+.org-node--lead .org-node__holder { color: var(--accent-bright); }
+.org-node__list {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0 0;
+  border-top: 1px solid var(--line);
+  padding-top: 13px;
+  text-align: start;
+}
+.org-node__list li {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text);
+  padding-inline-start: 15px;
+  position: relative;
+}
+.org-node__list li + li { margin-top: 7px; }
+.org-node__list li::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--accent);
+}
+
+@media (max-width: 991.98px) {
+  .orgchart__branches { grid-template-columns: repeat(2, 1fr); }
+  /* Two per row means the rungs no longer line up; drop them and let the
+     stem under the lead card carry the hierarchy on its own. */
+  .orgchart__branch::after { display: none; }
+}
+@media (max-width: 575.98px) {
+  .orgchart__branches { grid-template-columns: 1fr; padding-top: 44px; }
+}
+
+/* --- Officer directory card ---------------------------------------------- */
+.dir-card {
+  height: 100%;
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: 28px 24px;
+  text-align: center;
+  transition: border-color var(--transition), transform var(--transition);
+}
+.dir-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+.dir-card__photo {
+  display: block;
+  width: 104px;
+  height: 104px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--bg-address);
+}
+.dir-card__photo img { width: 100%; height: 100%; object-fit: cover; }
+.dir-card__name {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 5px;
+}
+.dir-card__role {
+  display: block;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+.dir-card__contact {
+  list-style: none;
+  padding: 16px 0 0;
+  margin: 0;
+  border-top: 1px solid var(--line);
+  text-align: start;
+}
+.dir-card__contact li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text);
+}
+.dir-card__contact li + li { margin-top: 9px; }
+.dir-card__contact i { color: var(--accent); width: 14px; padding-top: 4px; flex-shrink: 0; }
+.dir-card__contact a { color: var(--text); }
+.dir-card__contact a:hover { color: var(--accent); }
+/* Marks a field the Authority has not published, rather than leaving a gap
+   that reads as an oversight. */
+.is-pending { color: var(--text-muted); font-style: italic; }
+
+/* --- Office card ---------------------------------------------------------- */
+.office-card {
+  height: 100%;
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: 28px 26px;
+}
+.office-card__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 13px;
+  border-radius: var(--radius-pill);
+  background-color: var(--bg-address);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 15px;
+}
+.office-card__name {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.office-card__list { list-style: none; padding: 0; margin: 0; }
+.office-card__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text);
+}
+.office-card__list li + li { margin-top: 11px; }
+.office-card__list i { color: var(--accent); width: 15px; padding-top: 5px; flex-shrink: 0; }
+.office-card__list a { color: var(--text); }
+.office-card__list a:hover { color: var(--accent); }
+
+/* --- Empty state ----------------------------------------------------------
+   For sections the Authority has not published yet. Says so plainly and
+   points at a way to ask, rather than showing an invented placeholder. */
+.empty-state {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 54px 32px;
+  text-align: center;
+  background-color: var(--white);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-card);
+}
+.empty-state__icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-address);
+  color: var(--accent);
+  font-size: 24px;
+}
+.empty-state__title {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.empty-state__text {
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--text);
+  margin-bottom: 26px;
+}
+.empty-state__text:last-child { margin-bottom: 0; }
+
+/* --- Phone numbers in an RTL page -----------------------------------------
+   A telephone number stays Latin-script even when the page is in Sindhi or
+   Urdu. Left to the bidi algorithm, the leading "+" is treated as neutral and
+   is reordered to the visual end — "92-21-99231159+". Declaring the direction
+   and isolating the run keeps it reading "+92-21-99231159" in every language. */
+a[href^="tel:"] {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
