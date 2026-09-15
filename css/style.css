@@ -2804,6 +2804,15 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   html, body { overflow-x: hidden; }
   .container { padding-left: 16px; padding-right: 16px; }
 }
+/* The framed photo's offset blocks sit 18px outside the picture. On a wide
+   screen the container's side margin swallows them, and below lg the rule
+   above already stops the page scrolling — but between the two the container
+   runs close to the viewport edge and the right-hand block pushed the page
+   3px sideways. Clip at the band: the blocks stay visible, the scroll goes.
+   overflow-x: clip rather than hidden, so nothing becomes a scroll container. */
+@media (min-width: 992px) and (max-width: 1399.98px) {
+  .feature { overflow-x: clip; }
+}
 
 /* --- Hero on a phone ----------------------------------------------------- */
 @media (max-width: 767.98px) {
@@ -2892,3 +2901,296 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
 .drawer-contact a { color: var(--text); }
 .drawer-contact a:hover { color: var(--accent); }
 .drawer-contact .social-row { margin-top: 16px; }
+
+
+/* ==========================================================================
+   18. CONTENT PAGES — LEDE, CALLOUT, TIMELINE, DOCUMENT LIST, LAW TABLE
+   ========================================================================== */
+
+/* --- Running text on the section pages ---------------------------------- */
+.lede {
+  max-width: 940px;
+  margin: 0 0 34px;
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--ink);
+}
+.prose-p {
+  max-width: 940px;
+  margin: 0 0 18px;
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--text);
+}
+.prose-p:last-child { margin-bottom: 0; }
+
+/* A definition or standing note lifted out of the running text. Shares the
+   plans-note treatment so every aside on the site reads the same way. */
+.callout {
+  border: 1px solid var(--line);
+  border-inline-start: 4px solid var(--accent);
+  border-radius: 10px;
+  background-color: var(--bg-alt);
+  padding: 24px 28px;
+  margin-bottom: 30px;
+}
+.callout__title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.callout__text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--text);
+}
+
+/* --- Check list ---------------------------------------------------------- */
+.check-list { list-style: none; padding: 0; margin: 0; }
+.check-list li {
+  position: relative;
+  padding-inline-start: 34px;
+  margin-bottom: 14px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text);
+}
+.check-list li:last-child { margin-bottom: 0; }
+.check-list li::before {
+  content: "\f00c";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 10px;
+  position: absolute;
+  inset-inline-start: 0;
+  top: 4px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--bg-address);
+  color: var(--accent);
+}
+
+/* --- Timeline (History) --------------------------------------------------
+   The rail is drawn on the list, the dots on each item, so the line always
+   spans exactly the entries present. Logical insets keep it on the correct
+   side when the page flips to Sindhi or Urdu. */
+.timeline { position: relative; list-style: none; padding: 0; margin: 0; }
+.timeline::before {
+  content: "";
+  position: absolute;
+  inset-block: 12px 12px;
+  inset-inline-start: 7px;
+  width: 2px;
+  background-color: var(--line);
+}
+.timeline__item {
+  position: relative;
+  padding-inline-start: 42px;
+  padding-bottom: 38px;
+}
+.timeline__item:last-child { padding-bottom: 0; }
+.timeline__item::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 7px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--white);
+  border: 4px solid var(--accent);
+}
+.timeline__year {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1.25;
+  color: var(--accent);
+  margin-bottom: 9px;
+}
+.timeline__text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--text);
+}
+.timeline__ref {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 13px;
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  background-color: var(--bg-address);
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.timeline__ref i { color: var(--accent); font-size: 11px; flex-shrink: 0; }
+
+/* --- Document list (laws, notifications) ---------------------------------
+   No download control: the authority publishes these instruments by name and
+   reference only, so a button here would lead nowhere. */
+.doc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background-color: var(--white);
+  overflow: hidden;
+}
+.doc-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--line);
+  transition: background-color var(--transition);
+}
+.doc-list > li:last-child .doc-row { border-bottom: none; }
+.doc-row:hover { background-color: var(--bg-alt); }
+.doc-row__icon {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-address);
+  color: var(--accent);
+  font-size: 15px;
+}
+.doc-row__body { flex: 1 1 auto; min-width: 0; }
+.doc-row__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.55;
+  color: var(--ink);
+}
+.doc-row__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 16px;
+  margin: 8px 0 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+.doc-row__meta span { display: inline-flex; align-items: center; gap: 7px; }
+.doc-row__meta i { color: var(--accent); font-size: 11px; }
+.doc-row__year {
+  flex-shrink: 0;
+  align-self: center;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* --- Legislation table ----------------------------------------------------
+   Two dense columns of statute names: too wide for a phone, so it scrolls
+   inside its own frame rather than pushing the page sideways. */
+.table-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background-color: var(--white);
+}
+.law-table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+  margin: 0;
+}
+.law-table th,
+.law-table td {
+  padding: 16px 22px;
+  text-align: start;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+}
+.law-table thead th {
+  background-color: var(--green);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.law-table tbody tr:nth-child(even) { background-color: var(--bg-alt); }
+.law-table tbody tr:last-child td { border-bottom: none; }
+.law-table td { font-size: 14.5px; line-height: 1.75; color: var(--text); }
+.law-table ul { list-style: none; padding: 0; margin: 0; }
+.law-table li + li { margin-top: 8px; }
+.law-table .law-table__aside {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+/* --- Pillar grid (vision commitments, mission principles) ----------------- */
+.pillar {
+  height: 100%;
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: 26px 24px;
+  transition: border-color var(--transition), transform var(--transition);
+}
+.pillar:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+.pillar__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: var(--green);
+  color: var(--accent-bright);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.pillar__title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.pillar__text {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.8;
+  color: var(--text);
+}
+
+@media (max-width: 767.98px) {
+  .lede { font-size: 16px; }
+  .timeline__year { font-size: 19px; }
+  .callout { padding: 20px 22px; }
+}
+@media (max-width: 575.98px) {
+  .doc-row { flex-wrap: wrap; padding: 16px; gap: 12px; }
+  .doc-row__year { align-self: flex-start; }
+}
