@@ -1,6 +1,10 @@
 # Local render captures used while checking layout, not site content
 screenshots/
 
+# Original camera/WhatsApp media kept for reference; the site serves the
+# processed copies under images/
+source-media/
+
 # OS / editor noise
 Thumbs.db
 desktop.ini
