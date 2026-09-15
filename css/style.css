@@ -425,6 +425,31 @@ h1, h2, h3, h4, h5, h6 {
 }
 .topbar__item i { color: var(--accent); font-size: 13px; }
 
+/* Quick links ride at the far end of the utility bar, hairline-separated so
+   they read as one strip rather than five loose words. */
+.topbar__links {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.topbar__links li + li { position: relative; }
+.topbar__links li + li::before {
+  content: "";
+  position: absolute;
+  inset-block: 2px;
+  inset-inline-start: -9px;
+  width: 1px;
+  background-color: var(--line);
+}
+.topbar__links a {
+  color: var(--text);
+  transition: color var(--transition);
+}
+.topbar__links a:hover,
+.topbar__links a:focus-visible { color: var(--accent); }
+
 
 /* ==========================================================================
    04. MAIN HEADER
@@ -543,15 +568,20 @@ a.info-card__value:hover { color: var(--accent); }
 }
 
 /* Desktop menu */
+/* Seven top-level sections have to share the row with the language switch and
+   the complaint button, so the gap gives way before the labels do — they never
+   wrap, which would break the 64px bar into two ragged lines. */
 .mainnav__menu {
   display: flex;
   align-items: center;
-  gap: 28px;
+  flex-wrap: nowrap;
+  gap: clamp(12px, 1.5vw, 26px);
 }
 .mainnav__link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  white-space: nowrap;
   font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
@@ -559,6 +589,10 @@ a.info-card__value:hover { color: var(--accent); }
   color: var(--white);
   padding: 20px 0;
   transition: color var(--transition);
+}
+/* Below the xxl container the row is tight; buy width back from the type. */
+@media (max-width: 1399.98px) {
+  .mainnav__link { font-size: 13px; letter-spacing: 0.01em; }
 }
 .mainnav__link:hover,
 .mainnav__link:focus-visible,

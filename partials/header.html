@@ -1,0 +1,233 @@
+<!-- ============================================================
+     1) TOP UTILITY BAR
+     ============================================================ -->
+<div class="topbar d-none d-sm-block">
+  <div class="container">
+    <div class="topbar__inner">
+      <p class="topbar__item mb-0">
+        <i class="fa-solid fa-house" aria-hidden="true"></i>
+        <span data-sd="سنڌ ماسٽر پلان اٿارٽي جي سرڪاري پورٽل تي ڀليڪار" data-ur="سندھ ماسٹر پلان اتھارٹی کے سرکاری پورٹل میں خوش آمدید">Welcome to the Official Portal of Sindh Master Plan Authority</span>
+      </p>
+      <p class="topbar__item mb-0">
+        <i class="fa-regular fa-clock" aria-hidden="true"></i>
+        <span data-sd="صبح 9:00 کان شام 5:00 تائين" data-ur="صبح 9:00 سے شام 5:00 تک">9:00am - 5:00pm</span>
+      </p>
+
+      <!-- The five citizen-facing services. They sit here rather than in the
+           main nav so that nav carries only the authority's own sections. -->
+      <ul class="topbar__links list-unstyled mb-0 d-none d-xl-flex" aria-label="Quick links" data-sd-aria-label="تڪڙا لنڪ" data-ur-aria-label="فوری روابط">
+        <li><a href="#" data-sd="آن لائن شڪايت" data-ur="آن لائن شکایت">Online Complaint</a></li>
+        <li><a href="#" data-sd="لينڊ فائل جي صورتحال" data-ur="لینڈ فائل کی صورتحال">Land File Status</a></li>
+        <li><a href="#" data-sd="ڊائون لوڊ ۽ فارم" data-ur="ڈاؤن لوڈ اور فارم">Downloads &amp; Forms</a></li>
+        <li><a href="#" data-sd="ٽينڊر" data-ur="ٹینڈر">Tenders</a></li>
+        <li><a href="#" data-sd="روزگار" data-ur="روزگار">Careers</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     2) MAIN HEADER
+     ============================================================ -->
+<header class="site-header">
+  <div class="container">
+    <div class="site-header__inner">
+
+      <!-- Brand -->
+      <a class="brand" href="{{BASE}}index.html" aria-label="Sindh Master Plan Authority home" data-sd-aria-label="سنڌ ماسٽر پلان اٿارٽي جو مُک صفحو" data-ur-aria-label="سندھ ماسٹر پلان اتھارٹی کا مرکزی صفحہ">
+        <img class="brand__seal" src="{{BASE}}logo.webp" alt="Sindh Master Plan Authority official seal" width="1247" height="1427">
+        <span class="brand__text">
+          <span class="brand__name">SMPA</span>
+          <span class="brand__full" data-sd="سنڌ ماسٽر پلان اٿارٽي پورٽل" data-ur="سندھ ماسٹر پلان اتھارٹی پورٹل">Sindh Master Plan Authority Portal</span>
+        </span>
+      </a>
+
+      <!-- Contact + social -->
+      <div class="header-utils d-none d-sm-flex">
+
+        <div class="info-card info-card--address">
+          <span class="info-card__icon" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span>
+          <span class="info-card__body">
+            <span class="info-card__label" data-sd="پتو" data-ur="پتہ">Address</span>
+            <span class="info-card__value" data-sd="9هين ماڙ، سِوِڪ سينٽر، بلاڪ 14، گلشنِ اقبال، ڪراچي" data-ur="نویں منزل، سِوک سینٹر، بلاک 14، گلشنِ اقبال، کراچی">9th Floor, Civic Center, Block 14, Gulshan-e-Iqbal, Karachi</span>
+          </span>
+        </div>
+
+        <div class="info-card">
+          <span class="info-card__icon" aria-hidden="true"><i class="fa-solid fa-envelope"></i></span>
+          <span class="info-card__body">
+            <span class="info-card__label" data-sd="اسان کي اي ميل ڪريو" data-ur="ہمیں ای میل کریں">Send Us Mail</span>
+            <a class="info-card__value" href="mailto:contact@smpa.gos.pk">contact@smpa.gos.pk</a>
+          </span>
+        </div>
+
+        <span class="header-utils__divider" aria-hidden="true"></span>
+
+        <ul class="social-row list-unstyled mb-0">
+          <li><a class="social-dot social-dot--fb" href="#" aria-label="Facebook" data-sd-aria-label="فيس بڪ" data-ur-aria-label="فیس بک"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a></li>
+          <li><a class="social-dot social-dot--wa" href="#" aria-label="WhatsApp" data-sd-aria-label="واٽس ايپ" data-ur-aria-label="واٹس ایپ"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a></li>
+          <li><a class="social-dot social-dot--tw" href="#" aria-label="Twitter" data-sd-aria-label="ٽوئٽر" data-ur-aria-label="ٹوئٹر"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a></li>
+          <li><a class="social-dot social-dot--ig" href="#" aria-label="Instagram" data-sd-aria-label="انسٽاگرام" data-ur-aria-label="انسٹاگرام"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     3) PRIMARY NAVIGATION
+     ============================================================ -->
+<nav class="mainnav" aria-label="Primary" data-sd-aria-label="مکيه" data-ur-aria-label="مرکزی">
+  <div class="container">
+    <div class="mainnav__inner">
+
+      <!-- Desktop menu -->
+      <ul class="mainnav__menu list-unstyled mb-0 d-none d-xl-flex">
+        <li><a class="mainnav__link" href="{{BASE}}index.html" data-nav="home" data-sd="مُک صفحو" data-ur="مرکزی صفحہ">Home</a></li>
+
+        <li class="dropdown" data-nav-group="about">
+          <a class="mainnav__link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-sd="اسان بابت" data-ur="ہمارے بارے میں">About Us</a>
+          <ul class="dropdown-menu navdrop">
+            <li><a class="dropdown-item" href="{{BASE}}about.html" data-nav="about" data-sd="اسان بابت" data-ur="ہمارے بارے میں">About Us</a></li>
+            <li><a class="dropdown-item" href="{{BASE}}history.html" data-nav="history" data-sd="تاريخ" data-ur="تاریخ">History</a></li>
+            <li><a class="dropdown-item" href="{{BASE}}management-organogram.html" data-nav="management" data-sd="انتظاميه ۽ آرگنوگرام" data-ur="انتظامیہ اور آرگنوگرام">Management &amp; Organogram</a></li>
+            <li><a class="dropdown-item" href="{{BASE}}officers-directory.html" data-nav="officers" data-sd="آفيسرن جي ڊائريڪٽري" data-ur="افسران کی ڈائریکٹری">Officer&rsquo;s Directory</a></li>
+            <li><a class="dropdown-item" href="{{BASE}}offices.html" data-nav="offices" data-sd="آفيسون" data-ur="دفاتر">Offices</a></li>
+          </ul>
+        </li>
+
+        <li><a class="mainnav__link" href="{{BASE}}master-plans.html" data-nav="master-plans" data-sd="ماسٽر پلان" data-ur="ماسٹر پلان">Master Plans</a></li>
+        <li><a class="mainnav__link" href="{{BASE}}permits-procedures-fee.html" data-nav="permits" data-sd="اجازت ناما ۽ فيس" data-ur="اجازت نامے اور فیس">Permits &amp; Fee</a></li>
+
+        <li class="dropdown" data-nav-group="legal">
+          <a class="mainnav__link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-sd="قانون ۽ نوٽيفڪيشن" data-ur="قوانین اور نوٹیفکیشنز">Laws &amp; Notifications</a>
+          <ul class="dropdown-menu navdrop">
+            <li><a class="dropdown-item" href="{{BASE}}laws.html" data-nav="laws" data-sd="قانون" data-ur="قوانین">Laws</a></li>
+            <li><a class="dropdown-item" href="{{BASE}}reports.html" data-nav="reports" data-sd="رپورٽون" data-ur="رپورٹس">Reports</a></li>
+            <li><a class="dropdown-item" href="{{BASE}}notifications.html" data-nav="notifications" data-sd="نوٽيفڪيشن" data-ur="نوٹیفکیشنز">Notifications</a></li>
+          </ul>
+        </li>
+
+        <li><a class="mainnav__link" href="{{BASE}}projects-studies.html" data-nav="projects" data-sd="منصوبا ۽ مطالعا" data-ur="منصوبے اور مطالعے">Projects &amp; Studies</a></li>
+
+        <li class="dropdown" data-nav-group="news">
+          <a class="mainnav__link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-sd="خبرون" data-ur="خبریں">News</a>
+          <ul class="dropdown-menu navdrop">
+            <li><a class="dropdown-item" href="#" data-sd="تازيون خبرون" data-ur="تازہ خبریں">Latest News</a></li>
+            <li><a class="dropdown-item" href="#" data-sd="پريس رليز" data-ur="پریس ریلیز">Press Releases</a></li>
+          </ul>
+        </li>
+
+      </ul>
+
+      <!-- Mobile hamburger -->
+      <button class="nav-burger d-xl-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#navDrawer" aria-controls="navDrawer" aria-label="Open main menu" data-sd-aria-label="مکيه مينيو کوليو" data-ur-aria-label="مرکزی مینو کھولیں">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+
+      <!-- Right actions -->
+      <div class="mainnav__actions">
+        <div class="langswitch" role="group" aria-label="Site language" data-sd-aria-label="سائيٽ جي ٻولي" data-ur-aria-label="سائٹ کی زبان">
+          <button class="langswitch__btn is-on" type="button" data-lang="en" aria-label="English" data-sd-aria-label="انگريزي" data-ur-aria-label="انگریزی" aria-pressed="true">ENG</button>
+          <button class="langswitch__btn sindhi" type="button" data-lang="sd" aria-label="Sindhi" data-sd-aria-label="سنڌي" data-ur-aria-label="سندھی" aria-pressed="false" lang="sd" dir="rtl">سنڌي</button>
+          <button class="langswitch__btn urdu" type="button" data-lang="ur" aria-label="Urdu" data-sd-aria-label="اردو" data-ur-aria-label="اردو" aria-pressed="false" lang="ur" dir="rtl">اردو</button>
+        </div>
+        <a class="btn-pill btn-pill--bright nav-cta" href="#">
+          <span class="nav-cta__top" data-sd="آن لائن شڪايت" data-ur="آن لائن شکایت">Online Complain</span>
+          <span class="nav-cta__sub" data-sd="هتي ڪلڪ ڪريو" data-ur="یہاں کلک کریں">Click Here</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+<!-- Offcanvas mobile drawer -->
+<div class="offcanvas offcanvas-start navdrawer" tabindex="-1" id="navDrawer" aria-labelledby="navDrawerLabel">
+  <div class="offcanvas-header">
+    <h2 class="offcanvas-title h5 mb-0" id="navDrawerLabel" data-sd="مينيو" data-ur="مینو">Menu</h2>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close menu" data-sd-aria-label="مينيو بند ڪريو" data-ur-aria-label="مینو بند کریں"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="navdrawer__list list-unstyled mb-4">
+      <li><a class="navdrawer__link" href="{{BASE}}index.html" data-nav="home" data-sd="مُک صفحو" data-ur="مرکزی صفحہ">Home</a></li>
+
+      <li>
+        <a class="navdrawer__link collapsed" data-bs-toggle="collapse" href="#dAbout" role="button" aria-expanded="false" aria-controls="dAbout" data-sd="اسان بابت" data-ur="ہمارے بارے میں">About Us</a>
+        <ul class="collapse navdrawer__sub list-unstyled" id="dAbout">
+          <li><a href="{{BASE}}about.html" data-nav="about" data-sd="اسان بابت" data-ur="ہمارے بارے میں">About Us</a></li>
+          <li><a href="{{BASE}}history.html" data-nav="history" data-sd="تاريخ" data-ur="تاریخ">History</a></li>
+          <li><a href="{{BASE}}management-organogram.html" data-nav="management" data-sd="انتظاميه ۽ آرگنوگرام" data-ur="انتظامیہ اور آرگنوگرام">Management &amp; Organogram</a></li>
+          <li><a href="{{BASE}}officers-directory.html" data-nav="officers" data-sd="آفيسرن جي ڊائريڪٽري" data-ur="افسران کی ڈائریکٹری">Officer&rsquo;s Directory</a></li>
+          <li><a href="{{BASE}}offices.html" data-nav="offices" data-sd="آفيسون" data-ur="دفاتر">Offices</a></li>
+        </ul>
+      </li>
+
+      <li><a class="navdrawer__link" href="{{BASE}}master-plans.html" data-nav="master-plans" data-sd="ماسٽر پلان" data-ur="ماسٹر پلان">Master Plans</a></li>
+      <li><a class="navdrawer__link" href="{{BASE}}permits-procedures-fee.html" data-nav="permits" data-sd="اجازت ناما، طريقيڪار ۽ فيس" data-ur="اجازت نامے، طریقہ کار اور فیس">Permits, Procedures &amp; Fee</a></li>
+
+      <li>
+        <a class="navdrawer__link collapsed" data-bs-toggle="collapse" href="#dLegal" role="button" aria-expanded="false" aria-controls="dLegal" data-sd="قانون ۽ نوٽيفڪيشن" data-ur="قوانین اور نوٹیفکیشنز">Laws &amp; Notifications</a>
+        <ul class="collapse navdrawer__sub list-unstyled" id="dLegal">
+          <li><a href="{{BASE}}laws.html" data-nav="laws" data-sd="قانون" data-ur="قوانین">Laws</a></li>
+          <li><a href="{{BASE}}reports.html" data-nav="reports" data-sd="رپورٽون" data-ur="رپورٹس">Reports</a></li>
+          <li><a href="{{BASE}}notifications.html" data-nav="notifications" data-sd="نوٽيفڪيشن" data-ur="نوٹیفکیشنز">Notifications</a></li>
+        </ul>
+      </li>
+
+      <li><a class="navdrawer__link" href="{{BASE}}projects-studies.html" data-nav="projects" data-sd="منصوبا ۽ مطالعا" data-ur="منصوبے اور مطالعے">Projects &amp; Studies</a></li>
+
+      <li>
+        <a class="navdrawer__link collapsed" data-bs-toggle="collapse" href="#dQuick" role="button" aria-expanded="false" aria-controls="dQuick" data-sd="تڪڙا لنڪ" data-ur="فوری روابط">Quick Links</a>
+        <ul class="collapse navdrawer__sub list-unstyled" id="dQuick">
+          <li><a href="#" data-sd="آن لائن شڪايت" data-ur="آن لائن شکایت">Online Complaint</a></li>
+          <li><a href="#" data-sd="لينڊ فائل جي صورتحال" data-ur="لینڈ فائل کی صورتحال">Land File Status</a></li>
+          <li><a href="#" data-sd="ڊائون لوڊ ۽ فارم" data-ur="ڈاؤن لوڈ اور فارم">Downloads &amp; Forms</a></li>
+          <li><a href="#" data-sd="ٽينڊر" data-ur="ٹینڈر">Tenders</a></li>
+          <li><a href="#" data-sd="روزگار" data-ur="روزگار">Careers</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a class="navdrawer__link collapsed" data-bs-toggle="collapse" href="#dNews" role="button" aria-expanded="false" aria-controls="dNews" data-sd="خبرون" data-ur="خبریں">News</a>
+        <ul class="collapse navdrawer__sub list-unstyled" id="dNews">
+          <li><a href="#" data-sd="تازيون خبرون" data-ur="تازہ خبریں">Latest News</a></li>
+          <li><a href="#" data-sd="پريس رليز" data-ur="پریس ریلیز">Press Releases</a></li>
+        </ul>
+      </li>
+
+    </ul>
+
+    <a class="btn-pill btn-pill--primary w-100 text-center" href="#" data-sd="آن لائن شڪايت" data-ur="آن لائن شکایت">Online Complain</a>
+
+    <!-- The header's contact strip is hidden below sm, so phones get it here -->
+    <ul class="drawer-contact list-unstyled mb-0">
+      <li>
+        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+        <span data-sd="9هين ماڙ، سِوِڪ سينٽر، بلاڪ 14، گلشنِ اقبال، ڪراچي" data-ur="نویں منزل، سِوک سینٹر، بلاک 14، گلشنِ اقبال، کراچی">9th Floor, Civic Center, Block 14, Gulshan-e-Iqbal, Karachi</span>
+      </li>
+      <li>
+        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+        <a href="mailto:contact@smpa.gos.pk">contact@smpa.gos.pk</a>
+      </li>
+      <li>
+        <i class="fa-solid fa-phone" aria-hidden="true"></i>
+        <a href="tel:+922199231159">+92-21-99231159</a>
+      </li>
+      <li>
+        <i class="fa-regular fa-clock" aria-hidden="true"></i>
+        <span data-sd="صبح 9:00 کان شام 5:00 تائين" data-ur="صبح 9:00 سے شام 5:00 تک">9:00am - 5:00pm</span>
+      </li>
+      <li>
+        <ul class="social-row list-unstyled mb-0">
+          <li><a class="social-dot social-dot--fb" href="#" aria-label="Facebook" data-sd-aria-label="فيس بڪ" data-ur-aria-label="فیس بک"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a></li>
+          <li><a class="social-dot social-dot--wa" href="#" aria-label="WhatsApp" data-sd-aria-label="واٽس ايپ" data-ur-aria-label="واٹس ایپ"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a></li>
+          <li><a class="social-dot social-dot--tw" href="#" aria-label="Twitter" data-sd-aria-label="ٽوئٽر" data-ur-aria-label="ٹوئٹر"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a></li>
+          <li><a class="social-dot social-dot--ig" href="#" aria-label="Instagram" data-sd-aria-label="انسٽاگرام" data-ur-aria-label="انسٹاگرام"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
+        </ul>
+      </li>
+    </ul>
+
+  </div>
+</div>
