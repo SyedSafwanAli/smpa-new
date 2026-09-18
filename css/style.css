@@ -3107,8 +3107,13 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
 /* --- Legislation table ----------------------------------------------------
    Two dense columns of statute names: too wide for a phone, so it scrolls
    inside its own frame rather than pushing the page sideways. */
+/* Only the horizontal axis may scroll. Declaring overflow-x alone is not
+   enough: CSS promotes the other axis from visible to auto, and the collapsed
+   table borders round up to one pixel taller than the box — enough for a
+   vertical scrollbar to appear beside a table that fits perfectly. */
 .table-scroll {
   overflow-x: auto;
+  overflow-y: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius-card);
   background-color: var(--white);
