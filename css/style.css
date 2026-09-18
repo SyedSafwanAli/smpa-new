@@ -3960,7 +3960,11 @@ html[lang="ur"] .btn-doc { line-height: 2.2; }
    stays one button away for anyone who needs the signed document.
    ========================================================================== */
 
-.notice { max-width: 980px; margin: 0 auto; }
+/* The page exists for its two fee schedules, so it takes the container's
+   width and lets them breathe. Only the running prose keeps a reading
+   measure — everything else is tabular. */
+.notice { max-width: 1180px; margin: 0 auto; }
+.notice__preamble { max-width: 76ch; }
 
 /* --- Masthead, after the Gazette's own hierarchy ------------------------- */
 .notice__masthead {
