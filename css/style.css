@@ -3950,3 +3950,211 @@ html[lang="ur"] .btn-doc { line-height: 2.2; }
   .doc-table__act { width: auto; margin-top: 14px; }
   .doc-table .btn-doc { width: 100%; justify-content: center; }
 }
+
+
+/* ==========================================================================
+   25. RENDERED NOTICE (notices/)
+   --------------------------------------------------------------------------
+   A gazette notification set as a web page: its masthead, its reference
+   block, and the fee schedules as real tables rather than a scan. The PDF
+   stays one button away for anyone who needs the signed document.
+   ========================================================================== */
+
+.notice { max-width: 980px; margin: 0 auto; }
+
+/* --- Masthead, after the Gazette's own hierarchy ------------------------- */
+.notice__masthead {
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--green);
+  border-radius: var(--radius-card);
+  background-color: var(--white);
+  padding: 30px 32px 26px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.notice__gazette {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.notice__paper {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.6vw, 30px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.notice__authority {
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+}
+.notice__rule {
+  height: 1px;
+  background-color: var(--line);
+  margin: 0 0 18px;
+}
+.notice__issue {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+.notice__dept {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text);
+}
+.notice__dept b { display: block; color: var(--ink); }
+.notice__word {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 7px 26px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+
+/* --- Reference strip ------------------------------------------------------ */
+.notice__meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1px;
+  background-color: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+.notice__meta > div { background-color: var(--bg-alt); padding: 14px 18px; }
+.notice__meta dt {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 5px;
+}
+.notice__meta dd {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--ink);
+  word-break: break-word;
+}
+
+.notice__preamble {
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--ink);
+  margin-bottom: 34px;
+}
+
+.notice__schedule { margin-bottom: 38px; }
+.notice__schedule-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--ink);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--green);
+}
+
+/* --- Fee schedule table ---------------------------------------------------
+   Four columns: serial, item, the rate before and the rate now. The two rate
+   columns are what a reader compares, so they share a width and the new rate
+   is the one set in ink. */
+.fee-table { width: 100%; min-width: 720px; border-collapse: collapse; margin: 0; }
+.fee-table th,
+.fee-table td {
+  padding: 11px 14px;
+  text-align: start;
+  vertical-align: top;
+  border: 1px solid var(--line);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.fee-table thead th {
+  background-color: var(--green);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.fee-table__sr { width: 52px; text-align: center; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.fee-table__item { width: 26%; font-weight: 600; color: var(--ink); }
+.fee-table__old { color: var(--text-muted); }
+.fee-table__new { color: var(--ink); font-weight: 600; background-color: var(--bg-address); }
+.fee-table tbody tr:nth-child(even) .fee-table__old,
+.fee-table tbody tr:nth-child(even) .fee-table__item { background-color: var(--bg-alt); }
+/* A heading row inside the schedule (Petrol Pumps, C.N.G. …) */
+.fee-table__group td {
+  background-color: var(--bg-alt);
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: 0.02em;
+}
+.fee-table__sub {
+  display: block;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.fee-table__sub + .fee-table__sub { margin-top: 10px; }
+.fee-table small { display: block; color: var(--text-muted); font-size: 12.5px; }
+
+/* --- Download bar --------------------------------------------------------- */
+.notice__get {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 22px 26px;
+  border: 1px solid var(--line);
+  border-inline-start: 4px solid var(--accent);
+  border-radius: var(--radius-card);
+  background-color: var(--bg-alt);
+  margin-bottom: 34px;
+}
+.notice__get-text { font-size: 14.5px; line-height: 1.65; color: var(--text); margin: 0; }
+.notice__get-text b { display: block; color: var(--ink); font-size: 15.5px; margin-bottom: 3px; }
+
+.notice__sign {
+  margin-top: 30px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  text-align: end;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
+html[lang="ur"] .notice__preamble,
+html[lang="ur"] .notice__dept,
+html[lang="ur"] .notice__get-text,
+html[lang="ur"] .notice__meta dd { line-height: 2.5; }
+
+@media (max-width: 767.98px) {
+  .notice__masthead { padding: 24px 20px 20px; }
+  .notice__get { padding: 18px; }
+  .notice__get .btn-doc { width: 100%; justify-content: center; }
+}

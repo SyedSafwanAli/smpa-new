@@ -1,8 +1,19 @@
 # Notification PDFs
 
-The Download button on `notifications.html` links to this folder. A button
-starts working the moment a file with the matching name is placed here —
-no code change needed.
+Each notification is published twice: as a page under `notices/` that sets the
+text in HTML, and as the signed PDF here that the page links to. On
+`notifications.html` the action opens the page; the PDF is downloaded from
+there.
+
+Already published:
+
+| PDF | Page |
+|---|---|
+| `2026-08-13-revised-fee-structure-smpa.pdf` | `notices/revised-fee-structure-2026.html` |
+
+The instruments below are listed on `notifications.html` as "Document to
+follow". Each needs both a PDF here and a page under `notices/`; until then
+the row shows no button rather than a broken link.
 
 | Expected filename | Document |
 |---|---|
