@@ -3788,3 +3788,165 @@ html[lang="ur"] .brand__full { font-size: 26px; }
 .callout__text,
 .check-list li,
 .timeline__text { font-size: 16px; }
+
+
+/* ==========================================================================
+   24. DOCUMENT FILTER AND TABLE
+   --------------------------------------------------------------------------
+   Used by Notifications: a category filter over a dated table of documents,
+   each row offering the PDF.
+   ========================================================================== */
+
+.doc-filter {
+  background-color: var(--green);
+  border-radius: var(--radius-card);
+  padding: 20px 24px;
+  margin-bottom: 28px;
+}
+.doc-filter__legend {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-bright);
+  margin-bottom: 14px;
+}
+.doc-filter__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 12px 26px;
+}
+.doc-filter__opt {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.86);
+  cursor: pointer;
+  transition: color var(--transition);
+}
+.doc-filter__opt:hover { color: var(--white); }
+/* The control is a real radio, restyled — so arrow keys move through the set
+   and the browser keeps one of them chosen. */
+.doc-filter__opt input {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  transition: border-color var(--transition);
+}
+.doc-filter__opt input:checked { border-color: var(--accent-bright); }
+.doc-filter__opt input:checked::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background-color: var(--accent-bright);
+}
+.doc-filter__opt input:focus-visible {
+  outline: 2px solid var(--accent-bright);
+  outline-offset: 3px;
+}
+.doc-filter__opt:has(input:checked) { color: var(--white); }
+
+.doc-count {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.doc-table { width: 100%; border-collapse: collapse; margin: 0; }
+.doc-table thead th {
+  background-color: var(--bg-alt);
+  padding: 13px 18px;
+  text-align: start;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+.doc-table td {
+  padding: 16px 18px;
+  text-align: start;
+  vertical-align: top;
+  border-bottom: 1px solid var(--rule, var(--line));
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--text);
+}
+.doc-table tbody tr:last-child td { border-bottom: none; }
+.doc-table tbody tr:hover { background-color: var(--bg-alt); }
+.doc-table__date {
+  white-space: nowrap;
+  font-weight: 600;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.doc-table__title { color: var(--ink); font-weight: 500; }
+.doc-table__ref {
+  display: block;
+  margin-top: 5px;
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+}
+.doc-table__act { width: 1%; white-space: nowrap; }
+
+.btn-doc {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+  background-color: var(--accent);
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  transition: background-color var(--transition);
+}
+.btn-doc:hover,
+.btn-doc:focus-visible { background-color: var(--accent-hover); color: var(--white); }
+html[lang="ur"] .btn-doc { line-height: 2.2; }
+
+/* Nothing matched the chosen category. */
+.doc-table__none td {
+  padding: 34px 18px;
+  text-align: center;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* On a phone a three-column table is unreadable, so each row becomes a card
+   and the column headings are carried by the cells themselves. */
+@media (max-width: 767.98px) {
+  .doc-table thead { display: none; }
+  .doc-table,
+  .doc-table tbody,
+  .doc-table tr,
+  .doc-table td { display: block; }
+  .doc-table tr {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    padding: 16px;
+    margin-bottom: 14px;
+  }
+  .doc-table tbody tr:hover { background-color: transparent; }
+  .doc-table td { border-bottom: none; padding: 0; }
+  .doc-table__date { margin-bottom: 8px; font-size: 13px; color: var(--accent); }
+  .doc-table__act { width: auto; margin-top: 14px; }
+  .doc-table .btn-doc { width: 100%; justify-content: center; }
+}
