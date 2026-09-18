@@ -630,6 +630,27 @@ a.info-card__value:hover { color: var(--accent); }
   color: var(--accent);
   padding-left: 28px;
 }
+/* The page you are on. Bootstrap paints .active with its own blue, which has
+   nothing to do with this site — this is the marker in the authority's green:
+   a pale wash, the accent, and a rule down the leading edge. */
+.navdrop .dropdown-item.active,
+.navdrop .dropdown-item:active {
+  background-color: var(--bg-address);
+  color: var(--accent);
+  font-weight: 600;
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+[dir="rtl"] .navdrop .dropdown-item.active,
+[dir="rtl"] .navdrop .dropdown-item:active {
+  box-shadow: inset -3px 0 0 var(--accent);
+}
+
+/* The drawer carries the same marker, without the wash — its rows are already
+   separated by rules. */
+.navdrawer__sub a.active {
+  color: var(--accent);
+  font-weight: 700;
+}
 
 /* Right-hand actions */
 /* The menu gives way before the actions do: flex was shrinking the button
