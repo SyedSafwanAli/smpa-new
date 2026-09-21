@@ -803,13 +803,30 @@ a.info-card__value:hover { color: var(--accent); }
   from { opacity: 0; transform: translateY(26px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-.hero .carousel-item.active .hero__bg {
+/* Keyed off the incoming slide as well as .active. In fade mode Bootstrap
+   makes the next slide fully visible as .carousel-item-next.carousel-item-start
+   and only adds .active when the fade finishes — so an animation on .active
+   alone played after the copy was already on screen: the text appeared, blinked
+   out and rose a second time. Matching the incoming classes starts it with the
+   fade, and because the declaration is identical the animation carries on
+   uninterrupted when .active finally lands. */
+.hero .carousel-item.active .hero__bg,
+.hero .carousel-item-next.carousel-item-start .hero__bg,
+.hero .carousel-item-prev.carousel-item-end .hero__bg {
   animation: heroZoom 9s ease-out forwards;
 }
-.hero .carousel-item.active .hero__eyebrow { animation: heroRise 0.7s 0.10s both ease-out; }
-.hero .carousel-item.active .hero__title   { animation: heroRise 0.7s 0.22s both ease-out; }
-.hero .carousel-item.active .hero__text    { animation: heroRise 0.7s 0.34s both ease-out; }
-.hero .carousel-item.active .hero__cta     { animation: heroRise 0.7s 0.46s both ease-out; }
+.hero .carousel-item.active .hero__eyebrow,
+.hero .carousel-item-next.carousel-item-start .hero__eyebrow,
+.hero .carousel-item-prev.carousel-item-end .hero__eyebrow { animation: heroRise 0.7s 0.10s both ease-out; }
+.hero .carousel-item.active .hero__title,
+.hero .carousel-item-next.carousel-item-start .hero__title,
+.hero .carousel-item-prev.carousel-item-end .hero__title   { animation: heroRise 0.7s 0.22s both ease-out; }
+.hero .carousel-item.active .hero__text,
+.hero .carousel-item-next.carousel-item-start .hero__text,
+.hero .carousel-item-prev.carousel-item-end .hero__text    { animation: heroRise 0.7s 0.34s both ease-out; }
+.hero .carousel-item.active .hero__cta,
+.hero .carousel-item-next.carousel-item-start .hero__cta,
+.hero .carousel-item-prev.carousel-item-end .hero__cta     { animation: heroRise 0.7s 0.46s both ease-out; }
 
 .hero__eyebrow {
   display: flex;
