@@ -4305,3 +4305,17 @@ html[lang="ur"] .notice__meta dd { line-height: 2.5; }
         rgba(4, 26, 10, 0.45) 100%);
   }
 }
+
+/* The dateline a release opens with — "Karachi, September 9, 2026." — set
+   apart from the lead the way a wire story sets it. */
+.post__dateline {
+  margin-bottom: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+html[lang="sd"] .post__dateline,
+html[lang="ur"] .post__dateline { letter-spacing: normal; text-transform: none; font-size: 15px; }
+html[lang="ur"] .post__dateline { line-height: 2.4; }
