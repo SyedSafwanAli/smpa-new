@@ -4256,20 +4256,20 @@ html[lang="ur"] .notice__meta dd { line-height: 2.5; }
    lines and gives the paragraph a fuller measure; the scrim's dark zone
    widens with it so the copy keeps its ground. */
 @media (min-width: 992px) {
-  .hero__content { max-width: min(62%, 860px); }
-  .hero__text { max-width: 620px; }
+  .hero__content { max-width: min(80%, 1080px); }
+  .hero__text { max-width: 740px; }
   /* Nastaliq sets more characters in the same width, so its measure is
      narrower to land near the same line length. */
-  html[lang="ur"] .hero__text { max-width: 520px; }
-  html[lang="sd"] .hero__text { max-width: 560px; }
-  .hero__title { font-size: clamp(34px, 3vw, 50px); }
+  html[lang="ur"] .hero__text { max-width: 600px; }
+  html[lang="sd"] .hero__text { max-width: 660px; }
+  .hero__title { font-size: clamp(38px, 3.6vw, 58px); }
   .hero__overlay {
     background:
       linear-gradient(90deg,
         rgba(4, 26, 10, 0.95) 0%,
-        rgba(4, 26, 10, 0.88) 46%,
-        rgba(4, 26, 10, 0.58) 74%,
-        rgba(4, 26, 10, 0.22) 100%),
+        rgba(4, 26, 10, 0.90) 58%,
+        rgba(4, 26, 10, 0.66) 84%,
+        rgba(4, 26, 10, 0.30) 100%),
       linear-gradient(180deg,
         rgba(4, 26, 10, 0.35) 0%,
         rgba(4, 26, 10, 0) 30%,
@@ -4279,9 +4279,9 @@ html[lang="ur"] .notice__meta dd { line-height: 2.5; }
     background:
       linear-gradient(270deg,
         rgba(4, 26, 10, 0.95) 0%,
-        rgba(4, 26, 10, 0.88) 46%,
-        rgba(4, 26, 10, 0.58) 74%,
-        rgba(4, 26, 10, 0.22) 100%),
+        rgba(4, 26, 10, 0.90) 58%,
+        rgba(4, 26, 10, 0.66) 84%,
+        rgba(4, 26, 10, 0.30) 100%),
       linear-gradient(180deg,
         rgba(4, 26, 10, 0.35) 0%,
         rgba(4, 26, 10, 0) 30%,
