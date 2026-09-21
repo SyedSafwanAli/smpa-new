@@ -4188,3 +4188,63 @@ html[lang="ur"] .notice__meta dd { line-height: 2.5; }
   .notice__get { padding: 18px; }
   .notice__get .btn-doc { width: 100%; justify-content: center; }
 }
+
+
+/* ==========================================================================
+   26. HERO CONTROLS
+   --------------------------------------------------------------------------
+   The arrows were pinned to the viewport edge and vertically centred, which
+   put them across the first characters of the copy — 43px of overlap at
+   1200px, where the container is narrow but the arrows are not. They now sit
+   as a pair at the foot of the slide, opposite the indicators, aligned to the
+   same column as the copy.
+   ========================================================================== */
+.hero__nav {
+  position: absolute;
+  z-index: 3;
+  bottom: 44px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1320px;
+  padding: 0 15px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  pointer-events: none;   /* the strip is full width; only the buttons take clicks */
+}
+.hero__nav .hero__ctrl {
+  position: static;
+  pointer-events: auto;
+  width: 48px;
+  height: 48px;
+  top: auto;
+  bottom: auto;
+  left: auto;
+  right: auto;
+  transform: none;
+}
+.hero__nav .hero__ctrl:hover,
+.hero__nav .hero__ctrl:focus-visible { transform: scale(1.08); }
+
+/* Below lg the copy fills the slide and there is no room for a control row at
+   its foot — the arrows would sit on the last lines. Swipe and the indicators
+   carry it from there. */
+@media (max-width: 991.98px) {
+  .hero__nav { display: none; }
+}
+
+/* The longest slide now runs to six lines of copy. On a short screen the old
+   540px floor left the button sitting on the indicators, so from md up the
+   slide has a taller floor and the copy column reserves the control row's
+   height at its foot. Phone heights are set in section 17 and stay as they are. */
+@media (min-width: 768px) {
+  .hero .carousel-item { height: clamp(620px, 74vh, 780px); }
+  .hero__container { padding-bottom: 88px; }
+}
+
+/* On a phone the slide hugs its content, so the shorter slides brought the
+   button down to within a pixel of the indicators. */
+@media (max-width: 767.98px) {
+  .hero__container { padding-bottom: 104px; }
+}
