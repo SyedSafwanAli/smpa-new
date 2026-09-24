@@ -3818,7 +3818,7 @@ html[lang="ur"] .brand__full { font-size: 26px; }
    different right edges. The column itself is now the measure: centred, and
    every block inside it runs its full width so all edges line up. Body copy
    steps up to 16px so the longer line still reads comfortably. */
-.section .row.justify-content-center > .col-lg-10 { max-width: 700px; }
+.section .row.justify-content-center > .col-lg-10 { max-width: 1080px; }
 .section .row.justify-content-center > .col-lg-10 .lede,
 .section .row.justify-content-center > .col-lg-10 .prose-p,
 .section .row.justify-content-center > .col-lg-10 .callout,
@@ -3830,7 +3830,8 @@ html[lang="ur"] .brand__full { font-size: 26px; }
 .prose-p,
 .callout__text,
 .check-list li,
-.timeline__text { font-size: 16px; }
+.timeline__text { font-size: 18px; }
+.lede { font-size: 19px; }
 
 
 /* ==========================================================================
@@ -4319,3 +4320,12 @@ html[lang="ur"] .notice__meta dd { line-height: 2.5; }
 html[lang="sd"] .post__dateline,
 html[lang="ur"] .post__dateline { letter-spacing: normal; text-transform: none; font-size: 15px; }
 html[lang="ur"] .post__dateline { line-height: 2.4; }
+
+
+/* A wider reading column would stretch a short list of one-line items across
+   the page with a ragged right edge, so the check list runs in two columns
+   from lg up and the lines stay short. */
+@media (min-width: 992px) {
+  .check-list { columns: 2; column-gap: 46px; }
+  .check-list li { break-inside: avoid; }
+}
