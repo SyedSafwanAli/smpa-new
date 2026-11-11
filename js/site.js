@@ -8,7 +8,6 @@
      header     shrink + blur on scroll
      mega       desktop mega-menu (hover, click, keyboard)
      mnav       full-screen mobile menu
-     a11y       text size · high contrast · dark mode (persisted)
      cmdk       command-palette search (Ctrl/⌘+K, "/")
      reveal     fade-up on scroll, staggered
      timeline   horizontal master-plans timeline
@@ -182,58 +181,6 @@
     document.addEventListener('smpa:lang', label);
     label();
   });
-
-  /* ------------------------------------------------------------------ */
-  /* Accessibility: text size, contrast, theme — persisted, and applied  */
-  /* before paint by lang.js on the next page.                           */
-  /* ------------------------------------------------------------------ */
-  var A11Y_KEY = 'smpa-a11y';
-  var prefs = (function () { try { return JSON.parse(localStorage.getItem(A11Y_KEY) || '{}'); } catch (e) { return {}; } })();
-  function savePrefs() { try { localStorage.setItem(A11Y_KEY, JSON.stringify(prefs)); } catch (e) { /* blocked */ } }
-
-  function applyPrefs() {
-    var fs = prefs.fs || 0;
-    if (fs) { root.setAttribute('data-fs', String(fs)); } else { root.removeAttribute('data-fs'); }
-    if (prefs.contrast) { root.setAttribute('data-contrast', 'high'); } else { root.removeAttribute('data-contrast'); }
-    if (prefs.theme === 'dark') { root.setAttribute('data-theme', 'dark'); } else { root.removeAttribute('data-theme'); }
-    $all('[data-fs]').forEach(function (b) { if (b.tagName === 'BUTTON') { b.setAttribute('aria-pressed', 'false'); } });
-    var cur = document.querySelector('button[data-fs="' + (fs === 0 ? 0 : (fs < 0 ? -1 : 1)) + '"]');
-    if (cur) { cur.setAttribute('aria-pressed', 'true'); }
-    $all('[data-pref="contrast"]').forEach(function (b) { b.setAttribute('aria-checked', prefs.contrast ? 'true' : 'false'); });
-    $all('[data-pref="theme"]').forEach(function (b) { b.setAttribute('aria-checked', prefs.theme === 'dark' ? 'true' : 'false'); });
-    var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) { meta.setAttribute('content', prefs.theme === 'dark' ? '#0A1411' : '#0A3D2E'); }
-  }
-
-  var a11yToggle = document.querySelector('[data-a11y-toggle]');
-  var a11yPanel = document.getElementById('a11yPanel');
-  if (a11yToggle && a11yPanel) {
-    var setPanel = function (open) {
-      a11yPanel.hidden = !open;
-      a11yToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    };
-    a11yToggle.addEventListener('click', function () { setPanel(a11yPanel.hidden); });
-    document.addEventListener('click', function (e) {
-      if (!a11yPanel.hidden && !a11yPanel.parentNode.contains(e.target)) { setPanel(false); }
-    });
-    a11yPanel.parentNode.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && !a11yPanel.hidden) { setPanel(false); a11yToggle.focus(); }
-    });
-    a11yPanel.addEventListener('click', function (e) {
-      var b = e.target.closest('button');
-      if (!b) { return; }
-      if (b.hasAttribute('data-fs')) {
-        var step = parseInt(b.getAttribute('data-fs'), 10);
-        prefs.fs = step === 0 ? 0 : Math.max(-1, Math.min(2, (prefs.fs || 0) + step));
-      } else if (b.getAttribute('data-pref') === 'contrast') {
-        prefs.contrast = !prefs.contrast;
-      } else if (b.getAttribute('data-pref') === 'theme') {
-        prefs.theme = prefs.theme === 'dark' ? 'light' : 'dark';
-      }
-      savePrefs(); applyPrefs();
-    });
-  }
-  applyPrefs();
 
   /* ------------------------------------------------------------------ */
   /* Command palette                                                     */
@@ -491,7 +438,7 @@
   /* district map has finished drawing.                                  */
   /* ------------------------------------------------------------------ */
   if (root.classList.contains('is-loading')) {
-    var LOADER_MIN = 1900;   // ms from navigation start: the full draw
+    var LOADER_MIN = 3500;   // ms from navigation start: full draw, cities, name, a short hold
     var lift = function () {
       var wait = Math.max(0, LOADER_MIN - (window.performance ? performance.now() : LOADER_MIN));
       setTimeout(function () {
