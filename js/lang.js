@@ -72,7 +72,7 @@
       }
     });
 
-    nodes = document.querySelectorAll('.langswitch__btn');
+    nodes = document.querySelectorAll('.lang__btn');
     for (i = 0; i < nodes.length; i++) {
       var on = nodes[i].getAttribute('data-lang') === lang;
       nodes[i].classList.toggle('is-on', on);
@@ -85,17 +85,41 @@
     applyChrome(lang);
     applyText(lang);
     if (persist) { remember(lang); }
+    /* Lets js/site.js re-render the strings it builds itself (search
+       results). */
+    try { document.dispatchEvent(new CustomEvent('smpa:lang', { detail: lang })); } catch (e) { /* old browser */ }
   }
 
   var initial = valid(stored());
 
   applyChrome(initial);           /* before paint */
 
+  /* Also before paint: flag that scripts run (so reveal-on-scroll may hide
+     content until it animates in) and restore the visitor's accessibility
+     choices (text size, contrast, theme) set from the header panel by
+     js/site.js. Without JavaScript none of this applies and nothing hides. */
+  root.classList.add('js');
+
+  /* Page loader (the district map of Sindh drawing itself) on every page
+     load, except for visitors who prefer reduced motion. js/site.js lifts it
+     once the page has loaded. */
+  try {
+    if (!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+      root.classList.add('is-loading');
+    }
+  } catch (e) { /* no loader */ }
+  try {
+    var prefs = JSON.parse(window.localStorage.getItem('smpa-a11y') || '{}');
+    if (prefs.fs) { root.setAttribute('data-fs', String(prefs.fs)); }
+    if (prefs.contrast) { root.setAttribute('data-contrast', 'high'); }
+    if (prefs.theme === 'dark') { root.setAttribute('data-theme', 'dark'); }
+  } catch (e) { /* storage blocked: defaults */ }
+
   document.addEventListener('DOMContentLoaded', function () {
     applyText(initial);           /* once the DOM exists */
 
     document.addEventListener('click', function (e) {
-      var btn = e.target && e.target.closest ? e.target.closest('.langswitch__btn') : null;
+      var btn = e.target && e.target.closest ? e.target.closest('.lang__btn') : null;
       if (!btn) { return; }
       e.preventDefault();
       setLang(btn.getAttribute('data-lang'), true);

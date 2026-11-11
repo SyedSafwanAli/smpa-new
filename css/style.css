@@ -1,30 +1,25 @@
 /* ==========================================================================
    SMPA — Sindh Master Plan Authority
-   Custom stylesheet (Bootstrap 5 override layer)
+   LEGACY stylesheet (Bootstrap 5 override layer) for the inner pages' bodies.
+   The 2026 redesign lives in css/smpa.css; header, footer, hero, slider and
+   ticker rules were removed from here when the homepage moved over, and the
+   rest goes as each inner page is redesigned. Tokens are prefixed --lg-* so
+   they cannot collide with the design system's.
    --------------------------------------------------------------------------
    00. Design tokens
    01. Base & typography
    02. Reusable components (buttons, cards, headings, carousels)
-   03. Top utility bar
-   04. Main header
-   05. Primary navigation + offcanvas drawer
-   06. Hero slider
    06a. Vision and mission
    06b. Chain of command / officers / downloads
    07. Latest news feature
    08. News tabs + card carousel
    09. Master plans band
    10. Land use plan maps
-   11. Land file process infographic
-   12. Departments grid
-   13. Explore City grid
-   14. Footer
    15. Responsive refinements
    16. Multilingual — language switch, Sindhi/Urdu modes, RTL mirroring
    16b. Article / news detail page
    17. Mobile hardening
    ========================================================================== */
-
 
 /* ==========================================================================
    00. DESIGN TOKENS
@@ -40,23 +35,23 @@
      grounds. One green cannot do both: anything readable on white disappears
      on #004505, and anything that pops on #004505 is illegible on white.
      Hence a light-ground accent and a dark-ground accent.
-       --accent        white text on it .... 5.46:1  (AA)
-       --accent-bright on #004505 .......... 5.54:1  (AA)
+       --lg-accent        white text on it .... 5.46:1  (AA)
+       --lg-accent-bright on #004505 .......... 5.54:1  (AA)
                        ...but only 2.05:1 on white — never use it on light. */
-  --accent:              #0B7A33;
-  --accent-hover:        #096128;
-  --accent-bright:       #8CC63F;
-  --accent-bright-hover: #9BD44F;
+  --lg-accent:              #0B7A33;
+  --lg-accent-hover:        #096128;
+  --lg-accent-bright:       #8CC63F;
+  --lg-accent-bright-hover: #9BD44F;
 
   /* --- Surfaces ---------------------------------------------------------- */
   --bg-alt:     #F1F6F2;
   --bg-topbar:  #F1F4F1;
   --bg-address: #E8F3EA;
   --white:      #FFFFFF;
-  --line:       #DEE7E0;
+  --lg-line:       #DEE7E0;
 
   /* --- Text -------------------------------------------------------------- */
-  --ink:        #12301B;
+  --lg-ink:        #12301B;
   --text:       #5F6660;
   --text-muted: #667268;
 
@@ -91,7 +86,6 @@
   --section-y:   100px;
 }
 
-
 /* ==========================================================================
    01. BASE & TYPOGRAPHY
    ========================================================================== */
@@ -110,30 +104,28 @@ body {
 img { max-width: 100%; height: auto; }
 
 a {
-  color: var(--accent);
+  color: var(--lg-accent);
   text-decoration: none;
   transition: color var(--transition);
 }
-a:hover { color: var(--accent-hover); }
+a:hover { color: var(--lg-accent-hover); }
 
 p { color: var(--text-muted); }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  color: var(--ink);
+  color: var(--lg-ink);
   margin: 0;
 }
 /* Spans that are headings in everything but element name, plus the two pull
    quotes — a quotation is the other place the serif earns its keep. */
 .leader-card__name,
-.officer__name,
 .vm-quote__text,
 .post__quote p {
   font-family: var(--font-display);
 }
 /* The wordmark stays in the sans: set in caps beside the seal, the geometric
    letterforms hold the lockup together better than the serif does. */
-.brand__name { font-family: var(--font-latin); }
 
 /* Boxed container — 1320px with 15px gutters */
 .container {
@@ -154,10 +146,9 @@ h1, h2, h3, h4, h5, h6 {
 .band-dark { background-color: var(--green); }
 
 :focus-visible {
-  outline: 3px solid var(--accent);
+  outline: 3px solid var(--lg-accent);
   outline-offset: 3px;
 }
-
 
 /* ==========================================================================
    02. REUSABLE COMPONENTS
@@ -173,7 +164,7 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
   font-size: 26px;
-  color: var(--accent);
+  color: var(--lg-accent);
   margin-bottom: 14px;
 }
 .sec-head__title {
@@ -182,7 +173,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.28;
   letter-spacing: 0.005em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--lg-ink);
   position: relative;
   padding-bottom: 18px;
 }
@@ -195,12 +186,12 @@ h1, h2, h3, h4, h5, h6 {
   width: 64px;
   height: 3px;
   border-radius: var(--radius-pill);
-  background-color: var(--accent);
+  background-color: var(--lg-accent);
 }
 .sec-head--light .sec-head__title { color: var(--white); }
 /* On the dark green band the accent must switch to the bright green */
-.sec-head--light .sec-head__icon { color: var(--accent-bright); }
-.sec-head--light .sec-head__title::after { background-color: var(--accent-bright); }
+.sec-head--light .sec-head__icon { color: var(--lg-accent-bright); }
+.sec-head--light .sec-head__title::after { background-color: var(--lg-accent-bright); }
 
 /* --- Pill buttons ------------------------------------------------------- */
 .btn-pill {
@@ -222,57 +213,29 @@ h1, h2, h3, h4, h5, h6 {
 .btn-pill:focus-visible { transform: scale(1.03); }
 
 .btn-pill--primary {
-  background-color: var(--accent);
-  border-color: var(--accent);
+  background-color: var(--lg-accent);
+  border-color: var(--lg-accent);
   color: var(--white);
 }
 .btn-pill--primary:hover,
 .btn-pill--primary:focus-visible {
-  background-color: var(--accent-hover);
-  border-color: var(--accent-hover);
+  background-color: var(--lg-accent-hover);
+  border-color: var(--lg-accent-hover);
   color: var(--white);
 }
 
-.btn-pill--dark {
-  background-color: var(--green-btn);
-  border-color: var(--green-btn);
-  color: var(--white);
-}
-.btn-pill--dark:hover,
-.btn-pill--dark:focus-visible {
-  background-color: var(--green);
-  border-color: var(--green);
-  color: var(--white);
-}
-
-.btn-pill--outline {
-  background-color: transparent;
-  border-color: var(--accent);
-  color: var(--accent);
-}
-.btn-pill--outline:hover,
-.btn-pill--outline:focus-visible {
-  background-color: var(--accent);
-  color: var(--white);
-}
-
-/* For dark grounds (hero photo, nav bar, footer) where --accent would vanish.
-   Carries dark-green text, since white on --accent-bright is only 2.05:1. */
+/* For dark grounds (hero photo, nav bar, footer) where --lg-accent would vanish.
+   Carries dark-green text, since white on --lg-accent-bright is only 2.05:1. */
 .btn-pill--bright {
-  background-color: var(--accent-bright);
-  border-color: var(--accent-bright);
+  background-color: var(--lg-accent-bright);
+  border-color: var(--lg-accent-bright);
   color: var(--green);
 }
 .btn-pill--bright:hover,
 .btn-pill--bright:focus-visible {
-  background-color: var(--accent-bright-hover);
-  border-color: var(--accent-bright-hover);
+  background-color: var(--lg-accent-bright-hover);
+  border-color: var(--lg-accent-bright-hover);
   color: var(--green);
-}
-
-.btn-pill--sm {
-  padding: 12px 26px;
-  font-size: 14px;
 }
 
 /* --- "Read more »" text link -------------------------------------------- */
@@ -280,15 +243,15 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-block;
   font-size: 16px;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--lg-accent);
   text-transform: capitalize;
 }
-.link-more:hover { color: var(--accent-hover); }
+.link-more:hover { color: var(--lg-accent-hover); }
 
 /* --- Accent date badge --------------------------------------------------- */
 .date-pill {
   display: inline-block;
-  background-color: var(--accent);
+  background-color: var(--lg-accent);
   color: var(--white);
   font-size: 13px;
   font-weight: 700;
@@ -300,12 +263,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* --- Flat white card ----------------------------------------------------- */
-.card-flat {
-  background-color: var(--white);
-  border-radius: var(--radius-card);
-  box-shadow: none;
-  overflow: hidden;
-}
 
 /* --- Continuous card slider ----------------------------------------------
    One card moves per click and the track loops, so a set that does not
@@ -333,50 +290,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 55px;
 }
 
-.carousel-nav {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin: 45px 0 0;
-}
-.round-arrow {
-  width: 52px;
-  height: 52px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background-color: var(--white);
-  border: 2px solid var(--accent);
-  color: var(--accent);
-  font-size: 16px;
-  transition: background-color var(--transition), color var(--transition),
-              transform var(--transition);
-}
-.round-arrow:hover,
-.round-arrow:focus-visible {
-  background-color: var(--accent);
-  color: var(--white);
-  transform: scale(1.06);
-}
-.round-arrow--light {
-  background-color: transparent;
-  border-color: var(--white);
-  color: var(--white);
-}
-.round-arrow--light:hover,
-.round-arrow--light:focus-visible {
-  background-color: var(--white);
-  color: var(--green);
-}
-
 /* --- Social icon dots ---------------------------------------------------- */
-.social-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.social-row--center { justify-content: center; }
 
 .social-dot {
   width: 36px;
@@ -398,400 +312,10 @@ h1, h2, h3, h4, h5, h6 {
 .social-dot--fb { background-color: var(--fb); }
 .social-dot--wa { background-color: var(--wa); }
 .social-dot--tw { background-color: var(--tw); }
-.social-dot--ig {
-  background: linear-gradient(135deg, var(--green) 0%, var(--accent) 100%);
-}
-
-/* ==========================================================================
-   03. TOP UTILITY BAR
-   ========================================================================== */
-.topbar {
-  background-color: var(--bg-topbar);
-}
-.topbar__inner {
-  min-height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-}
-.topbar__item {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text);
-}
-.topbar__item i { color: var(--accent); font-size: 13px; }
-
-/* Quick links ride at the far end of the utility bar, hairline-separated so
-   they read as one strip rather than five loose words. */
-.topbar__links {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  font-size: 13px;
-  font-weight: 500;
-}
-.topbar__links li + li { position: relative; }
-.topbar__links li + li::before {
-  content: "";
-  position: absolute;
-  inset-block: 2px;
-  inset-inline-start: -9px;
-  width: 1px;
-  background-color: var(--line);
-}
-.topbar__links a {
-  color: var(--text);
-  transition: color var(--transition);
-}
-.topbar__links a:hover,
-.topbar__links a:focus-visible { color: var(--accent); }
-
-
-/* ==========================================================================
-   04. MAIN HEADER
-   ========================================================================== */
-.site-header {
-  background-color: var(--white);
-  padding: 15px 0;
-}
-.site-header__inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-
-/* Brand lockup */
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  color: inherit;
-}
-/* The seal is a portrait crest with a ribbon (1247x1427, transparent), not a
-   circular badge — so it is sized by height and left uncropped. A circular
-   mask with object-fit:cover would cut the ribbon off. */
-.brand__seal {
-  width: auto;
-  height: 64px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-.brand__text { display: flex; flex-direction: column; }
-.brand__name {
-  font-size: 30px;
-  font-weight: 700;
-  line-height: 1.1;
-  color: var(--ink);
-  letter-spacing: 0.02em;
-}
-.brand__full {
-  font-size: 12px;
-  font-weight: 400;
-  color: var(--text);
-  text-transform: capitalize;
-}
-
-/* Contact + social cluster */
-.header-utils {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-.info-card {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  padding: 10px 16px;
-  border-radius: 5px;
-}
-.info-card--address { background-color: var(--bg-address); }
-
-.info-card__icon {
-  color: var(--accent);
-  font-size: 20px;
-  line-height: 1;
-}
-.info-card__body { display: flex; flex-direction: column; }
-.info-card__label {
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--ink);
-  line-height: 1.4;
-}
-.info-card__value {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text);
-  line-height: 1.4;
-}
-a.info-card__value:hover { color: var(--accent); }
-
-.header-utils__divider {
-  width: 1px;
-  height: 42px;
-  background-color: var(--line);
-}
-
-
-/* ==========================================================================
-   05. PRIMARY NAVIGATION
-   ========================================================================== */
-.mainnav {
-  position: relative;
-  z-index: 20;
-}
-/* Full-bleed dark green band behind the boxed nav row */
-.mainnav::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
-  height: 100%;
-  background-color: var(--green);
-  z-index: -1;
-}
-.mainnav__inner {
-  min-height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-/* Desktop menu */
-/* Seven top-level sections have to share the row with the language switch and
-   the complaint button, so the gap gives way before the labels do — they never
-   wrap, which would break the 64px bar into two ragged lines. */
-.mainnav__menu {
-  display: flex;
-  align-items: center;
-  flex-wrap: nowrap;
-  gap: clamp(12px, 1.5vw, 26px);
-}
-.mainnav__link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  white-space: nowrap;
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  color: var(--white);
-  padding: 20px 0;
-  transition: color var(--transition);
-}
-/* The narrower breakpoints are handled in section 20, at the end of the sheet,
-   where they can outrank .nav-cta and .langswitch. */
-.mainnav__link:hover,
-.mainnav__link:focus-visible,
-.mainnav__link.active,
-.mainnav__link.show { color: var(--accent-bright); }
-
-.mainnav__link.dropdown-toggle::after {
-  margin-left: 2px;
-  border-top-width: 5px;
-  border-right-width: 4px;
-  border-left-width: 4px;
-  vertical-align: 1px;
-}
-
-/* Dropdown panel */
-.navdrop {
-  border: none;
-  border-radius: 6px;
-  padding: 10px 0;
-  margin-top: 0;
-  min-width: 250px;
-  background-color: var(--white);
-  box-shadow: 0 12px 30px rgba(18, 48, 27, 0.16);
-}
-.navdrop .dropdown-item {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--ink);
-  padding: 9px 22px;
-  white-space: normal;
-  transition: background-color var(--transition), color var(--transition),
-              padding-left var(--transition);
-}
-.navdrop .dropdown-item:hover,
-.navdrop .dropdown-item:focus {
-  background-color: var(--bg-alt);
-  color: var(--accent);
-  padding-left: 28px;
-}
-/* The page you are on. Bootstrap paints .active with its own blue, which has
-   nothing to do with this site — this is the marker in the authority's green:
-   a pale wash, the accent, and a rule down the leading edge. */
-.navdrop .dropdown-item.active,
-.navdrop .dropdown-item:active {
-  background-color: var(--bg-address);
-  color: var(--accent);
-  font-weight: 600;
-  box-shadow: inset 3px 0 0 var(--accent);
-}
-[dir="rtl"] .navdrop .dropdown-item.active,
-[dir="rtl"] .navdrop .dropdown-item:active {
-  box-shadow: inset -3px 0 0 var(--accent);
-}
-
-/* The drawer carries the same marker, without the wash — its rows are already
-   separated by rules. */
-.navdrawer__sub a.active {
-  color: var(--accent);
-  font-weight: 700;
-}
-
-/* Right-hand actions */
-/* The menu gives way before the actions do: flex was shrinking the button
-   until its label wrapped, so the bar stood 69px tall at some widths and 53px
-   at others. */
-.mainnav__actions {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex-shrink: 0;
-}
-.nav-cta {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  padding: 9px 30px;
-  line-height: 1.15;
-}
-.nav-cta__top {
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-.nav-cta__sub { white-space: nowrap; }
-.nav-cta__sub {
-  font-size: 11px;
-  font-weight: 500;
-  text-transform: capitalize;
-  opacity: 0.92;
-}
-
-/* Hamburger toggle */
-.nav-burger {
-  width: 44px;
-  height: 44px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  border-radius: 50%;
-  background-color: var(--accent-bright);
-  color: var(--green);
-  font-size: 17px;
-  transition: background-color var(--transition), transform var(--transition);
-}
-.nav-burger:hover { background-color: var(--accent-bright-hover); transform: scale(1.05); }
-
-/* Offcanvas drawer */
-.navdrawer {
-  width: 320px;
-  max-width: 85vw;
-  background-color: var(--white);
-}
-.navdrawer .offcanvas-header {
-  border-bottom: 1px solid var(--line);
-  padding: 20px 24px;
-}
-.navdrawer .offcanvas-title { color: var(--ink); font-weight: 700; }
-.navdrawer .offcanvas-body { padding: 20px 24px 32px; }
-
-.navdrawer__list > li { border-bottom: 1px solid var(--line); }
-.navdrawer__link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 0;
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--ink);
-}
-.navdrawer__link:hover { color: var(--accent); }
-.navdrawer__link[data-bs-toggle]::after {
-  content: "\f078";
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
-  font-size: 11px;
-  color: var(--accent);
-  transition: transform var(--transition);
-}
-.navdrawer__link[aria-expanded="true"]::after { transform: rotate(180deg); }
-
-.navdrawer__sub { padding: 0 0 12px 14px; }
-.navdrawer__sub a {
-  display: block;
-  padding: 7px 0;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text);
-}
-.navdrawer__sub a:hover { color: var(--accent); }
-
-.offcanvas-backdrop.show { background-color: rgba(0, 0, 0, 0.6); opacity: 1; }
-
 
 /* ==========================================================================
    06. HERO SLIDER
    ========================================================================== */
-.hero { position: relative; }
-
-.hero .carousel-item { height: clamp(540px, 74vh, 760px); }
-
-.hero__bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.hero__overlay {
-  position: absolute;
-  inset: 0;
-  /* Directional scrim rather than a flat 50% black: heavy behind the left-hand
-     copy, clearing toward the right so the photograph is actually visible.
-     Tinted with the theme's near-black green instead of neutral black. */
-  background:
-    linear-gradient(90deg,
-      rgba(4, 26, 10, 0.95) 0%,
-      rgba(4, 26, 10, 0.82) 38%,
-      rgba(4, 26, 10, 0.42) 68%,
-      rgba(4, 26, 10, 0.18) 100%),
-    linear-gradient(180deg,
-      rgba(4, 26, 10, 0.35) 0%,
-      rgba(4, 26, 10, 0) 30%,
-      rgba(4, 26, 10, 0.45) 100%);
-}
-.hero__container {
-  position: relative;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  z-index: 2;
-  /* The copy column spans the full slide height, so at ~1320px viewports it
-     would sit over the arrows and swallow their clicks. Let events through
-     everywhere except the copy itself. */
-  pointer-events: none;
-}
-.hero__content > * { pointer-events: auto; }
-.hero__content { max-width: 700px; }
 
 /* --- Motion: slow push-in on the active photo, staggered rise on the copy.
    Both are keyed off .active so they replay on every slide change. --------- */
@@ -810,138 +334,16 @@ a.info-card__value:hover { color: var(--accent); }
    out and rose a second time. Matching the incoming classes starts it with the
    fade, and because the declaration is identical the animation carries on
    uninterrupted when .active finally lands. */
-.hero .carousel-item.active .hero__bg,
-.hero .carousel-item-next.carousel-item-start .hero__bg,
-.hero .carousel-item-prev.carousel-item-end .hero__bg {
-  animation: heroZoom 9s ease-out forwards;
-}
-.hero .carousel-item.active .hero__eyebrow,
-.hero .carousel-item-next.carousel-item-start .hero__eyebrow,
-.hero .carousel-item-prev.carousel-item-end .hero__eyebrow { animation: heroRise 0.7s 0.10s both ease-out; }
-.hero .carousel-item.active .hero__title,
-.hero .carousel-item-next.carousel-item-start .hero__title,
-.hero .carousel-item-prev.carousel-item-end .hero__title   { animation: heroRise 0.7s 0.22s both ease-out; }
-.hero .carousel-item.active .hero__text,
-.hero .carousel-item-next.carousel-item-start .hero__text,
-.hero .carousel-item-prev.carousel-item-end .hero__text    { animation: heroRise 0.7s 0.34s both ease-out; }
-.hero .carousel-item.active .hero__cta,
-.hero .carousel-item-next.carousel-item-start .hero__cta,
-.hero .carousel-item-prev.carousel-item-end .hero__cta     { animation: heroRise 0.7s 0.46s both ease-out; }
-
-.hero__eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
-  font-size: 15px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--accent-bright);
-}
-.hero__rule {
-  display: inline-block;
-  width: 46px;
-  height: 3px;
-  border-radius: var(--radius-pill);
-  background-color: var(--accent-bright);
-}
 /* Fluid from the 42px baseline so it gains presence on wide screens and
    degrades on small ones without a stack of breakpoint overrides. */
-.hero__title {
-  font-size: clamp(28px, 3.2vw, 54px);
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.005em;
-  color: var(--white);
-  margin-bottom: 22px;
-  text-wrap: balance;
-}
-.hero__text {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.75;
-  color: rgba(255, 255, 255, 0.86);
-  margin-bottom: 38px;
-  max-width: 540px;
-}
 
 /* Decorative dot grid on the right */
-.hero__dots {
-  position: absolute;
-  right: 8%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 210px;
-  height: 210px;
-  z-index: 2;
-  opacity: 0.4;
-  pointer-events: none;
-  background-image: radial-gradient(var(--accent-bright) 2px, transparent 2px);
-  background-size: 22px 22px;
-}
 
 /* --- Controls ------------------------------------------------------------
    Bootstrap ships these as 15%-wide invisible hit strips; reset to circles
    inset from the edges so they read as buttons over the photograph. */
-.hero__ctrl {
-  z-index: 3;
-  top: 50%;
-  bottom: auto;
-  transform: translateY(-50%);
-  width: 54px;
-  height: 54px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  opacity: 1;
-  color: var(--white);
-  font-size: 17px;
-  background-color: rgba(255, 255, 255, 0.13);
-  border: 1px solid rgba(255, 255, 255, 0.38);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  transition: background-color var(--transition), color var(--transition),
-              border-color var(--transition), transform var(--transition);
-}
-.carousel-control-prev.hero__ctrl { left: 34px; }
-.carousel-control-next.hero__ctrl { right: 34px; }
-.hero__ctrl:hover,
-.hero__ctrl:focus-visible {
-  background-color: var(--accent-bright);
-  border-color: var(--accent-bright);
-  color: var(--green);
-  transform: translateY(-50%) scale(1.08);
-}
 
 /* Indicators, left-aligned to the same 1320px column as the copy */
-.hero__indicators {
-  z-index: 3;
-  left: 50%;
-  right: auto;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 1320px;
-  justify-content: flex-start;
-  margin: 0 0 52px;
-  padding: 0 15px;
-}
-.hero__indicators [data-bs-target] {
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  border: none;
-  background-color: rgba(255, 255, 255, 0.45);
-  opacity: 1;
-  transition: background-color var(--transition), width var(--transition);
-}
-.hero__indicators .active {
-  background-color: var(--accent-bright);
-  width: 34px;
-  border-radius: var(--radius-pill);
-}
-
 
 /* ==========================================================================
    06a. VISION AND MISSION
@@ -959,7 +361,7 @@ a.info-card__value:hover { color: var(--accent); }
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
   font-size: 26px;
-  color: var(--accent);
+  color: var(--lg-accent);
   opacity: 0.4;
   position: absolute;
   inset-inline-start: 0;
@@ -969,7 +371,7 @@ a.info-card__value:hover { color: var(--accent); }
   font-size: clamp(19px, 1.5vw, 24px);
   font-weight: 600;
   line-height: 1.6;
-  color: var(--ink);
+  color: var(--lg-ink);
   margin: 0;
 }
 
@@ -986,13 +388,13 @@ a.info-card__value:hover { color: var(--accent); }
 .vm-card {
   height: 100%;
   background-color: var(--white);
-  border: 1px solid var(--line);
+  border: 1px solid var(--lg-line);
   border-radius: var(--radius-card);
   padding: 40px 36px;
   transition: border-color var(--transition), box-shadow var(--transition);
 }
 .vm-card:hover {
-  border-color: var(--accent);
+  border-color: var(--lg-accent);
   box-shadow: 0 14px 30px rgba(18, 48, 27, 0.08);
 }
 .vm-card__icon {
@@ -1003,7 +405,7 @@ a.info-card__value:hover { color: var(--accent); }
   justify-content: center;
   border-radius: 50%;
   background-color: var(--bg-address);
-  color: var(--accent);
+  color: var(--lg-accent);
   font-size: 21px;
   margin-bottom: 20px;
 }
@@ -1011,7 +413,7 @@ a.info-card__value:hover { color: var(--accent); }
   font-size: 24px;
   font-weight: 600;
   line-height: 1.4;
-  color: var(--ink);
+  color: var(--lg-ink);
   margin-bottom: 14px;
 }
 .vm-card__text {
@@ -1022,14 +424,13 @@ a.info-card__value:hover { color: var(--accent); }
   margin: 0;
 }
 
-
 /* ==========================================================================
    06b. CHAIN OF COMMAND / OFFICERS / DOWNLOADS
    ========================================================================== */
 .leader-card {
   height: 100%;
   background-color: var(--white);
-  border: 1px solid var(--line);
+  border: 1px solid var(--lg-line);
   border-radius: var(--radius-card);
   padding: 34px 22px 28px;
   text-align: center;
@@ -1038,7 +439,7 @@ a.info-card__value:hover { color: var(--accent); }
 }
 .leader-card:hover {
   transform: translateY(-6px);
-  border-color: var(--accent);
+  border-color: var(--lg-accent);
   box-shadow: 0 14px 30px rgba(18, 48, 27, 0.10);
 }
 /* Ring sits outside the portrait so it never crops the face */
@@ -1049,10 +450,10 @@ a.info-card__value:hover { color: var(--accent); }
   margin: 0 auto 22px;
   border-radius: 50%;
   padding: 4px;
-  border: 2px solid var(--line);
+  border: 2px solid var(--lg-line);
   transition: border-color var(--transition);
 }
-.leader-card:hover .leader-card__photo { border-color: var(--accent); }
+.leader-card:hover .leader-card__photo { border-color: var(--lg-accent); }
 .leader-card__photo img {
   width: 100%;
   height: 100%;
@@ -1066,7 +467,7 @@ a.info-card__value:hover { color: var(--accent); }
   line-height: 1.45;
   text-transform: uppercase;
   letter-spacing: 0.02em;
-  color: var(--ink);
+  color: var(--lg-ink);
   margin-bottom: 8px;
 }
 .leader-card__role {
@@ -1079,239 +480,10 @@ a.info-card__value:hover { color: var(--accent); }
 
 /* --- Officers + Downloads: one card, two halves ------------------------- */
 /* --- Officers + Downloads: one card, two halves ------------------------- */
-.split-card {
-  background-color: var(--white);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-card);
-  overflow: hidden;
-  box-shadow: 0 18px 40px rgba(18, 48, 27, 0.07);
-}
-
-.officer-list { padding: 26px 24px; }
-.officer {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 16px 18px;
-  border-radius: 12px;
-  transition: background-color var(--transition);
-}
 /* separator inset from the row padding, so it reads as a list rather than a
    stack of boxed rows — and it clears the way for the hover tint */
-.officer::after {
-  content: "";
-  position: absolute;
-  inset-inline: 18px;
-  bottom: 0;
-  border-bottom: 1px solid var(--line);
-  transition: opacity var(--transition);
-}
-.officer:last-child::after { display: none; }
-.officer::before {
-  content: "";
-  position: absolute;
-  inset-inline-start: 0;
-  top: 50%;
-  width: 3px;
-  height: 0;
-  border-radius: var(--radius-pill);
-  background-color: var(--accent);
-  transform: translateY(-50%);
-  transition: height var(--transition);
-}
-.officer:hover { background-color: var(--bg-alt); }
-.officer:hover::after { opacity: 0; }
-.officer:hover::before { height: 48px; }
-
-.officer__photo {
-  flex-shrink: 0;
-  width: 74px;
-  height: 74px;
-  border-radius: 50%;
-  padding: 3px;
-  border: 2px solid var(--line);
-  transition: border-color var(--transition);
-}
-.officer:hover .officer__photo { border-color: var(--accent); }
-.officer__photo img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: top center;
-}
-.officer__body { display: flex; flex-direction: column; }
-.officer__name {
-  font-size: 17px;
-  font-weight: 600;
-  line-height: 1.4;
-  color: var(--ink);
-}
-.officer__role {
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1.5;
-  color: var(--text-muted);
-}
-
-.downloads {
-  position: relative;
-  height: 100%;
-  padding: 40px 34px;
-  overflow: hidden;
-  background-image: linear-gradient(160deg, #005207 0%, var(--green) 55%, var(--green-copyright) 100%);
-}
 /* Six links are shorter than five officers, which left the panel bottom
    empty. The seal fills it as a watermark instead of dead space. */
-.downloads::after {
-  content: "";
-  position: absolute;
-  inset-inline-end: -46px;
-  bottom: -46px;
-  width: 240px;
-  height: 240px;
-  background: url("../logo.webp") center / contain no-repeat;
-  opacity: 0.07;
-  pointer-events: none;
-}
-.downloads > * { position: relative; z-index: 1; }
-
-.downloads__title {
-  position: relative;
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--white);
-  padding-bottom: 14px;
-  margin-bottom: 20px;
-}
-.downloads__title::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  inset-inline-start: 0;
-  width: 58px;
-  height: 3px;
-  border-radius: var(--radius-pill);
-  background-color: var(--accent-bright);
-}
-
-.downloads__list li + li { border-top: 1px solid rgba(255, 255, 255, 0.13); }
-.downloads__link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 17px 0;
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.92);
-  transition: color var(--transition), padding-inline-start var(--transition);
-}
-.downloads__link i {
-  flex-shrink: 0;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  border: 1.5px solid rgba(255, 255, 255, 0.32);
-  color: var(--accent-bright);
-  font-size: 13px;
-  transition: background-color var(--transition), border-color var(--transition),
-              color var(--transition), transform var(--transition);
-}
-.downloads__link:hover,
-.downloads__link:focus-visible {
-  color: var(--accent-bright);
-  padding-inline-start: 8px;
-}
-.downloads__link:hover i,
-.downloads__link:focus-visible i {
-  background-color: var(--accent-bright);
-  border-color: var(--accent-bright);
-  color: var(--green);
-  transform: translateY(3px);
-}
-
-
-/* ==========================================================================
-   07. LATEST NEWS FEATURE (Urdu)
-   ========================================================================== */
-.feature {
-  background-color: #FAFCFA;
-  background-image: radial-gradient(rgba(18, 48, 27, 0.10) 1.5px, transparent 1.5px);
-  background-size: 26px 26px;
-}
-
-/* Photo with offset accent bars */
-.framed-photo {
-  position: relative;
-  display: inline-block;
-  padding: 0;
-}
-.framed-photo img {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  border-radius: 6px;
-  object-fit: cover;
-}
-.framed-photo::before,
-.framed-photo::after {
-  content: "";
-  position: absolute;
-  background-color: var(--accent);
-  z-index: 1;
-  border-radius: 3px;
-}
-.framed-photo::before {
-  top: -18px;
-  left: -18px;
-  width: 150px;
-  height: 78px;
-}
-.framed-photo::after {
-  bottom: -18px;
-  right: -18px;
-  width: 150px;
-  height: 78px;
-}
-
-.feature__body {
-  display: flex;
-  flex-direction: column;
-  /* content column sits beside the photo — pad on the side facing it */
-  padding-inline-end: 10px;
-}
-.feature__body .date-pill {
-  align-self: flex-start;
-  margin-bottom: 24px;
-}
-/* Flex column defaults to align-items:stretch — without this the pill spans
-   the whole column instead of hugging its label. flex-start follows the
-   writing direction, so it sits left in English and right in Sindhi. */
-.feature__body .btn-pill { align-self: flex-start; }
-
-.feature__title {
-  font-size: clamp(26px, 2.2vw, 38px);
-  font-weight: 700;
-  line-height: 1.35;
-  color: var(--ink);
-  margin-bottom: 20px;
-}
-.feature__text {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.8;
-  color: var(--text-muted);
-  margin-bottom: 30px;
-}
-/* Sindhi sets looser and reads larger at the same nominal size */
-html[lang="sd"] .feature__title { line-height: 1.75; }
-html[lang="sd"] .feature__text  { font-size: 17px; line-height: 2.05; }
 
 /* ==========================================================================
    08. NEWS TABS + CARD CAROUSEL
@@ -1343,12 +515,11 @@ html[lang="sd"] .feature__text  { font-size: 17px; line-height: 2.05; }
   font-size: 24px;
   font-weight: 600;
   line-height: 1.4;
-  color: var(--ink);
+  color: var(--lg-ink);
   margin-bottom: 14px;
 }
-.news-card:hover .news-card__title { color: var(--accent); }
+.news-card:hover .news-card__title { color: var(--lg-accent); }
 .news-card__title { transition: color var(--transition); }
-
 
 /* ==========================================================================
    09. MASTER PLANS BAND
@@ -1385,20 +556,6 @@ html[lang="sd"] .feature__text  { font-size: 17px; line-height: 2.05; }
 }
 
 /* Scalloped divider into the following white section */
-.wave-divider {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  line-height: 0;
-  pointer-events: none;
-}
-.wave-divider svg {
-  display: block;
-  width: 100%;
-  height: 90px;
-}
-
 
 /* ==========================================================================
    10. LAND USE PLAN MAPS
@@ -1411,7 +568,7 @@ html[lang="sd"] .feature__text  { font-size: 17px; line-height: 2.05; }
   position: relative;
   display: block;
   padding: 10px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--lg-line);
   border-radius: var(--radius-card);
   background-color: var(--white);
   transition: transform var(--transition), border-color var(--transition),
@@ -1435,7 +592,7 @@ html[lang="sd"] .feature__text  { font-size: 17px; line-height: 2.05; }
 }
 .map-card:hover .map-card__media {
   transform: translateY(-6px);
-  border-color: var(--accent);
+  border-color: var(--lg-accent);
   box-shadow: 0 16px 34px rgba(18, 48, 27, 0.13);
 }
 .map-card:hover .map-card__frame img { transform: scale(1.06); }
@@ -1447,7 +604,7 @@ html[lang="sd"] .feature__text  { font-size: 17px; line-height: 2.05; }
   top: 20px;
   inset-inline-start: 20px;
   z-index: 3;
-  background-color: var(--accent);
+  background-color: var(--lg-accent);
   color: var(--white);
   font-family: var(--font-latin);
   font-size: 12px;
@@ -1479,7 +636,7 @@ html[lang="sd"] .feature__text  { font-size: 17px; line-height: 2.05; }
   justify-content: center;
   border-radius: 50%;
   background-color: var(--white);
-  color: var(--accent);
+  color: var(--lg-accent);
   font-size: 17px;
   transform: scale(0.85);
   transition: transform var(--transition);
@@ -1493,7 +650,7 @@ html[lang="sd"] .feature__text  { font-size: 17px; line-height: 2.05; }
   font-size: 15px;
   font-weight: 600;
   line-height: 1.55;
-  color: var(--ink);
+  color: var(--lg-ink);
 }
 
 /* The department's usage restriction, reproduced from the live site. Set as a
@@ -1507,14 +664,14 @@ html[lang="sd"] .feature__text  { font-size: 17px; line-height: 2.05; }
   margin: 55px auto 0;
   padding: 24px 28px;
   background-color: var(--bg-address);
-  border-inline-start: 4px solid var(--accent);
+  border-inline-start: 4px solid var(--lg-accent);
   border-radius: 10px;
   text-align: start;
 }
 .plans-note__icon {
   flex-shrink: 0;
   margin-top: 3px;
-  color: var(--accent);
+  color: var(--lg-accent);
   font-size: 18px;
 }
 .plans-note__text {
@@ -1523,350 +680,7 @@ html[lang="sd"] .feature__text  { font-size: 17px; line-height: 2.05; }
   line-height: 1.95;
   color: var(--text-muted);
 }
-.plans-note__text strong { color: var(--ink); }
-
-/* ==========================================================================
-   11. LAND FILE PROCESS INFOGRAPHIC
-   ========================================================================== */
-.process { background-color: var(--bg-alt); }
-
-.process__track {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 38px 10px;
-}
-/* dashed rail, pinned to the vertical centre of the discs */
-.process__track::before {
-  content: "";
-  position: absolute;
-  top: 59px;          /* = disc radius */
-  left: 8%;
-  right: 8%;
-  border-top: 2px dashed #BCCCC1;
-  z-index: 0;
-}
-
-.process__step {
-  position: relative;
-  z-index: 1;
-  flex: 1 1 140px;
-  max-width: 158px;
-  text-align: center;
-}
-
-/* Clean discs. The previous asymmetric border-radius read as a deformed
-   circle rather than a deliberate shape, and rotating it on hover only made
-   the wobble more obvious. */
-.blob {
-  position: relative;
-  width: 118px;
-  height: 118px;
-  margin: 0 auto 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  color: var(--white);
-  font-size: 34px;
-  box-shadow: 0 6px 16px rgba(18, 48, 27, 0.14);
-  transition: transform var(--transition), box-shadow var(--transition);
-}
-.process__step:hover .blob {
-  transform: translateY(-8px);
-  box-shadow: 0 16px 32px rgba(18, 48, 27, 0.22);
-}
-
-/* Step number as a legible badge. It used to be white-on-white at 75%
-   opacity, sitting half over the disc edge — effectively invisible. */
-.blob__num {
-  position: absolute;
-  top: -2px;
-  inset-inline-end: -2px;
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background-color: var(--white);
-  color: var(--ink);
-  font-family: var(--font-latin);
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 1;
-  box-shadow: 0 2px 6px rgba(18, 48, 27, 0.18);
-}
-
-.process__label {
-  display: block;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.55;
-  color: var(--ink);
-}
-
-/* Hue sweep across the green family, light to deep teal-green.
-   Every shade clears 4.5:1 against the white icon and numeral. */
-.blob--1 { background-color: #3C7A1E; }
-.blob--2 { background-color: #2E7A26; }
-.blob--3 { background-color: #20792D; }
-.blob--4 { background-color: #137934; }
-.blob--5 { background-color: var(--accent); }
-.blob--6 { background-color: #087A48; }
-.blob--7 { background-color: #077557; }
-.blob--8 { background-color: #0A6F66; }
-
-
-/* ==========================================================================
-   12. DEPARTMENTS GRID
-   ========================================================================== */
-.dept-card {
-  height: 100%;
-  background-color: var(--white);
-  border-radius: var(--radius-card);
-  box-shadow: none;
-  padding: 57px 34px 40px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: transform var(--transition);
-}
-.dept-card:hover { transform: translateY(-6px); }
-
-/* Circular photo inside an accent diamond ring */
-.ring-frame {
-  position: relative;
-  width: 112px;
-  height: 112px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 28px;
-}
-.ring-frame::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border: 2px solid var(--accent);
-  border-radius: 22px;
-  transform: rotate(45deg);
-  transition: transform var(--transition);
-}
-.dept-card:hover .ring-frame::before { transform: rotate(90deg); }
-.ring-frame img {
-  position: relative;
-  z-index: 1;
-  width: 82px;
-  height: 82px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.dept-card__title {
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 1.4;
-  color: var(--ink);
-  margin-bottom: 12px;
-}
-.dept-card__desc {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.63;
-  color: var(--text-muted);
-  margin-bottom: 26px;
-  flex-grow: 1;
-}
-
-
-/* ==========================================================================
-   13. EXPLORE CITY GRID
-   ========================================================================== */
-/* Bordered card with the photo inset rather than bleeding to the edge */
-.other-card {
-  height: 100%;
-  background-color: var(--white);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-card);
-  box-shadow: none;
-  padding: 14px 14px 24px;
-  display: flex;
-  flex-direction: column;
-  transition: transform var(--transition), border-color var(--transition),
-              box-shadow var(--transition);
-}
-.other-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--accent);
-  box-shadow: 0 14px 30px rgba(18, 48, 27, 0.10);
-}
-
-.other-card__img {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  border-radius: 8px;
-}
-.other-card__body {
-  padding: 22px 6px 0;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-grow: 1;
-}
-.other-card__title {
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1.4;
-  color: var(--ink);
-  margin-bottom: 20px;
-  flex-grow: 1;
-}
-
-
-/* ==========================================================================
-   14. FOOTER
-   ========================================================================== */
-.site-footer {
-  position: relative;
-  background-color: var(--green);
-  color: var(--white);
-}
-.site-footer__main {
-  position: relative;
-  padding: 90px 0 70px;
-}
-/* Faint building silhouette texture over the green */
-.site-footer__main::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 300' preserveAspectRatio='xMidYMax slice'%3E%3Cg fill='%23ffffff'%3E%3Cpath d='M0 300V210h60v-30h50v120zM130 300V150h40v-40h60v40h40v150zM290 300V190h90v110zM400 300V120h30V80h40v40h30v180zM520 300V170h70v-50h60v50h70v130zM740 300V200h50v-60h45v60h50v100zM905 300V160h40v-45h55v45h40v140zM1055 300V210h55v-45h45v135z'/%3E%3Cg opacity='.85'%3E%3Crect x='20' y='225' width='12' height='16'/%3E%3Crect x='150' y='170' width='12' height='16'/%3E%3Crect x='330' y='210' width='12' height='16'/%3E%3Crect x='435' y='140' width='12' height='16'/%3E%3Crect x='560' y='195' width='12' height='16'/%3E%3Crect x='775' y='225' width='12' height='16'/%3E%3Crect x='950' y='185' width='12' height='16'/%3E%3Crect x='1075' y='235' width='12' height='16'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  background-size: cover;
-  background-position: center bottom;
-  background-repeat: no-repeat;
-  opacity: 0.07;
-  pointer-events: none;
-}
-.site-footer__main > .container { position: relative; z-index: 1; }
-
-.footer__heading {
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--white);
-  margin-bottom: 28px;
-}
-.footer__blurb {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.8;
-  color: rgba(255, 255, 255, 0.78);
-  margin-bottom: 22px;
-}
-
-/* Contact rows */
-.footer-contact li {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  margin-bottom: 20px;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.88);
-}
-.footer-contact li:last-child { margin-bottom: 0; }
-.footer-contact a { color: rgba(255, 255, 255, 0.88); }
-.footer-contact a:hover { color: var(--accent-bright); }
-
-.footer-contact__icon {
-  flex-shrink: 0;
-  width: 34px;
-  height: 34px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background-color: var(--accent-bright);
-  color: var(--green);
-  font-size: 14px;
-}
-
-/* Useful links */
-.footer-links li { margin-bottom: 14px; }
-.footer-links li:last-child { margin-bottom: 0; }
-.footer-links a {
-  position: relative;
-  display: inline-block;
-  padding-left: 20px;
-  font-size: 14px;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.88);
-  transition: color var(--transition), padding-left var(--transition);
-}
-.footer-links a::before {
-  content: "\f054";
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
-  font-size: 10px;
-  color: var(--accent-bright);
-  position: absolute;
-  left: 0;
-  top: 2px;
-}
-.footer-links a:hover { color: var(--accent-bright); padding-left: 26px; }
-
-/* Newsletter form */
-.footer-form {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
-}
-.footer-form__input {
-  width: 100%;
-  max-width: 340px;
-  border: none;
-  border-radius: 8px;
-  background-color: #EDF3EE;
-  padding: 15px 20px;
-  font-family: var(--font-body);
-  font-size: 14px;
-  color: var(--ink);
-  transition: box-shadow var(--transition);
-}
-.footer-form__input::placeholder { color: #8A9A8F; }
-.footer-form__input:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(140, 198, 63, 0.55);
-}
-
-/* Copyright strip */
-.site-footer__bottom {
-  background-color: var(--green-copyright);
-  padding: 26px 0 30px;
-  text-align: center;
-}
-.site-footer__bottom p {
-  font-size: 13px;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.82);
-}
-.site-footer__bottom a { color: rgba(255, 255, 255, 0.82); }
-.site-footer__bottom a:hover { color: var(--accent-bright); }
-
-/* The green social dots would disappear on the green strip — go bright there */
-.site-footer__bottom .social-dot {
-  background: var(--accent-bright);
-  color: var(--green);
-}
-.site-footer__bottom span { color: rgba(255, 255, 255, 0.4); margin: 0 4px; }
-
+.plans-note__text strong { color: var(--lg-ink); }
 
 /* ==========================================================================
    15. RESPONSIVE REFINEMENTS
@@ -1874,34 +688,16 @@ html[lang="sd"] .feature__text  { font-size: 17px; line-height: 2.05; }
 
 /* xl and below */
 @media (max-width: 1199.98px) {
-  .sec-head__title { font-size: 36px; }
-  .mainnav__menu { gap: 20px; }
-  .mainnav__link { font-size: 13px; }
-  .blob { width: 104px; height: 104px; font-size: 30px; }
-  .process__track::before { top: 52px; }   /* follow the smaller disc */
+  .sec-head__title { font-size: 36px; }   /* follow the smaller disc */
 }
 
 /* lg and below — nav collapses to the drawer */
 @media (max-width: 991.98px) {
   :root { --section-y: 80px; }
 
-  .officer-list { padding: 24px 26px; }
-  .downloads { padding: 32px 26px; }
-
   .slider__item { flex-basis: calc((100% - var(--slider-gap)) / 2); }
 
-  .mainnav__inner { justify-content: space-between; }
-  .hero .carousel-item { height: 520px; }
-  .hero__text { font-size: 15px; }
-  .carousel-control-prev.hero__ctrl { left: 18px; }
-  .carousel-control-next.hero__ctrl { right: 18px; }
-
-  .feature__body { padding-inline-end: 0; margin-top: 46px; }
-  .framed-photo::before,
-  .framed-photo::after { width: 110px; height: 60px; }
-
   .projects { padding-bottom: 120px; }
-  .wave-divider svg { height: 60px; }
 }
 
 /* md and below */
@@ -1909,51 +705,19 @@ html[lang="sd"] .feature__text  { font-size: 17px; line-height: 2.05; }
   .slider__item { flex-basis: 100%; }
 
   .leader-card__photo { width: 112px; height: 112px; }
-  .officer { gap: 14px; }
-  .officer__photo { width: 62px; height: 62px; }
-  .downloads__title { font-size: 24px; }
 
   .sec-head__title { font-size: 28px; }
-  .sec-head { margin-bottom: 40px; }
-
-  .site-header__inner { justify-content: space-between; }
-  .brand__seal { width: auto; height: 50px; }
-  .brand__name { font-size: 24px; }
-  .brand__full { font-size: 11px; }
-  .header-utils { gap: 12px; }
-  .info-card { padding: 8px 12px; }
-
-  .hero .carousel-item { height: 460px; }
-  .hero__text { font-size: 14px; margin-bottom: 26px; }
-  .hero__ctrl { display: none; }   /* swipe handles this on touch */
-  .hero__indicators { margin-bottom: 32px; }
+  .sec-head { margin-bottom: 40px; }   /* swipe handles this on touch */
 
   .btn-pill { padding: 15px 28px; font-size: 14px; }
   html[lang="sd"] .btn-pill { padding-top: 12px; padding-bottom: 12px; }
   html[lang="ur"] .btn-pill { padding-top: 4px; padding-bottom: 4px; }
-  .nav-cta { padding: 8px 22px; }
 
-
-  .news-card__title,
-  .dept-card__title,
-  .other-card__title { font-size: 20px; }
+  .news-card__title { font-size: 20px; }
 
   /* Nav bar is tight on phones once the language switch joins the CTA */
-  .langswitch__btn { padding-left: 11px; padding-right: 11px; }
-  .nav-cta { padding: 8px 16px; }
-  .nav-cta__top { font-size: 12px; }
 
   /* Infographic wraps into a grid, connector removed */
-  .process__track { gap: 30px 10px; }
-  .process__track::before { display: none; }
-  .process__step { flex: 1 1 45%; max-width: none; }
-
-  .dept-card { padding: 40px 22px 32px; }
-  .carousel-nav { margin: 32px 0 0; }
-
-  .site-footer__main { padding: 60px 0 50px; }
-  .footer__heading { font-size: 20px; margin-bottom: 20px; }
-  .footer-form__input { max-width: 100%; }
 }
 
 /* sm and below */
@@ -1961,13 +725,6 @@ html[lang="sd"] .feature__text  { font-size: 17px; line-height: 2.05; }
   :root { --section-y: 60px; }
 
   .sec-head__title { font-size: 24px; }
-  .hero .carousel-item { height: 420px; }
-  .hero__eyebrow { font-size: 13px; letter-spacing: 0.1em; }
-
-  .blob { width: 96px; height: 96px; font-size: 28px; }
-  .process__label { font-size: 13px; }
-
-  .round-arrow { width: 46px; height: 46px; }
   .btn-pill { padding: 14px 24px; }
   html[lang="sd"] .btn-pill { padding-top: 11px; padding-bottom: 11px; }
   html[lang="ur"] .btn-pill { padding-top: 3px; padding-bottom: 3px; }
@@ -1984,86 +741,28 @@ html[lang="sd"] .feature__text  { font-size: 17px; line-height: 2.05; }
   }
 }
 
-
 /* ==========================================================================
    16. MULTILINGUAL — LANGUAGE SWITCH, SINDHI/URDU MODES, RTL MIRRORING
    ========================================================================== */
 
 /* --- The switch (lives in the dark green nav bar) ------------------------ */
-.langswitch {
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-  padding: 3px;
-  border-radius: var(--radius-pill);
-  background-color: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.32);
-}
-.langswitch__btn {
-  border: none;
-  background-color: transparent;
-  border-radius: var(--radius-pill);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 30px;
-  padding: 0 15px;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 1.2;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.85);
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background-color var(--transition), color var(--transition);
-}
 /* Stays Latin even when the rest of the page switches to Naskh */
-.langswitch__btn[data-lang="en"] { font-family: var(--font-latin); }
-.langswitch__btn.sindhi,
-.langswitch__btn.urdu {
-  font-size: 13px;
-  padding: 0 13px;
-  text-transform: none;
-}
-.langswitch__btn.sindhi { font-family: var(--font-sindhi); }
-.langswitch__btn.urdu   { font-family: var(--font-urdu); font-size: 12px; line-height: 24px; padding-bottom: 6px; }
-.langswitch__btn:hover { color: var(--white); }
-.langswitch__btn.is-on,
-.langswitch__btn.is-on:hover {
-  background-color: var(--accent-bright);
-  color: var(--green);
-}
 
 /* --- Sindhi mode: one token swap repoints every element at Naskh ---------- */
 html[lang="sd"] { --font-body: var(--font-sindhi); --font-display: var(--font-sindhi); }
 html[lang="sd"] body { line-height: 1.9; }
 /* Naskh needs no tracking, and has no uppercase for text-transform to act on */
 html[lang="sd"] .btn-pill,
-html[lang="sd"] .mainnav__link,
-html[lang="sd"] .navdrawer__link,
 html[lang="sd"] .sec-head__title,
-html[lang="sd"] .info-card__label,
-html[lang="sd"] .date-pill,
-html[lang="sd"] .hero__eyebrow { letter-spacing: normal; }
+html[lang="sd"] .date-pill { letter-spacing: normal; }
 html[lang="sd"] .btn-pill {
   line-height: 1.5;
   padding-top: 15px;
   padding-bottom: 15px;
 }
-html[lang="sd"] .btn-pill--sm { padding-top: 9px; padding-bottom: 9px; }
 html[lang="sd"] .sec-head__title { line-height: 1.55; }
-html[lang="sd"] .hero__title { line-height: 1.5; }
-html[lang="sd"] .nav-cta {
-  line-height: 1.35;
-  padding-top: 7px;
-  padding-bottom: 7px;
-}
-html[lang="sd"] .brand__name { font-family: var(--font-latin); }
 /* 14px x 1.9 + 40px padding = 66.6px inside a 64px bar — pin the leading */
-html[lang="sd"] .mainnav__link { line-height: 1.6; padding-top: 17px; padding-bottom: 17px; }
-html[lang="sd"] .leader-card__name,
-html[lang="sd"] .officer__name,
-html[lang="sd"] .downloads__link { line-height: 1.8; }
+html[lang="sd"] .leader-card__name { line-height: 1.8; }
 html[lang="sd"] .vm-quote__text,
 html[lang="sd"] .plan-card__title,
 html[lang="sd"] .map-card__title { line-height: 1.9; }
@@ -2075,12 +774,8 @@ html[lang="sd"] .date-pill { line-height: 1.5; padding-top: 7px; padding-bottom:
 html[lang="ur"] { --font-body: var(--font-urdu); --font-display: var(--font-urdu); }
 html[lang="ur"] body { line-height: 2.55; }
 html[lang="ur"] .btn-pill,
-html[lang="ur"] .mainnav__link,
-html[lang="ur"] .navdrawer__link,
 html[lang="ur"] .sec-head__title,
-html[lang="ur"] .info-card__label,
-html[lang="ur"] .date-pill,
-html[lang="ur"] .hero__eyebrow { letter-spacing: normal; }
+html[lang="ur"] .date-pill { letter-spacing: normal; }
 /* Nastaliq baseline correction.
    Noto Nastaliq Urdu has a 1.90em ascent against a 0.60em descent, so CSS
    half-leading centres the *metrics* box while the visible ink hangs ~5px
@@ -2093,31 +788,15 @@ html[lang="ur"] .btn-pill {
   padding-top: 7px;
   padding-bottom: 17px;
 }
-html[lang="ur"] .btn-pill--sm {
-  line-height: 26px;
-  padding-top: 4px;
-  padding-bottom: 10px;
-}
 /* Two lines at 2.5em = 62.5px of text alone, which will not fit the 64px bar.
    Nastaliq genuinely needs the room, so the bar grows in Urdu rather than the
    glyphs being squeezed. */
-html[lang="ur"] .mainnav__inner { min-height: 76px; }
 /* Tightened from 67px to ~51px: the leading carried more air than Nastaliq
    needs at these two sizes, so the cut comes out of the line boxes and the
    padding rather than the glyphs (ink still sits inside the pill). */
-html[lang="ur"] .nav-cta {
-  line-height: 1.55;
-  gap: 1px;
-  padding-top: 2px;
-  padding-bottom: 8px;    /* extra below offsets Nastaliq's low-sitting ink */
-}
-html[lang="ur"] .mainnav__link { line-height: 2.5; padding-top: 13px; padding-bottom: 13px; }
 html[lang="ur"] .vm-quote__text { line-height: 2.5; }
 html[lang="ur"] .leader-card__name,
-html[lang="ur"] .leader-card__role,
-html[lang="ur"] .officer__name,
-html[lang="ur"] .officer__role,
-html[lang="ur"] .downloads__link { line-height: 2.3; }
+html[lang="ur"] .leader-card__role { line-height: 2.3; }
 html[lang="ur"] .vm-card__title,
 html[lang="ur"] .plan-card__title,
 html[lang="ur"] .map-card__title { line-height: 2.2; }
@@ -2129,53 +808,14 @@ html[lang="ur"] .date-pill {
   padding-bottom: 7px;
 }
 html[lang="ur"] .sec-head__title { font-size: 38px; line-height: 2.5; }
-html[lang="ur"] .hero__title { font-size: clamp(22px, 2.4vw, 40px); line-height: 2.5; }
 html[lang="ur"] .link-more { line-height: 28px; padding-bottom: 13px; }
-html[lang="ur"] .downloads__link { line-height: 26px; padding-bottom: 20px; }
-html[lang="ur"] .feature__title { font-size: clamp(22px, 1.9vw, 32px); line-height: 2.5; }
-html[lang="ur"] .feature__text { font-size: 16px; line-height: 2.6; }
-html[lang="ur"] .news-card__title,
-html[lang="ur"] .dept-card__title,
-html[lang="ur"] .other-card__title { font-size: 20px; line-height: 2.5; }
-html[lang="ur"] .brand__name { font-family: var(--font-latin); }
+html[lang="ur"] .news-card__title { font-size: 20px; line-height: 2.5; }
 
 /* --- RTL mirroring -------------------------------------------------------
    Bootstrap's RTL sheet handles its own utilities; these are the custom
    rules that pin something to a physical left or right edge. */
-[dir="rtl"] .hero__overlay {
-  background:
-    linear-gradient(270deg,
-      rgba(4, 26, 10, 0.95) 0%,
-      rgba(4, 26, 10, 0.82) 38%,
-      rgba(4, 26, 10, 0.42) 68%,
-      rgba(4, 26, 10, 0.18) 100%),
-    linear-gradient(180deg,
-      rgba(4, 26, 10, 0.35) 0%,
-      rgba(4, 26, 10, 0) 30%,
-      rgba(4, 26, 10, 0.45) 100%);
-}
-[dir="rtl"] .hero__dots { right: auto; left: 8%; }
-[dir="rtl"] .carousel-control-prev.hero__ctrl { left: auto; right: 34px; }
-[dir="rtl"] .carousel-control-next.hero__ctrl { right: auto; left: 34px; }
 
 [dir="rtl"] .news-card__date { left: auto; right: 18px; }
-[dir="rtl"] .framed-photo::before { left: auto; right: -18px; }
-[dir="rtl"] .framed-photo::after  { right: auto; left: -18px; }
-
-
-[dir="rtl"] .navdrop .dropdown-item { padding-left: 22px; padding-right: 22px; }
-[dir="rtl"] .navdrop .dropdown-item:hover { padding-left: 22px; padding-right: 28px; }
-[dir="rtl"] .navdrawer__sub { padding-left: 0; padding-right: 14px; }
-
-[dir="rtl"] .footer-links a { padding-left: 0; padding-right: 20px; }
-[dir="rtl"] .footer-links a::before { content: "\f053"; left: auto; right: 0; }
-[dir="rtl"] .footer-links a:hover { padding-left: 0; padding-right: 26px; }
-
-@media (max-width: 991.98px) {
-  [dir="rtl"] .carousel-control-prev.hero__ctrl { right: 18px; }
-  [dir="rtl"] .carousel-control-next.hero__ctrl { left: 18px; }
-}
-
 
 /* ==========================================================================
    06c. LATEST UPDATES TICKER
@@ -2185,103 +825,17 @@ html[lang="ur"] .brand__name { font-family: var(--font-latin); }
    seam never shows; the second track is aria-hidden and untabbable, so the
    duplication is purely visual.
    ========================================================================== */
-.ticker {
-  position: relative;
-  background-image: linear-gradient(90deg, var(--green-copyright) 0%, var(--green) 45%, #005207 100%);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-.ticker__inner {
-  display: flex;
-  align-items: stretch;
-  gap: 22px;
-  min-height: 56px;
-}
-
-.ticker__label {
-  flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  padding-inline-end: 22px;
-  border-inline-end: 1px solid rgba(255, 255, 255, 0.18);
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--accent-bright);
-  white-space: nowrap;
-}
 
 /* The window the rail runs behind */
-.ticker__viewport {
-  flex: 1;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  /* fade the copy out at the edges instead of cutting it dead */
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
-          mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
-}
-.ticker__rail {
-  display: flex;
-  animation: tickerRun 48s linear infinite;
-}
-[dir="rtl"] .ticker__rail { animation-name: tickerRunRtl; }
-.ticker:hover .ticker__rail,
-.ticker:focus-within .ticker__rail { animation-play-state: paused; }
 
 @keyframes tickerRun    { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @keyframes tickerRunRtl { from { transform: translateX(0); } to { transform: translateX(50%); } }
-
-.ticker__track {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-}
-.ticker__track li {
-  display: flex;
-  align-items: center;
-  gap: 26px;
-  padding-inline-end: 26px;
-  white-space: nowrap;
-}
 /* the bullet between items */
-.ticker__track li::after {
-  content: "";
-  flex-shrink: 0;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background-color: var(--accent-bright);
-}
-.ticker__track a {
-  font-size: 14px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.92);
-}
-.ticker__track a:hover,
-.ticker__track a:focus-visible { color: var(--accent-bright); }
-
-@media (max-width: 767.98px) {
-  .ticker__inner { gap: 14px; min-height: 48px; }
-  .ticker__label { padding-inline-end: 14px; font-size: 11px; letter-spacing: 0.05em; }
-  .ticker__track a { font-size: 13px; }
-  .ticker__track li { gap: 18px; padding-inline-end: 18px; }
-}
 
 /* Section 15's blanket rule would run this infinite loop at 0.01ms — stop it
    outright and let the strip be scrolled by hand instead. */
-@media (prefers-reduced-motion: reduce) {
-  .ticker__rail { animation: none !important; }
-  .ticker__viewport { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
-  .ticker__track[aria-hidden="true"] { display: none; }
-}
 
 /* Nastaliq and Naskh sit differently in a 56px band */
-html[lang="ur"] .ticker__track a { font-size: 13px; line-height: 2.4; }
-html[lang="ur"] .ticker__label,
-html[lang="sd"] .ticker__label { letter-spacing: normal; }
-html[lang="sd"] .ticker__track a { line-height: 1.9; }
-
 
 /* ==========================================================================
    16b. ARTICLE / NEWS DETAIL PAGE
@@ -2325,16 +879,16 @@ html[lang="sd"] .ticker__track a { line-height: 1.9; }
   font-weight: 600;
 }
 .crumbs a { color: rgba(255, 255, 255, 0.82); }
-.crumbs a:hover { color: var(--accent-bright); }
+.crumbs a:hover { color: var(--lg-accent-bright); }
 .crumbs__sep { color: rgba(255, 255, 255, 0.4); }
-.crumbs [aria-current="page"] { color: var(--accent-bright); }
+.crumbs [aria-current="page"] { color: var(--lg-accent-bright); }
 
 .pagehead__tag {
   display: inline-block;
   margin-bottom: 14px;
   padding: 5px 16px;
   border-radius: var(--radius-pill);
-  background-color: var(--accent-bright);
+  background-color: var(--lg-accent-bright);
   color: var(--green);
   font-size: 12px;
   font-weight: 700;
@@ -2361,7 +915,7 @@ html[lang="sd"] .ticker__track a { line-height: 1.9; }
   color: rgba(255, 255, 255, 0.82);
 }
 .pagehead__meta li { display: flex; align-items: center; gap: 8px; }
-.pagehead__meta i { color: var(--accent-bright); }
+.pagehead__meta i { color: var(--lg-accent-bright); }
 
 /* --- Article body -------------------------------------------------------- */
 .post { max-width: 780px; }
@@ -2376,7 +930,7 @@ html[lang="sd"] .ticker__track a { line-height: 1.9; }
 .post__figure--doc img {
   max-width: 520px;
   margin: 0 auto;
-  border: 1px solid var(--line);
+  border: 1px solid var(--lg-line);
   background-color: var(--white);
 }
 .post__caption {
@@ -2384,14 +938,14 @@ html[lang="sd"] .ticker__track a { line-height: 1.9; }
   font-size: 13px;
   line-height: 1.7;
   color: var(--text-muted);
-  border-inline-start: 3px solid var(--accent-bright);
+  border-inline-start: 3px solid var(--lg-accent-bright);
   padding-inline-start: 12px;
 }
 .post__standfirst {
   font-size: 18px;
   font-weight: 600;
   line-height: 1.65;
-  color: var(--ink);
+  color: var(--lg-ink);
   margin-bottom: 24px;
 }
 .post p { font-size: 15px; line-height: 1.85; margin-bottom: 20px; }
@@ -2402,13 +956,13 @@ html[lang="sd"] .ticker__track a { line-height: 1.9; }
   font-size: 52px;
   font-weight: 700;
   line-height: 0.86;
-  color: var(--accent);
+  color: var(--lg-accent);
 }
 .post__h2 {
   margin: 40px 0 18px;
   font-size: 24px;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--lg-ink);
 }
 .post__h2::after {
   content: "";
@@ -2417,9 +971,9 @@ html[lang="sd"] .ticker__track a { line-height: 1.9; }
   height: 3px;
   margin-top: 12px;
   border-radius: var(--radius-pill);
-  background-color: var(--accent-bright);
+  background-color: var(--lg-accent-bright);
 }
-.post strong { color: var(--ink); font-weight: 700; }
+.post strong { color: var(--lg-ink); font-weight: 700; }
 
 .post__quote {
   position: relative;
@@ -2427,7 +981,7 @@ html[lang="sd"] .ticker__track a { line-height: 1.9; }
   padding: 26px 30px 26px 62px;
   border-radius: var(--radius-card);
   background-color: var(--bg-alt);
-  border-inline-start: 4px solid var(--accent);
+  border-inline-start: 4px solid var(--lg-accent);
 }
 .post__quote::before {
   content: "\201C";
@@ -2437,7 +991,7 @@ html[lang="sd"] .ticker__track a { line-height: 1.9; }
   font-family: var(--font-latin);
   font-size: 54px;
   line-height: 1;
-  color: var(--accent-bright);
+  color: var(--lg-accent-bright);
 }
 .post__quote p {
   margin-bottom: 10px;
@@ -2445,12 +999,12 @@ html[lang="sd"] .ticker__track a { line-height: 1.9; }
   font-weight: 600;
   font-style: italic;
   line-height: 1.7;
-  color: var(--ink);
+  color: var(--lg-ink);
 }
 .post__quote footer {
   font-size: 13px;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--lg-accent);
 }
 [dir="rtl"] .post__quote { padding: 26px 62px 26px 30px; }
 
@@ -2474,14 +1028,14 @@ html[lang="sd"] .ticker__track a { line-height: 1.9; }
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background-color: var(--accent);
+  background-color: var(--lg-accent);
   color: var(--white);
   font-family: var(--font-latin);
   font-size: 13px;
   font-weight: 700;
 }
 [dir="rtl"] .post__points > li { padding: 0 46px 18px 0; }
-.post__points b { display: block; color: var(--ink); font-size: 16px; }
+.post__points b { display: block; color: var(--lg-ink); font-size: 16px; }
 
 /* Photo gallery — 3-up, each frame links to the full-size file */
 .post__gallery {
@@ -2540,14 +1094,14 @@ html[lang="sd"] .ticker__track a { line-height: 1.9; }
   gap: 12px;
   margin-top: 30px;
   padding-top: 24px;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--lg-line);
 }
 .post__share span {
   font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: var(--ink);
+  color: var(--lg-ink);
 }
 
 /* Previous / next */
@@ -2560,11 +1114,11 @@ html[lang="sd"] .ticker__track a { line-height: 1.9; }
 .post-nav a {
   flex: 1 1 260px;
   padding: 18px 22px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--lg-line);
   border-radius: var(--radius-card);
   transition: border-color var(--transition), background-color var(--transition);
 }
-.post-nav a:hover { border-color: var(--accent); background-color: var(--bg-alt); }
+.post-nav a:hover { border-color: var(--lg-accent); background-color: var(--bg-alt); }
 .post-nav__label {
   display: block;
   margin-bottom: 6px;
@@ -2572,14 +1126,14 @@ html[lang="sd"] .ticker__track a { line-height: 1.9; }
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--accent);
+  color: var(--lg-accent);
 }
 .post-nav__title {
   display: block;
   font-size: 15px;
   font-weight: 600;
   line-height: 1.6;
-  color: var(--ink);
+  color: var(--lg-ink);
 }
 .post-nav a:last-child { text-align: end; }
 
@@ -2596,7 +1150,7 @@ html[lang="sd"] .ticker__track a { line-height: 1.9; }
   padding-bottom: 12px;
   font-size: 19px;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--lg-ink);
 }
 .widget__title::after {
   content: "";
@@ -2606,11 +1160,11 @@ html[lang="sd"] .ticker__track a { line-height: 1.9; }
   width: 46px;
   height: 3px;
   border-radius: var(--radius-pill);
-  background-color: var(--accent-bright);
+  background-color: var(--lg-accent-bright);
 }
 
 .minilist { margin: 0; padding: 0; list-style: none; }
-.minilist li + li { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+.minilist li + li { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--lg-line); }
 .minilist a { display: flex; align-items: flex-start; gap: 12px; }
 .minilist img {
   flex-shrink: 0;
@@ -2623,10 +1177,10 @@ html[lang="sd"] .ticker__track a { line-height: 1.9; }
   font-size: 14px;
   font-weight: 600;
   line-height: 1.55;
-  color: var(--ink);
+  color: var(--lg-ink);
   transition: color var(--transition);
 }
-.minilist a:hover .minilist__title { color: var(--accent); }
+.minilist a:hover .minilist__title { color: var(--lg-accent); }
 .minilist__date { display: block; margin-top: 5px; font-size: 12px; color: var(--text-muted); }
 
 .widget--dark {
@@ -2635,7 +1189,7 @@ html[lang="sd"] .ticker__track a { line-height: 1.9; }
 .widget--dark .widget__title { color: var(--white); }
 .widget--dark p { font-size: 14px; line-height: 1.8; color: rgba(255, 255, 255, 0.86); }
 .widget--dark .quicklinks a { color: rgba(255, 255, 255, 0.9); }
-.widget--dark .quicklinks a:hover { color: var(--accent-bright); }
+.widget--dark .quicklinks a:hover { color: var(--lg-accent-bright); }
 
 .quicklinks { margin: 0; padding: 0; list-style: none; }
 .quicklinks li + li { margin-top: 2px; }
@@ -2647,10 +1201,10 @@ html[lang="sd"] .ticker__track a { line-height: 1.9; }
   padding: 11px 0;
   font-size: 14px;
   font-weight: 600;
-  color: var(--ink);
+  color: var(--lg-ink);
   border-bottom: 1px solid rgba(255, 255, 255, 0.13);
 }
-.quicklinks a i { color: var(--accent-bright); font-size: 12px; }
+.quicklinks a i { color: var(--lg-accent-bright); font-size: 12px; }
 .quicklinks li:last-child a { border-bottom: none; }
 
 @media (max-width: 991.98px) {
@@ -2679,18 +1233,6 @@ html[lang="sd"] .ticker__track a { line-height: 1.9; }
    Built by js/lightbox.js on first use. The links it hijacks keep working as
    plain links when that file is absent, so nothing here is load-bearing. */
 .has-lightbox { overflow: hidden; }
-.lightbox {
-  position: fixed;
-  inset: 0;
-  z-index: 1080;          /* over Bootstrap's offcanvas (1045) */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 70px 74px;
-  background-color: rgba(4, 26, 10, 0.93);
-  animation: lightboxIn 0.25s ease;
-}
-.lightbox[hidden] { display: none; }
 .lightbox--instant { animation: none; }
 @keyframes lightboxIn { from { opacity: 0; } to { opacity: 1; } }
 
@@ -2735,8 +1277,8 @@ html[lang="sd"] .ticker__track a { line-height: 1.9; }
 }
 .lightbox__full:hover,
 .lightbox__full:focus-visible {
-  background-color: var(--accent-bright);
-  border-color: var(--accent-bright);
+  background-color: var(--lg-accent-bright);
+  border-color: var(--lg-accent-bright);
   color: var(--green);
 }
 .lightbox__count {
@@ -2746,7 +1288,7 @@ html[lang="sd"] .ticker__track a { line-height: 1.9; }
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: var(--accent-bright);
+  color: var(--lg-accent-bright);
 }
 
 .lightbox__close,
@@ -2767,8 +1309,8 @@ html[lang="sd"] .ticker__track a { line-height: 1.9; }
 .lightbox__nav:hover,
 .lightbox__close:focus-visible,
 .lightbox__nav:focus-visible {
-  background-color: var(--accent-bright);
-  border-color: var(--accent-bright);
+  background-color: var(--lg-accent-bright);
+  border-color: var(--lg-accent-bright);
   color: var(--green);
 }
 .lightbox__close {
@@ -2793,7 +1335,6 @@ html[lang="sd"] .ticker__track a { line-height: 1.9; }
 .lightbox__nav[hidden] { display: none; }
 
 @media (max-width: 767.98px) {
-  .lightbox { padding: 62px 14px 90px; }
   .lightbox__stage img { max-height: calc(100vh - 210px); }
   /* Thumb reach: the controls move to the bottom edge on a phone */
   .lightbox__nav { top: auto; bottom: 18px; transform: none; width: 46px; height: 46px; }
@@ -2826,7 +1367,6 @@ html[lang="sd"] .pagehead__tag { letter-spacing: normal; }
 html[lang="sd"] .post__h2,
 html[lang="sd"] .widget__title { line-height: 1.6; }
 
-
 /* ==========================================================================
    17. MOBILE HARDENING
    --------------------------------------------------------------------------
@@ -2852,52 +1392,13 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
    runs close to the viewport edge and the right-hand block pushed the page
    3px sideways. Clip at the band: the blocks stay visible, the scroll goes.
    overflow-x: clip rather than hidden, so nothing becomes a scroll container. */
-@media (min-width: 992px) and (max-width: 1399.98px) {
-  .feature { overflow-x: clip; }
-}
 
 /* --- Hero on a phone ----------------------------------------------------- */
-@media (max-width: 767.98px) {
-  /* The desktop scrim clears toward the right so the photograph reads. At
-     phone width the copy spans the whole frame and the banner artwork carries
-     its own lettering, so the two collided — headline over baked-in title.
-     A flat vertical scrim puts the photo firmly behind the text instead. */
-  .hero__overlay,
-  [dir="rtl"] .hero__overlay {
-    background: linear-gradient(180deg,
-      rgba(4, 26, 10, 0.66) 0%,
-      rgba(4, 26, 10, 0.82) 45%,
-      rgba(4, 26, 10, 0.94) 100%);
-  }
-  /* Fixed slide heights clipped the copy once it wrapped to four lines (and
-     Nastaliq wraps sooner). Let the slide take its content's height. */
-  .hero .carousel-item { height: auto; min-height: 430px; }
-  .hero__container { padding-top: 44px; padding-bottom: 82px; }
-  .hero__content { max-width: none; }
-  .hero__eyebrow { font-size: 13px; margin-bottom: 12px; }
-  .hero__rule { width: 30px; }
-  .hero__title { margin-bottom: 16px; }
-  .hero__text { margin-bottom: 26px; max-width: none; }
-  .hero__indicators { margin-bottom: 24px; }
-  /* 11px dots are below any sane touch target. A transparent border grows the
-     hit area to 34px without changing the painted dot. */
-  .hero__indicators [data-bs-target] {
-    box-sizing: content-box;
-    border: 11px solid transparent;
-    background-clip: padding-box;
-  }
-}
 
 /* --- Touch targets and form zoom ---------------------------------------- */
 @media (max-width: 767.98px) {
-  .langswitch__btn { min-height: 36px; }
   /* iOS zooms the page on focus for anything under 16px */
-  .footer-form__input { font-size: 16px; }
-  .footer-form .btn-pill { width: 100%; text-align: center; }
   .link-more { padding-top: 6px; padding-bottom: 6px; }
-  .footer-links a { padding-top: 4px; padding-bottom: 4px; }
-  .site-footer__bottom p a { display: inline-block; padding: 6px 2px; }
-  .footer-contact a { display: inline-block; padding: 3px 0; }
 }
 
 /* --- Naskh / Nastaliq at phone sizes -------------------------------------
@@ -2906,17 +1407,10 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
    screen. Bring the two scripts back down to the phone scale. */
 @media (max-width: 767.98px) {
   html[lang="ur"] .sec-head__title { font-size: 24px; line-height: 2.1; }
-  html[lang="ur"] .hero__title { font-size: 21px; line-height: 2.05; }
-  html[lang="ur"] .hero__text { font-size: 14px; line-height: 2.2; }
-  html[lang="ur"] .feature__text { font-size: 15px; line-height: 2.3; }
   html[lang="ur"] .vm-intro,
   html[lang="ur"] .vm-card__text { line-height: 2.3; }
-  html[lang="ur"] .news-card__title,
-  html[lang="ur"] .dept-card__title,
-  html[lang="ur"] .other-card__title { font-size: 18px; line-height: 2.2; }
+  html[lang="ur"] .news-card__title { font-size: 18px; line-height: 2.2; }
   html[lang="ur"] body { line-height: 2.25; }
-
-  html[lang="sd"] .hero__text { font-size: 14px; }
   html[lang="sd"] body { line-height: 1.8; }
 }
 @media (max-width: 575.98px) {
@@ -2924,26 +1418,6 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
 }
 
 /* --- Drawer contact block (the header's own is hidden below sm) ---------- */
-.drawer-contact {
-  margin-top: 26px;
-  padding-top: 20px;
-  border-top: 1px solid var(--line);
-}
-.drawer-contact li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  margin-bottom: 12px;
-  font-size: 13px;
-  line-height: 1.6;
-  color: var(--text);
-}
-.drawer-contact li:last-child { margin-bottom: 0; }
-.drawer-contact i { color: var(--accent); width: 15px; padding-top: 3px; flex-shrink: 0; }
-.drawer-contact a { color: var(--text); }
-.drawer-contact a:hover { color: var(--accent); }
-.drawer-contact .social-row { margin-top: 16px; }
-
 
 /* ==========================================================================
    18. CONTENT PAGES — LEDE, CALLOUT, TIMELINE, DOCUMENT LIST, LAW TABLE
@@ -2955,7 +1429,7 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   margin: 0 0 34px;
   font-size: 17px;
   line-height: 1.85;
-  color: var(--ink);
+  color: var(--lg-ink);
 }
 .prose-p {
   max-width: 940px;
@@ -2969,8 +1443,8 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
 /* A definition or standing note lifted out of the running text. Shares the
    plans-note treatment so every aside on the site reads the same way. */
 .callout {
-  border: 1px solid var(--line);
-  border-inline-start: 4px solid var(--accent);
+  border: 1px solid var(--lg-line);
+  border-inline-start: 4px solid var(--lg-accent);
   border-radius: 10px;
   background-color: var(--bg-alt);
   padding: 24px 28px;
@@ -2980,7 +1454,7 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   font-family: var(--font-display);
   font-size: 17px;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--lg-ink);
   margin-bottom: 10px;
 }
 .callout__text {
@@ -3016,7 +1490,7 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   justify-content: center;
   border-radius: 50%;
   background-color: var(--bg-address);
-  color: var(--accent);
+  color: var(--lg-accent);
 }
 
 /* --- Timeline (History) --------------------------------------------------
@@ -3030,7 +1504,7 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   inset-block: 12px 12px;
   inset-inline-start: 7px;
   width: 2px;
-  background-color: var(--line);
+  background-color: var(--lg-line);
 }
 .timeline__item {
   position: relative;
@@ -3047,7 +1521,7 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   height: 16px;
   border-radius: 50%;
   background-color: var(--white);
-  border: 4px solid var(--accent);
+  border: 4px solid var(--lg-accent);
 }
 .timeline__year {
   display: block;
@@ -3055,7 +1529,7 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   font-size: 22px;
   font-weight: 900;
   line-height: 1.25;
-  color: var(--accent);
+  color: var(--lg-accent);
   margin-bottom: 9px;
 }
 .timeline__text {
@@ -3075,9 +1549,9 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   font-size: 12.5px;
   font-weight: 600;
   line-height: 1.5;
-  color: var(--ink);
+  color: var(--lg-ink);
 }
-.timeline__ref i { color: var(--accent); font-size: 11px; flex-shrink: 0; }
+.timeline__ref i { color: var(--lg-accent); font-size: 11px; flex-shrink: 0; }
 
 /* --- Document list (laws, notifications) ---------------------------------
    No download control: the authority publishes these instruments by name and
@@ -3086,7 +1560,7 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   list-style: none;
   padding: 0;
   margin: 0;
-  border: 1px solid var(--line);
+  border: 1px solid var(--lg-line);
   border-radius: var(--radius-card);
   background-color: var(--white);
   overflow: hidden;
@@ -3096,7 +1570,7 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   align-items: flex-start;
   gap: 16px;
   padding: 20px 24px;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--lg-line);
   transition: background-color var(--transition);
 }
 .doc-list > li:last-child .doc-row { border-bottom: none; }
@@ -3110,7 +1584,7 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   align-items: center;
   justify-content: center;
   background-color: var(--bg-address);
-  color: var(--accent);
+  color: var(--lg-accent);
   font-size: 15px;
 }
 .doc-row__body { flex: 1 1 auto; min-width: 0; }
@@ -3120,7 +1594,7 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   font-size: 16px;
   font-weight: 700;
   line-height: 1.55;
-  color: var(--ink);
+  color: var(--lg-ink);
 }
 .doc-row__meta {
   display: flex;
@@ -3132,14 +1606,14 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   color: var(--text-muted);
 }
 .doc-row__meta span { display: inline-flex; align-items: center; gap: 7px; }
-.doc-row__meta i { color: var(--accent); font-size: 11px; }
+.doc-row__meta i { color: var(--lg-accent); font-size: 11px; }
 .doc-row__year {
   flex-shrink: 0;
   align-self: center;
   font-family: var(--font-display);
   font-size: 15px;
   font-weight: 700;
-  color: var(--accent);
+  color: var(--lg-accent);
 }
 
 /* --- Legislation table ----------------------------------------------------
@@ -3152,7 +1626,7 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
 .table-scroll {
   overflow-x: auto;
   overflow-y: hidden;
-  border: 1px solid var(--line);
+  border: 1px solid var(--lg-line);
   border-radius: var(--radius-card);
   background-color: var(--white);
 }
@@ -3167,7 +1641,7 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   padding: 16px 22px;
   text-align: start;
   vertical-align: top;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--lg-line);
 }
 .law-table thead th {
   background-color: var(--green);
@@ -3194,13 +1668,13 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
 .pillar {
   height: 100%;
   background-color: var(--white);
-  border: 1px solid var(--line);
+  border: 1px solid var(--lg-line);
   border-radius: var(--radius-card);
   padding: 26px 24px;
   transition: border-color var(--transition), transform var(--transition);
 }
 .pillar:hover {
-  border-color: var(--accent);
+  border-color: var(--lg-accent);
   transform: translateY(-3px);
 }
 .pillar__num {
@@ -3211,7 +1685,7 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   height: 34px;
   border-radius: 50%;
   background-color: var(--green);
-  color: var(--accent-bright);
+  color: var(--lg-accent-bright);
   font-family: var(--font-display);
   font-size: 14px;
   font-weight: 700;
@@ -3222,7 +1696,7 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   font-size: 16px;
   font-weight: 700;
   line-height: 1.5;
-  color: var(--ink);
+  color: var(--lg-ink);
   margin-bottom: 10px;
 }
 .pillar__text {
@@ -3241,7 +1715,6 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   .doc-row { flex-wrap: wrap; padding: 16px; gap: 12px; }
   .doc-row__year { align-self: flex-start; }
 }
-
 
 /* ==========================================================================
    19. ORGANOGRAM, DIRECTORY, OFFICES, EMPTY STATES
@@ -3265,7 +1738,7 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   inset-inline-start: calc(50% - 1px);
   width: 2px;
   height: 28px;
-  background-color: var(--line);
+  background-color: var(--lg-line);
 }
 .orgchart__branches {
   display: grid;
@@ -3281,7 +1754,7 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   inset-inline-start: calc(50% - 1px);
   width: 2px;
   height: 28px;
-  background-color: var(--line);
+  background-color: var(--lg-line);
 }
 .orgchart__branch::after {
   content: "";
@@ -3290,14 +1763,14 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   inset-inline-start: 50%;
   width: calc(100% + var(--org-gap));
   height: 2px;
-  background-color: var(--line);
+  background-color: var(--lg-line);
 }
 .orgchart__branch:last-child::after { display: none; }
 
 .org-node {
   height: 100%;
   background-color: var(--white);
-  border: 1px solid var(--line);
+  border: 1px solid var(--lg-line);
   border-radius: var(--radius-card);
   padding: 22px 20px;
   text-align: center;
@@ -3312,7 +1785,7 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   font-size: 15px;
   font-weight: 700;
   line-height: 1.5;
-  color: var(--ink);
+  color: var(--lg-ink);
   margin-bottom: 6px;
 }
 .org-node--lead .org-node__label { color: var(--white); font-size: 17px; }
@@ -3322,12 +1795,12 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   line-height: 1.6;
   color: var(--text-muted);
 }
-.org-node--lead .org-node__holder { color: var(--accent-bright); }
+.org-node--lead .org-node__holder { color: var(--lg-accent-bright); }
 .org-node__list {
   list-style: none;
   padding: 0;
   margin: 14px 0 0;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--lg-line);
   padding-top: 13px;
   text-align: start;
 }
@@ -3347,7 +1820,7 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background-color: var(--accent);
+  background-color: var(--lg-accent);
 }
 
 @media (max-width: 991.98px) {
@@ -3364,13 +1837,13 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
 .dir-card {
   height: 100%;
   background-color: var(--white);
-  border: 1px solid var(--line);
+  border: 1px solid var(--lg-line);
   border-radius: var(--radius-card);
   padding: 28px 24px;
   text-align: center;
   transition: border-color var(--transition), transform var(--transition);
 }
-.dir-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+.dir-card:hover { border-color: var(--lg-accent); transform: translateY(-3px); }
 .dir-card__photo {
   display: block;
   width: 104px;
@@ -3386,14 +1859,14 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   font-family: var(--font-display);
   font-size: 17px;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--lg-ink);
   margin-bottom: 5px;
 }
 .dir-card__role {
   display: block;
   font-size: 13.5px;
   line-height: 1.6;
-  color: var(--accent);
+  color: var(--lg-accent);
   font-weight: 600;
   margin-bottom: 18px;
 }
@@ -3401,7 +1874,7 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   list-style: none;
   padding: 16px 0 0;
   margin: 0;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--lg-line);
   text-align: start;
 }
 .dir-card__contact li {
@@ -3413,9 +1886,9 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   color: var(--text);
 }
 .dir-card__contact li + li { margin-top: 9px; }
-.dir-card__contact i { color: var(--accent); width: 14px; padding-top: 4px; flex-shrink: 0; }
+.dir-card__contact i { color: var(--lg-accent); width: 14px; padding-top: 4px; flex-shrink: 0; }
 .dir-card__contact a { color: var(--text); }
-.dir-card__contact a:hover { color: var(--accent); }
+.dir-card__contact a:hover { color: var(--lg-accent); }
 /* Marks a field the Authority has not published, rather than leaving a gap
    that reads as an oversight. */
 .is-pending { color: var(--text-muted); font-style: italic; }
@@ -3424,7 +1897,7 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
 .office-card {
   height: 100%;
   background-color: var(--white);
-  border: 1px solid var(--line);
+  border: 1px solid var(--lg-line);
   border-radius: var(--radius-card);
   padding: 28px 26px;
 }
@@ -3439,7 +1912,7 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   font-weight: 700;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--lg-accent);
   margin-bottom: 15px;
 }
 .office-card__name {
@@ -3447,7 +1920,7 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   font-size: 18px;
   font-weight: 700;
   line-height: 1.5;
-  color: var(--ink);
+  color: var(--lg-ink);
   margin-bottom: 16px;
 }
 .office-card__list { list-style: none; padding: 0; margin: 0; }
@@ -3460,9 +1933,9 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   color: var(--text);
 }
 .office-card__list li + li { margin-top: 11px; }
-.office-card__list i { color: var(--accent); width: 15px; padding-top: 5px; flex-shrink: 0; }
+.office-card__list i { color: var(--lg-accent); width: 15px; padding-top: 5px; flex-shrink: 0; }
 .office-card__list a { color: var(--text); }
-.office-card__list a:hover { color: var(--accent); }
+.office-card__list a:hover { color: var(--lg-accent); }
 
 /* --- Empty state ----------------------------------------------------------
    For sections the Authority has not published yet. Says so plainly and
@@ -3473,7 +1946,7 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   padding: 54px 32px;
   text-align: center;
   background-color: var(--white);
-  border: 1px dashed var(--line);
+  border: 1px dashed var(--lg-line);
   border-radius: var(--radius-card);
 }
 .empty-state__icon {
@@ -3485,14 +1958,14 @@ html[lang="sd"] .widget__title { line-height: 1.6; }
   align-items: center;
   justify-content: center;
   background-color: var(--bg-address);
-  color: var(--accent);
+  color: var(--lg-accent);
   font-size: 24px;
 }
 .empty-state__title {
   font-family: var(--font-display);
   font-size: 19px;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--lg-ink);
   margin-bottom: 12px;
 }
 .empty-state__text {
@@ -3513,60 +1986,6 @@ a[href^="tel:"] {
   unicode-bidi: isolate;
 }
 
-
-/* ==========================================================================
-   20. NAVIGATION FIT
-   --------------------------------------------------------------------------
-   These rules sit at the end of the sheet on purpose: .nav-cta, .langswitch
-   and section 15's own .mainnav__link sizes are all declared after section 04
-   and would otherwise win on source order.
-   ========================================================================== */
-
-/* --- The light language switch (utility bar) -----------------------------
-   The green-bar switch is white-on-translucent and disappears on the light
-   utility bar, so the desktop copy takes its own palette. */
-.langswitch--light {
-  background-color: var(--white);
-  border-color: var(--line);
-}
-.langswitch--light .langswitch__btn {
-  min-height: 26px;
-  padding: 0 12px;
-  color: var(--text);
-}
-.langswitch--light .langswitch__btn:hover { color: var(--accent); }
-.langswitch--light .langswitch__btn.is-on,
-.langswitch--light .langswitch__btn.is-on:hover {
-  background-color: var(--accent);
-  color: var(--white);
-}
-
-/* --- Room in the green bar ------------------------------------------------
-   With the language switch moved up to the utility bar, the nav row carries
-   only the sections and the complaint button, so the sections can breathe. */
-.mainnav__menu { gap: clamp(16px, 2.1vw, 38px); }
-
-/* Below the xxl container the row tightens; buy width back from the type. */
-@media (max-width: 1399.98px) {
-  .mainnav__link { font-size: 13px; letter-spacing: 0.01em; }
-}
-
-/* Between lg and xl the container is only 960-1140px wide. The row goes
-   compact rather than dropping the whole menu into the burger and leaving a
-   near-empty green bar across a tablet. The burger takes over below lg. */
-@media (min-width: 992px) and (max-width: 1199.98px) {
-  .mainnav__menu { gap: clamp(10px, 1.3vw, 20px); }
-  .mainnav__link { font-size: 12px; letter-spacing: 0; gap: 4px; }
-  .mainnav__inner { gap: 14px; }
-  .nav-cta { padding: 9px 20px; }
-  .nav-cta__sub { display: none; }
-  /* The welcome line is the one piece of the utility bar that can go, and it
-     has to for the quick links and the switch to keep their place. */
-  .topbar__item:first-child { display: none; }
-  .topbar__links { gap: 14px; }
-}
-
-
 /* ==========================================================================
    21. NEWS LISTING
    ========================================================================== */
@@ -3582,7 +2001,7 @@ a[href^="tel:"] {
   padding: 6px 13px;
   border-radius: var(--radius-pill);
   background-color: rgba(0, 69, 5, 0.88);
-  color: var(--accent-bright);
+  color: var(--lg-accent-bright);
   font-size: 11.5px;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -3599,7 +2018,6 @@ a[href^="tel:"] {
 }
 .news-card--listed .news-card__title { margin-bottom: 18px; }
 .news-card--listed .link-more { margin-top: auto; }
-
 
 /* ==========================================================================
    22. READING MEASURE, URDU LINE SPACING, TOUCH TARGETS
@@ -3666,9 +2084,6 @@ html[lang="ur"] .empty-state__title,
 html[lang="ur"] .empty-state__text,
 html[lang="ur"] .is-pending,
 html[lang="ur"] .news-card__tag,
-html[lang="ur"] .footer__blurb,
-html[lang="ur"] .dept-card__desc,
-html[lang="ur"] .process__label,
 html[lang="ur"] .post__caption,
 html[lang="ur"] .plans-note__text,
 html[lang="ur"] .plans-note__text strong,
@@ -3688,17 +2103,12 @@ html[lang="ur"] .widget p { line-height: 2.5; }
    came to 21px tall on a phone — under the 24px minimum, and awkward to hit
    with a thumb. The burger was 27px across. */
 @media (max-width: 991.98px) {
-  .footer-links a,
-  .footer-contact a,
   .quicklinks a,
-  .site-footer__bottom a,
-  .minilist__title,
-  .topbar__links a {
+  .minilist__title {
     display: inline-block;
     padding-block: 5px;
   }
   .crumbs a { display: inline-block; padding-block: 4px; }
-  .nav-burger { min-width: 44px; }
 }
 
 /* --- Undersized photographs ----------------------------------------------
@@ -3708,7 +2118,6 @@ html[lang="ur"] .widget p { line-height: 2.5; }
 .post__figure--small { text-align: center; }
 .post__figure--small img { max-width: 300px; }
 
-
 /* ==========================================================================
    23. BRAND LOCKUP
    --------------------------------------------------------------------------
@@ -3716,20 +2125,6 @@ html[lang="ur"] .widget p { line-height: 2.5; }
    replaces the SMPA acronym over a small caption. At the end of the sheet so
    it outranks section 15's phone sizes for the old lockup.
    ========================================================================== */
-.brand { gap: 16px; }
-.brand__seal { height: 72px; }
-.brand__full {
-  font-family: var(--font-display);
-  font-size: clamp(20px, 1.75vw, 28px);
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.005em;
-  text-transform: none;
-  color: var(--green);
-  white-space: nowrap;
-}
-html[lang="sd"] .brand__full { line-height: 1.7; }
-html[lang="ur"] .brand__full { line-height: 2.2; font-size: clamp(19px, 1.6vw, 26px); }
 
 /* The contact cluster beside the name gives way in stages as the row narrows,
    rather than letting its cards wrap into tall ragged blocks. The address and
@@ -3738,79 +2133,21 @@ html[lang="ur"] .brand__full { line-height: 2.2; font-size: clamp(19px, 1.6vw, 2
      >= 1200   name · address over email · social
      768-1199  name · social
      < 768     name alone                                                     */
-.header-utils { gap: 22px; }
-.site-header__inner { gap: 48px; }
-.brand { flex-shrink: 0; }
 
 /* Address over email, two quiet lines with their icons — no card fill, so
    the name stays the one strong element in the row. */
-.header-contact {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.header-contact li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 13.5px;
-  line-height: 1.4;
-  color: var(--text);
-  white-space: nowrap;
-}
-.header-contact i {
-  width: 16px;
-  text-align: center;
-  color: var(--accent);
-  font-size: 14px;
-  flex-shrink: 0;
-}
-.header-contact a { color: var(--text); }
-.header-contact a:hover,
-.header-contact a:focus-visible { color: var(--accent); }
-html[lang="ur"] .header-contact { gap: 0; }
-html[lang="ur"] .header-contact li { line-height: 2.2; font-size: 13px; }
-html[lang="sd"] .header-contact li { line-height: 1.8; }
-
-@media (max-width: 1199.98px) {
-  .header-contact,
-  .header-utils__divider { display: none; }
-}
-@media (max-width: 767.98px) {
-  .header-utils { display: none !important; }
-  .brand__seal { height: 58px; }
-}
 /* On a phone the name may take two lines rather than run off the edge. */
-@media (max-width: 575.98px) {
-  .brand { gap: 12px; }
-  .brand__seal { height: 54px; }
-  .brand__full { white-space: normal; font-size: 20px; line-height: 1.25; }
-  html[lang="ur"] .brand__full { font-size: 19px; line-height: 2; }
-}
 
 /* Where the contact cluster has stepped aside, the name takes the room. */
-.brand__full { font-size: 30px; }
-html[lang="ur"] .brand__full { font-size: 26px; }
-@media (max-width: 1399.98px) { .brand__full { font-size: 28px; } html[lang="ur"] .brand__full { font-size: 25px; } }
-@media (max-width: 767.98px)  { .brand__full { font-size: 25px; } html[lang="ur"] .brand__full { font-size: 22px; } }
-@media (max-width: 575.98px)  { .brand__full { font-size: 20px; } html[lang="ur"] .brand__full { font-size: 19px; } }
 
 /* A phone's nav bar cannot hold the burger, the language switch and the
    complaint button: the button was running off the right edge. The drawer
    already carries Online Complain as a full-width button, so it steps out
    of the bar here. */
-@media (max-width: 575.98px) {
-  .mainnav .nav-cta { display: none; }
-}
 
 /* The utility bar gained the language switch and started wrapping its items
    onto two lines ("9:00am - / 5:00pm") below 1400. Its items never wrap, and
    the welcome line — the one piece that can go — steps out below xxl too. */
-.topbar__item,
-.topbar__links a { white-space: nowrap; }
-@media (max-width: 1399.98px) {
-  .topbar__item:first-child { display: none; }
-}
 
 /* --- One centred reading column -------------------------------------------
    Capping each block's width on its own left the copy hugging the left of a
@@ -3833,7 +2170,6 @@ html[lang="ur"] .brand__full { font-size: 26px; }
 .timeline__text { font-size: 18px; }
 .lede { font-size: 19px; }
 
-
 /* ==========================================================================
    24. DOCUMENT FILTER AND TABLE
    --------------------------------------------------------------------------
@@ -3853,7 +2189,7 @@ html[lang="ur"] .brand__full { font-size: 26px; }
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--accent-bright);
+  color: var(--lg-accent-bright);
   margin-bottom: 14px;
 }
 .doc-filter__grid {
@@ -3888,16 +2224,16 @@ html[lang="ur"] .brand__full { font-size: 26px; }
   cursor: pointer;
   transition: border-color var(--transition);
 }
-.doc-filter__opt input:checked { border-color: var(--accent-bright); }
+.doc-filter__opt input:checked { border-color: var(--lg-accent-bright); }
 .doc-filter__opt input:checked::after {
   content: "";
   position: absolute;
   inset: 3px;
   border-radius: 50%;
-  background-color: var(--accent-bright);
+  background-color: var(--lg-accent-bright);
 }
 .doc-filter__opt input:focus-visible {
-  outline: 2px solid var(--accent-bright);
+  outline: 2px solid var(--lg-accent-bright);
   outline-offset: 3px;
 }
 .doc-filter__opt:has(input:checked) { color: var(--white); }
@@ -3917,15 +2253,15 @@ html[lang="ur"] .brand__full { font-size: 26px; }
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.03em;
-  color: var(--ink);
-  border-bottom: 1px solid var(--line);
+  color: var(--lg-ink);
+  border-bottom: 1px solid var(--lg-line);
   white-space: nowrap;
 }
 .doc-table td {
   padding: 16px 18px;
   text-align: start;
   vertical-align: top;
-  border-bottom: 1px solid var(--rule, var(--line));
+  border-bottom: 1px solid var(--rule, var(--lg-line));
   font-size: 14.5px;
   line-height: 1.7;
   color: var(--text);
@@ -3935,10 +2271,10 @@ html[lang="ur"] .brand__full { font-size: 26px; }
 .doc-table__date {
   white-space: nowrap;
   font-weight: 600;
-  color: var(--ink);
+  color: var(--lg-ink);
   font-variant-numeric: tabular-nums;
 }
-.doc-table__title { color: var(--ink); font-weight: 500; }
+.doc-table__title { color: var(--lg-ink); font-weight: 500; }
 .doc-table__ref {
   display: block;
   margin-top: 5px;
@@ -3954,7 +2290,7 @@ html[lang="ur"] .brand__full { font-size: 26px; }
   gap: 9px;
   padding: 10px 20px;
   border-radius: var(--radius-pill);
-  background-color: var(--accent);
+  background-color: var(--lg-accent);
   color: var(--white);
   font-size: 13px;
   font-weight: 700;
@@ -3963,7 +2299,7 @@ html[lang="ur"] .brand__full { font-size: 26px; }
   transition: background-color var(--transition);
 }
 .btn-doc:hover,
-.btn-doc:focus-visible { background-color: var(--accent-hover); color: var(--white); }
+.btn-doc:focus-visible { background-color: var(--lg-accent-hover); color: var(--white); }
 html[lang="ur"] .btn-doc { line-height: 2.2; }
 
 /* Nothing matched the chosen category. */
@@ -3983,18 +2319,17 @@ html[lang="ur"] .btn-doc { line-height: 2.2; }
   .doc-table tr,
   .doc-table td { display: block; }
   .doc-table tr {
-    border: 1px solid var(--line);
+    border: 1px solid var(--lg-line);
     border-radius: var(--radius-card);
     padding: 16px;
     margin-bottom: 14px;
   }
   .doc-table tbody tr:hover { background-color: transparent; }
   .doc-table td { border-bottom: none; padding: 0; }
-  .doc-table__date { margin-bottom: 8px; font-size: 13px; color: var(--accent); }
+  .doc-table__date { margin-bottom: 8px; font-size: 13px; color: var(--lg-accent); }
   .doc-table__act { width: auto; margin-top: 14px; }
   .doc-table .btn-doc { width: 100%; justify-content: center; }
 }
-
 
 /* ==========================================================================
    25. RENDERED NOTICE (notices/)
@@ -4012,7 +2347,7 @@ html[lang="ur"] .btn-doc { line-height: 2.2; }
 
 /* --- Masthead, after the Gazette's own hierarchy ------------------------- */
 .notice__masthead {
-  border: 1px solid var(--line);
+  border: 1px solid var(--lg-line);
   border-top: 4px solid var(--green);
   border-radius: var(--radius-card);
   background-color: var(--white);
@@ -4025,7 +2360,7 @@ html[lang="ur"] .btn-doc { line-height: 2.2; }
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--lg-accent);
   margin-bottom: 10px;
 }
 .notice__paper {
@@ -4033,7 +2368,7 @@ html[lang="ur"] .btn-doc { line-height: 2.2; }
   font-size: clamp(22px, 2.6vw, 30px);
   font-weight: 700;
   line-height: 1.2;
-  color: var(--ink);
+  color: var(--lg-ink);
   margin-bottom: 4px;
 }
 .notice__authority {
@@ -4044,7 +2379,7 @@ html[lang="ur"] .btn-doc { line-height: 2.2; }
 }
 .notice__rule {
   height: 1px;
-  background-color: var(--line);
+  background-color: var(--lg-line);
   margin: 0 0 18px;
 }
 .notice__issue {
@@ -4052,7 +2387,7 @@ html[lang="ur"] .btn-doc { line-height: 2.2; }
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--lg-ink);
   margin-bottom: 14px;
 }
 .notice__dept {
@@ -4060,12 +2395,12 @@ html[lang="ur"] .btn-doc { line-height: 2.2; }
   line-height: 1.7;
   color: var(--text);
 }
-.notice__dept b { display: block; color: var(--ink); }
+.notice__dept b { display: block; color: var(--lg-ink); }
 .notice__word {
   display: inline-block;
   margin-top: 18px;
   padding: 7px 26px;
-  border: 1px solid var(--accent);
+  border: 1px solid var(--lg-accent);
   border-radius: var(--radius-pill);
   font-family: var(--font-display);
   font-size: 16px;
@@ -4080,8 +2415,8 @@ html[lang="ur"] .btn-doc { line-height: 2.2; }
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   gap: 1px;
-  background-color: var(--line);
-  border: 1px solid var(--line);
+  background-color: var(--lg-line);
+  border: 1px solid var(--lg-line);
   border-radius: var(--radius-card);
   overflow: hidden;
   margin-bottom: 28px;
@@ -4100,14 +2435,14 @@ html[lang="ur"] .btn-doc { line-height: 2.2; }
   font-size: 14px;
   font-weight: 600;
   line-height: 1.5;
-  color: var(--ink);
+  color: var(--lg-ink);
   word-break: break-word;
 }
 
 .notice__preamble {
   font-size: 16px;
   line-height: 1.9;
-  color: var(--ink);
+  color: var(--lg-ink);
   margin-bottom: 34px;
 }
 
@@ -4117,7 +2452,7 @@ html[lang="ur"] .btn-doc { line-height: 2.2; }
   font-size: 18px;
   font-weight: 700;
   line-height: 1.4;
-  color: var(--ink);
+  color: var(--lg-ink);
   margin-bottom: 14px;
   padding-bottom: 10px;
   border-bottom: 2px solid var(--green);
@@ -4133,7 +2468,7 @@ html[lang="ur"] .btn-doc { line-height: 2.2; }
   padding: 11px 14px;
   text-align: start;
   vertical-align: top;
-  border: 1px solid var(--line);
+  border: 1px solid var(--lg-line);
   font-size: 14px;
   line-height: 1.6;
 }
@@ -4146,9 +2481,9 @@ html[lang="ur"] .btn-doc { line-height: 2.2; }
   letter-spacing: 0.02em;
 }
 .fee-table__sr { width: 52px; text-align: center; color: var(--text-muted); font-variant-numeric: tabular-nums; }
-.fee-table__item { width: 26%; font-weight: 600; color: var(--ink); }
+.fee-table__item { width: 26%; font-weight: 600; color: var(--lg-ink); }
 .fee-table__old { color: var(--text-muted); }
-.fee-table__new { color: var(--ink); font-weight: 600; background-color: var(--bg-address); }
+.fee-table__new { color: var(--lg-ink); font-weight: 600; background-color: var(--bg-address); }
 .fee-table tbody tr:nth-child(even) .fee-table__old,
 .fee-table tbody tr:nth-child(even) .fee-table__item { background-color: var(--bg-alt); }
 /* A heading row inside the schedule (Petrol Pumps, C.N.G. …) */
@@ -4161,7 +2496,7 @@ html[lang="ur"] .btn-doc { line-height: 2.2; }
 .fee-table__sub {
   display: block;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--lg-ink);
   margin-bottom: 2px;
 }
 .fee-table__sub + .fee-table__sub { margin-top: 10px; }
@@ -4175,25 +2510,25 @@ html[lang="ur"] .btn-doc { line-height: 2.2; }
   justify-content: space-between;
   gap: 18px;
   padding: 22px 26px;
-  border: 1px solid var(--line);
-  border-inline-start: 4px solid var(--accent);
+  border: 1px solid var(--lg-line);
+  border-inline-start: 4px solid var(--lg-accent);
   border-radius: var(--radius-card);
   background-color: var(--bg-alt);
   margin-bottom: 34px;
 }
 .notice__get-text { font-size: 14.5px; line-height: 1.65; color: var(--text); margin: 0; }
-.notice__get-text b { display: block; color: var(--ink); font-size: 15.5px; margin-bottom: 3px; }
+.notice__get-text b { display: block; color: var(--lg-ink); font-size: 15.5px; margin-bottom: 3px; }
 
 .notice__sign {
   margin-top: 30px;
   padding-top: 18px;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--lg-line);
   text-align: end;
   font-family: var(--font-display);
   font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: var(--ink);
+  color: var(--lg-ink);
 }
 
 html[lang="ur"] .notice__preamble,
@@ -4207,7 +2542,6 @@ html[lang="ur"] .notice__meta dd { line-height: 2.5; }
   .notice__get .btn-doc { width: 100%; justify-content: center; }
 }
 
-
 /* ==========================================================================
    26. HERO CONTROLS
    --------------------------------------------------------------------------
@@ -4217,55 +2551,18 @@ html[lang="ur"] .notice__meta dd { line-height: 2.5; }
    as a pair at the foot of the slide, opposite the indicators, aligned to the
    same column as the copy.
    ========================================================================== */
-.hero__nav {
-  position: absolute;
-  z-index: 3;
-  bottom: 44px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 1320px;
-  padding: 0 15px;
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  pointer-events: none;   /* the strip is full width; only the buttons take clicks */
-}
-.hero__nav .hero__ctrl {
-  position: static;
-  pointer-events: auto;
-  width: 48px;
-  height: 48px;
-  top: auto;
-  bottom: auto;
-  left: auto;
-  right: auto;
-  transform: none;
-}
-.hero__nav .hero__ctrl:hover,
-.hero__nav .hero__ctrl:focus-visible { transform: scale(1.08); }
 
 /* Below lg the copy fills the slide and there is no room for a control row at
    its foot — the arrows would sit on the last lines. Swipe and the indicators
    carry it from there. */
-@media (max-width: 991.98px) {
-  .hero__nav { display: none; }
-}
 
 /* The longest slide now runs to six lines of copy. On a short screen the old
    540px floor left the button sitting on the indicators, so from md up the
    slide has a taller floor and the copy column reserves the control row's
    height at its foot. Phone heights are set in section 17 and stay as they are. */
-@media (min-width: 768px) {
-  .hero .carousel-item { height: clamp(620px, 74vh, 780px); }
-  .hero__container { padding-bottom: 88px; }
-}
 
 /* On a phone the slide hugs its content, so the shorter slides brought the
    button down to within a pixel of the indicators. */
-@media (max-width: 767.98px) {
-  .hero__container { padding-bottom: 104px; }
-}
 
 /* --- Copy column, sized for the statements it now carries -----------------
    The column was 700px with a 540px text measure, tuned for a four-word
@@ -4273,39 +2570,6 @@ html[lang="ur"] .notice__meta dd { line-height: 2.5; }
    slide sat empty. Widening the column brings the title back to two or three
    lines and gives the paragraph a fuller measure; the scrim's dark zone
    widens with it so the copy keeps its ground. */
-@media (min-width: 992px) {
-  .hero__content { max-width: min(80%, 1080px); }
-  .hero__text { max-width: 740px; }
-  /* Nastaliq sets more characters in the same width, so its measure is
-     narrower to land near the same line length. */
-  html[lang="ur"] .hero__text { max-width: 600px; }
-  html[lang="sd"] .hero__text { max-width: 660px; }
-  .hero__title { font-size: clamp(38px, 3.6vw, 58px); }
-  .hero__overlay {
-    background:
-      linear-gradient(90deg,
-        rgba(4, 26, 10, 0.95) 0%,
-        rgba(4, 26, 10, 0.90) 58%,
-        rgba(4, 26, 10, 0.66) 84%,
-        rgba(4, 26, 10, 0.30) 100%),
-      linear-gradient(180deg,
-        rgba(4, 26, 10, 0.35) 0%,
-        rgba(4, 26, 10, 0) 30%,
-        rgba(4, 26, 10, 0.45) 100%);
-  }
-  [dir="rtl"] .hero__overlay {
-    background:
-      linear-gradient(270deg,
-        rgba(4, 26, 10, 0.95) 0%,
-        rgba(4, 26, 10, 0.90) 58%,
-        rgba(4, 26, 10, 0.66) 84%,
-        rgba(4, 26, 10, 0.30) 100%),
-      linear-gradient(180deg,
-        rgba(4, 26, 10, 0.35) 0%,
-        rgba(4, 26, 10, 0) 30%,
-        rgba(4, 26, 10, 0.45) 100%);
-  }
-}
 
 /* The dateline a release opens with — "Karachi, September 9, 2026." — set
    apart from the lead the way a wire story sets it. */
@@ -4315,12 +2579,11 @@ html[lang="ur"] .notice__meta dd { line-height: 2.5; }
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--lg-accent);
 }
 html[lang="sd"] .post__dateline,
 html[lang="ur"] .post__dateline { letter-spacing: normal; text-transform: none; font-size: 15px; }
 html[lang="ur"] .post__dateline { line-height: 2.4; }
-
 
 /* A wider reading column would stretch a short list of one-line items across
    the page with a ragged right edge, so the check list runs in two columns
